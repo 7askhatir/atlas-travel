@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `👥 Passengers: ${pax}%0A` +
         `🚗 Vehicle: ${vehicle}`;
 
-      window.open(`https://wa.me/212600000000?text=${msg}`, '_blank');
+      window.open(`https://wa.me/212673396332?text=${msg}`, '_blank');
     },
 
     showSuccess() {
