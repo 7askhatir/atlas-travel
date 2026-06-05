@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Transport in Morocco — TOREST Travel</title>
+  <meta name="description" content="Book premium private transport in Morocco. Comfortable, safe, 24/7 service with professional drivers. Instant booking & best prices.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="transport.html" class="navbar-brand">
+        <span class="navbar-brand-icon"><i class="fas fa-compass"></i></span>
+        TOREST
+      </a>
+      <div class="navbar-menu" id="navbarMenu">
+        <a href="transport.html" class="navbar-link active">Transport</a>
+        <a href="activities.html" class="navbar-link">Activities</a>
+        <a href="#destinations" class="navbar-link">Destinations</a>
+        <a href="#reviews" class="navbar-link">Reviews</a>
+        <a href="#faq" class="navbar-link">FAQ</a>
+        <a href="#contact" class="navbar-link">Contact</a>
+        <div class="navbar-cta">
+          <a href="#booking" class="btn btn-cta btn-sm">
+            <i class="fas fa-calendar-check"></i> Book Now
+          </a>
+        </div>
+      </div>
+      <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO WITH SLIDER ====== -->
+  <section class="hero" id="hero">
+    <div class="hero-slider" id="heroSlider">
+      <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1490077476659-095159692ab5?w=1920&q=80');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1920&q=80');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="container">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Since 2018 — Premium Transport Service
+        </div>
+        <h1 class="hero-title">
+          Private Transport<br>in <span>Morocco</span>
+        </h1>
+        <p class="hero-text">
+          Experience comfort, safety, and reliability with our 24/7 private transport service.
+          Professional drivers, premium vehicles, and tailor-made journeys across Morocco.
+        </p>
+        <div class="hero-actions">
+          <a href="#booking" class="btn btn-cta btn-lg">
+            <i class="fas fa-car"></i> Book a Ride
+          </a>
+          <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="btn btn-whatsapp btn-lg">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-value">5,000+</div>
+            <div class="hero-stat-label">Happy Clients</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">24/7</div>
+            <div class="hero-stat-label">Support</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">98%</div>
+            <div class="hero-stat-label">On Time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-nav" id="sliderNav">
+      <button class="slider-dot active" data-slide="0"></button>
+      <button class="slider-dot" data-slide="1"></button>
+      <button class="slider-dot" data-slide="2"></button>
+    </div>
+  </section>
+
+  <!-- ====== SMART BOOKING FLOW ====== -->
+  <section class="section booking-flow" id="booking">
+    <div class="container">
+      <div class="flow-card reveal">
+        <div class="flow-header">
+          <h2 class="flow-title"><i class="fas fa-route" style="color: var(--secondary); margin-right: 10px;"></i>Book Your Journey</h2>
+        </div>
+
+        <div class="flow-steps">
+          <div class="flow-step active" data-step="1">
+            <span class="flow-step-number">1</span>
+            <span class="flow-step-label">Service</span>
+          </div>
+          <div class="flow-step" data-step="2">
+            <span class="flow-step-number">2</span>
+            <span class="flow-step-label">Details</span>
+          </div>
+          <div class="flow-step" data-step="3">
+            <span class="flow-step-number">3</span>
+            <span class="flow-step-label">Summary</span>
+          </div>
+          <div class="flow-step" data-step="4">
+            <span class="flow-step-number">4</span>
+            <span class="flow-step-label">Confirm</span>
+          </div>
+        </div>
+
+        <div class="flow-body">
+          <!-- Step 1: Choose Service -->
+          <div class="flow-step-content active" data-step="1">
+            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;">
+              What would you like to book?
+            </p>
+            <div class="service-options">
+              <div class="service-option selected" data-service="transport" onclick="Flow.selectService(this, 'transport')">
+                <div class="service-option-check"><i class="fas fa-check"></i></div>
+                <div class="service-option-icon" style="background: var(--secondary-light);">
+                  <i class="fas fa-car" style="color: var(--secondary);"></i>
+                </div>
+                <h3 class="service-option-title">Transport</h3>
+                <p class="service-option-desc">Private car, SUV, or minivan with professional driver</p>
+              </div>
+              <div class="service-option" data-service="activities" onclick="window.location.href='activities.html#booking'">
+                <div class="service-option-check"><i class="fas fa-check"></i></div>
+                <div class="service-option-icon">
+                  <i class="fas fa-mountain" style="color: var(--text-muted);"></i>
+                </div>
+                <h3 class="service-option-title">Activities</h3>
+                <p class="service-option-desc">Desert safaris, camel rides, surfing &amp; more</p>
+              </div>
+            </div>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: flex-end;">
+              <button class="btn btn-secondary" onclick="Flow.next()">
+                Next Step <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Fill Details -->
+          <div class="flow-step-content" data-step="2">
+            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;">
+              Enter your trip details and we'll find the perfect vehicle for you.
+            </p>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Pickup Location</label>
+                <input class="form-input" id="pickup" type="text" placeholder="Airport, hotel, or address" required autocomplete="off">
+                <div class="suggestions" id="pickupSuggestions"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Destination</label>
+                <input class="form-input" id="destination" type="text" placeholder="City or landmark" required autocomplete="off">
+                <div class="suggestions" id="destSuggestions"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Date &amp; Time</label>
+                <input class="form-input" id="datetime" type="datetime-local" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Passengers</label>
+                <div class="stepper">
+                  <button class="stepper-btn" type="button" onclick="Flow.changePassengers(-1)">−</button>
+                  <span class="stepper-value" id="passengerCount">2</span>
+                  <button class="stepper-btn" type="button" onclick="Flow.changePassengers(1)">+</button>
+                </div>
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Vehicle Type</label>
+                <div class="vehicle-selector" id="vehicleSelector">
+                  <div class="vehicle-option selected" data-vehicle="standard" onclick="Flow.selectVehicle(this, 'standard')">
+                    <div class="vehicle-option-icon">🚗</div>
+                    <div class="vehicle-option-name">Standard</div>
+                    <div class="vehicle-option-price">from €45</div>
+                  </div>
+                  <div class="vehicle-option" data-vehicle="suv" onclick="Flow.selectVehicle(this, 'suv')">
+                    <div class="vehicle-option-icon">🚙</div>
+                    <div class="vehicle-option-name">SUV / 4x4</div>
+                    <div class="vehicle-option-price">from €70</div>
+                  </div>
+                  <div class="vehicle-option" data-vehicle="minivan" onclick="Flow.selectVehicle(this, 'minivan')">
+                    <div class="vehicle-option-icon">🚐</div>
+                    <div class="vehicle-option-name">Minivan</div>
+                    <div class="vehicle-option-price">from €90</div>
+                  </div>
+                  <div class="vehicle-option" data-vehicle="luxury" onclick="Flow.selectVehicle(this, 'luxury')">
+                    <div class="vehicle-option-icon">🏎️</div>
+                    <div class="vehicle-option-name">Luxury</div>
+                    <div class="vehicle-option-price">from €120</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: space-between;">
+              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-secondary" onclick="Flow.next()">Next Step <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Step 3: Summary -->
+          <div class="flow-step-content" data-step="3">
+            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;">
+              Review your booking details before confirming.
+            </p>
+            <div class="summary-card">
+              <div class="summary-row">
+                <span class="summary-label"><i class="fas fa-map-pin"></i> Pickup</span>
+                <span class="summary-value" id="summaryPickup">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label"><i class="fas fa-location-dot"></i> Destination</span>
+                <span class="summary-value" id="summaryDest">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label"><i class="far fa-calendar"></i> Date &amp; Time</span>
+                <span class="summary-value" id="summaryDatetime">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label"><i class="fas fa-user"></i> Passengers</span>
+                <span class="summary-value" id="summaryPassengers">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label"><i class="fas fa-car"></i> Vehicle</span>
+                <span class="summary-value" id="summaryVehicle">—</span>
+              </div>
+              <div class="summary-total">
+                <span class="summary-total-label">Estimated Total</span>
+                <span class="summary-total-value" id="summaryPrice">€0</span>
+              </div>
+            </div>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: space-between;">
+              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-secondary" onclick="Flow.next()">Confirm Booking <i class="fas fa-check"></i></button>
+            </div>
+          </div>
+
+          <!-- Step 4: Confirm -->
+          <div class="flow-step-content" data-step="4">
+            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;">
+              Almost done! Choose how you'd like to confirm your booking.
+            </p>
+            <div class="confirm-grid">
+              <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="confirm-card">
+                <div class="confirm-card-icon">💬</div>
+                <h3 class="confirm-card-title">Book via WhatsApp</h3>
+                <p class="confirm-card-desc">Quickest way — get instant confirmation</p>
+              </a>
+              <div class="confirm-card" onclick="Flow.showSuccess()">
+                <div class="confirm-card-icon">📋</div>
+                <h3 class="confirm-card-title">Request a Callback</h3>
+                <p class="confirm-card-desc">We'll call you within 5 minutes</p>
+              </div>
+            </div>
+            <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center;">
+              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-cta btn-lg" onclick="Flow.submitWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Confirm via WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== VEHICLE FLEET ====== -->
+  <section class="section" id="fleet" style="background: var(--bg-white);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Our Fleet</span>
+        <h2 class="section-title">Choose Your Perfect Ride</h2>
+        <p class="section-subtitle mx-auto">From comfortable sedans to luxurious VIP vehicles — every journey deserves the right car.</p>
+      </div>
+
+      <div class="vehicles-grid">
+        <div class="vehicle-card reveal">
+          <div class="vehicle-card-image" style="background-image: url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&q=80');">
+            <span class="vehicle-card-badge">Most Popular</span>
+          </div>
+          <div class="vehicle-card-body">
+            <h3 class="vehicle-card-name">Standard Car</h3>
+            <p class="vehicle-card-desc">Comfortable sedan ideal for city transfers and short trips. Air-conditioned with ample luggage space.</p>
+            <div class="vehicle-card-features">
+              <span class="vehicle-card-feature"><i class="fas fa-user"></i> Up to 3</span>
+              <span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 2 bags</span>
+              <span class="vehicle-card-feature"><i class="fas fa-wifi"></i> WiFi</span>
+              <span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span>
+            </div>
+            <div class="vehicle-card-footer">
+              <div class="vehicle-card-price">€45 <span>/ trip</span></div>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20the%20Standard%20Car" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="vehicle-card reveal">
+          <div class="vehicle-card-image" style="background-image: url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80');">
+            <span class="vehicle-card-badge">Popular</span>
+          </div>
+          <div class="vehicle-card-body">
+            <h3 class="vehicle-card-name">SUV / 4x4</h3>
+            <p class="vehicle-card-desc">Powerful 4x4 perfect for mountain roads and desert terrain. Extra ground clearance and rugged reliability.</p>
+            <div class="vehicle-card-features">
+              <span class="vehicle-card-feature"><i class="fas fa-user"></i> Up to 5</span>
+              <span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 4 bags</span>
+              <span class="vehicle-card-feature"><i class="fas fa-wifi"></i> WiFi</span>
+              <span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span>
+            </div>
+            <div class="vehicle-card-footer">
+              <div class="vehicle-card-price">€70 <span>/ trip</span></div>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20the%20SUV%204x4" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="vehicle-card reveal">
+          <div class="vehicle-card-image" style="background-image: url('https://images.unsplash.com/photo-1562516157-e7c43e3d2c4f?w=600&q=80');"></div>
+          <div class="vehicle-card-body">
+            <h3 class="vehicle-card-name">Minivan</h3>
+            <p class="vehicle-card-desc">Spacious minivan for groups and families. Maximum comfort with generous seating and cargo capacity.</p>
+            <div class="vehicle-card-features">
+              <span class="vehicle-card-feature"><i class="fas fa-user"></i> Up to 7</span>
+              <span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 6 bags</span>
+              <span class="vehicle-card-feature"><i class="fas fa-wifi"></i> WiFi</span>
+              <span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span>
+            </div>
+            <div class="vehicle-card-footer">
+              <div class="vehicle-card-price">€90 <span>/ trip</span></div>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20the%20Minivan" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="vehicle-card reveal">
+          <div class="vehicle-card-image" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80');">
+            <span class="vehicle-card-badge">Premium</span>
+          </div>
+          <div class="vehicle-card-body">
+            <h3 class="vehicle-card-name">Luxury Car</h3>
+            <p class="vehicle-card-desc">Top-of-the-line luxury sedan for VIP experiences. Leather interior, premium sound, and privacy glass.</p>
+            <div class="vehicle-card-features">
+              <span class="vehicle-card-feature"><i class="fas fa-user"></i> Up to 3</span>
+              <span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 2 bags</span>
+              <span class="vehicle-card-feature"><i class="fas fa-wifi"></i> 5G WiFi</span>
+              <span class="vehicle-card-feature"><i class="fas fa-champagne-glasses"></i> Refreshments</span>
+            </div>
+            <div class="vehicle-card-footer">
+              <div class="vehicle-card-price">€120 <span>/ trip</span></div>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20the%20Luxury%20Car" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DESTINATIONS ====== -->
+  <section class="section" id="destinations">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Explore Destinations</span>
+        <h2 class="section-title">Popular Routes</h2>
+        <p class="section-subtitle mx-auto">From the bustling medinas to the golden dunes — discover Morocco's most iconic destinations.</p>
+      </div>
+
+      <div class="destinations-grid">
+        <div class="destination-card reveal">
+          <div class="destination-card-image" style="background-image: url('https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=600&q=80');"></div>
+          <div class="destination-card-overlay"></div>
+          <div class="destination-card-body">
+            <h3 class="destination-card-name">Marrakech</h3>
+            <p class="destination-card-desc">The Red City — vibrant souks, palaces, and gardens at the foot of the Atlas Mountains.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 12 Available Tours</span>
+          </div>
+        </div>
+
+        <div class="destination-card reveal">
+          <div class="destination-card-image" style="background-image: url('https://images.unsplash.com/photo-1590075766088-0c0adea94c21?w=600&q=80');"></div>
+          <div class="destination-card-overlay"></div>
+          <div class="destination-card-body">
+            <h3 class="destination-card-name">Essaouira</h3>
+            <p class="destination-card-desc">Coastal breeze, blue boats, and fresh seafood in this UNESCO-listed port city.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 8 Available Tours</span>
+          </div>
+        </div>
+
+        <div class="destination-card reveal">
+          <div class="destination-card-image" style="background-image: url('https://images.unsplash.com/photo-1591994843349-f415893b3a6b?w=600&q=80');"></div>
+          <div class="destination-card-overlay"></div>
+          <div class="destination-card-body">
+            <h3 class="destination-card-name">Merzouga</h3>
+            <p class="destination-card-desc">The gateway to the Sahara — witness the largest sand dunes in Morocco.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 6 Available Tours</span>
+          </div>
+        </div>
+
+        <div class="destination-card reveal">
+          <div class="destination-card-image" style="background-image: url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=600&q=80');"></div>
+          <div class="destination-card-overlay"></div>
+          <div class="destination-card-body">
+            <h3 class="destination-card-name">Atlas Mountains</h3>
+            <p class="destination-card-desc">Hike through valleys, waterfalls, and traditional Berber villages in the High Atlas.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 10 Available Tours</span>
+          </div>
+        </div>
+
+        <div class="destination-card reveal">
+          <div class="destination-card-image" style="background-image: url('https://images.unsplash.com/photo-1570459027562-4a916cc6113f?w=600&q=80');"></div>
+          <div class="destination-card-overlay"></div>
+          <div class="destination-card-body">
+            <h3 class="destination-card-name">Agadir</h3>
+            <p class="destination-card-desc">Sun, surf, and golden beaches — the perfect coastal escape on the Atlantic.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 7 Available Tours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TRUST SECTION ====== -->
+  <section class="section" style="background: var(--bg-white);" id="trust">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Why Travel with Us</span>
+        <h2 class="section-title">Trusted by Thousands</h2>
+        <p class="section-subtitle mx-auto">We set the standard for premium travel in Morocco.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-user-tie"></i></div>
+          <h3 class="trust-card-title">Professional Drivers</h3>
+          <p class="trust-card-desc">Licensed, vetted, and trained to provide the highest standard of service.</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-headset"></i></div>
+          <h3 class="trust-card-title">24/7 Support</h3>
+          <p class="trust-card-desc">We're always here — day or night. Real humans, real help, real fast.</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-euro-sign"></i></div>
+          <h3 class="trust-card-title">Fixed Prices</h3>
+          <p class="trust-card-desc">No hidden fees, no surge pricing. What you see is what you pay.</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3 class="trust-card-title">Secure Booking</h3>
+          <p class="trust-card-desc">Your data is encrypted and protected. Book with total peace of mind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== REVIEWS CAROUSEL ====== -->
+  <section class="section reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label" style="color: var(--secondary);">Testimonials</span>
+        <h2 class="section-title" style="color: white;">What Travelers Say</h2>
+        <p class="section-subtitle mx-auto" style="color: rgba(255,255,255,0.6);">Real reviews from real guests who experienced Morocco with us.</p>
+      </div>
+
+      <div class="reviews-carousel reveal" id="reviewsCarousel">
+        <div class="reviews-track" id="reviewsTrack">
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-card-text">"Absolutely fantastic service! Our driver was punctual, professional, and incredibly kind. The SUV was spotless and comfortable. Made our trip to Marrakech unforgettable."</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">SM</div>
+              <div>
+                <div class="review-card-name">Sarah M.</div>
+                <div class="review-card-role">Traveled from Marrakech to Essaouira</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-card-text">"We booked a minivan for our family of 6 and it was perfect. Plenty of space, the kids loved the WiFi, and our driver went above and beyond to show us hidden gems along the way."</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">JD</div>
+              <div>
+                <div class="review-card-name">James D.</div>
+                <div class="review-card-role">Family trip to the Atlas Mountains</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-card-text">"The luxury car service was outstanding — from airport pickup to our hotel in Agadir. The refreshments and 5G WiFi were a great touch. Worth every euro!"</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">AL</div>
+              <div>
+                <div class="review-card-name">Amara L.</div>
+                <div class="review-card-role">Business trip to Agadir</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="review-card-text">"Best transport service in Morocco! Booked through WhatsApp and got a response in 2 minutes. Driver was waiting for us at the airport with a sign. Seamless experience."</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">TR</div>
+              <div>
+                <div class="review-card-name">Thomas R.</div>
+                <div class="review-card-role">Airport transfer to Rabat</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-card-text">"We did the desert tour with TOREST and it was the highlight of our Morocco trip. The 4x4 handled the dunes perfectly. Highly recommend the Sahara sunset stop!"</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">NK</div>
+              <div>
+                <div class="review-card-name">Nina K.</div>
+                <div class="review-card-role">Desert safari to Merzouga</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-controls reveal">
+        <button class="review-btn" onclick="Reviews.prev()"><i class="fas fa-arrow-left"></i></button>
+        <button class="review-btn" onclick="Reviews.next()"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section class="section" id="faq">
+    <div class="container container-narrow">
+      <div class="section-header text-center reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle mx-auto">Everything you need to know before booking.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            What payment methods do you accept?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>We accept cash (EUR/MAD), credit/debit cards (Visa, Mastercard, AMEX), bank transfers, and online payments via Stripe. WhatsApp bookings can be paid upon pickup or in advance — whichever you prefer.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            What is your cancellation policy?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Free cancellation up to 24 hours before your scheduled pickup. Within 24 hours, a 50% charge applies. No-shows are charged in full. We understand plans change — just let us know as soon as possible.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            How long does a typical transfer take?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Transfer times depend on distance and traffic. Marrakech to Essaouira takes ~2.5 hours, Marrakech to Merzouga ~7 hours. We provide real-time tracking and estimated arrival times for every booking.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            Are child seats available?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! We offer child seats and booster seats free of charge. Just let us know the age and weight of your child when booking, and we'll have the appropriate seat ready and installed.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            Can I book a multi-city itinerary?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely! Our custom route service allows multiple stops. Want to go from Marrakech to the Atlas Mountains, then onwards to Merzouga? We'll build a tailor-made itinerary at a fixed price.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            Do you offer airport pickup with name signs?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, every airport transfer includes a professional meet-and-greet. Your driver will be waiting at arrivals with a sign displaying your name, help with luggage, and escort you directly to your vehicle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2 class="cta-title">Ready to Explore Morocco?</h2>
+        <p class="cta-text">Book your private transport now and enjoy a seamless travel experience across Morocco. Our team is ready to serve you 24/7.</p>
+        <div class="cta-actions">
+          <a href="#booking" class="btn btn-cta btn-lg"><i class="fas fa-car"></i> Book Now</a>
+          <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section class="section" id="contact" style="background: var(--bg-white);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="section-title">We'd Love to Hear From You</h2>
+        <p class="section-subtitle mx-auto">Have a question, special request, or just want to say hello? Reach out — we're here 24/7.</p>
+      </div>
+
+      <div class="trust-grid" style="margin-top: 48px;">
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-phone"></i></div>
+          <h3 class="trust-card-title">Phone</h3>
+          <p class="trust-card-desc" style="font-size: 1rem; font-weight: 600; color: var(--primary);">+212 600 000 000</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-envelope"></i></div>
+          <h3 class="trust-card-title">Email</h3>
+          <p class="trust-card-desc" style="font-size: 1rem; font-weight: 600; color: var(--primary);">contact@torest.ma</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon" style="background: rgba(37,211,102,0.12); color: #25D366;"><i class="fab fa-whatsapp"></i></div>
+          <h3 class="trust-card-title">WhatsApp</h3>
+          <p class="trust-card-desc" style="font-size: 1rem; font-weight: 600; color: var(--primary);">+212 600 000 000</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-map-pin"></i></div>
+          <h3 class="trust-card-title">Location</h3>
+          <p class="trust-card-desc" style="font-size: 1rem; font-weight: 600; color: var(--primary);">Marrakech, Morocco</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="navbar-brand-icon"><i class="fas fa-compass"></i></span>
+            TOREST
+          </div>
+          <p class="footer-desc">Premium transport and travel experiences across Morocco. Your journey, our passion.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="transport.html">Transport</a></li>
+            <li><a href="activities.html">Activities</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="#fleet">Private Transfers</a></li>
+            <li><a href="activities.html">Desert Tours</a></li>
+            <li><a href="activities.html">City Excursions</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 TOREST Travel. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="footer-social" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== WHATSAPP FLOAT ====== -->
+  <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20know%20more" target="_blank" class="whatsapp-float" aria-label="Contact on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-float-tooltip">Chat with us!</span>
+  </a>
+
+  <!-- ====== MOBILE STICKY CTA ====== -->
+  <div class="sticky-mobile-cta">
+    <a href="#booking" class="btn btn-cta"><i class="fas fa-car"></i> Book Transport</a>
+    <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20book" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activities & Experiences — TOREST Travel</title>
+  <meta name="description" content="Book unforgettable activities in Morocco. Desert safaris, camel rides, quad biking, surfing, hot air balloon and more. Expert local guides.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="transport.html" class="navbar-brand">
+        <span class="navbar-brand-icon"><i class="fas fa-compass"></i></span>
+        TOREST
+      </a>
+      <div class="navbar-menu" id="navbarMenu">
+        <a href="transport.html" class="navbar-link">Transport</a>
+        <a href="activities.html" class="navbar-link active">Activities</a>
+        <a href="#recommended" class="navbar-link">Experiences</a>
+        <a href="#reviews" class="navbar-link">Reviews</a>
+        <a href="#faq" class="navbar-link">FAQ</a>
+        <a href="#contact" class="navbar-link">Contact</a>
+        <div class="navbar-cta">
+          <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20book%20an%20activity" target="_blank" class="btn btn-cta btn-sm">
+            <i class="fas fa-calendar-check"></i> Book Now
+          </a>
+        </div>
+      </div>
+      <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO WITH SLIDER ====== -->
+  <section class="hero" id="hero">
+    <div class="hero-slider" id="heroSlider">
+      <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=1920&q=80');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=1920&q=80');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="container">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Curated by Experts — Since 2018
+        </div>
+        <h1 class="hero-title">
+          Discover<br><span>Unforgettable</span> Experiences
+        </h1>
+        <p class="hero-text">
+          From the golden dunes of the Sahara to the crashing waves of the Atlantic —
+          explore Morocco's most thrilling adventures with expert local guides.
+        </p>
+        <div class="hero-actions">
+          <a href="#activities" class="btn btn-cta btn-lg">
+            <i class="fas fa-mountain"></i> Explore All
+          </a>
+          <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20book%20an%20activity" target="_blank" class="btn btn-whatsapp btn-lg">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-value">20+</div>
+            <div class="hero-stat-label">Activities</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">4.9★</div>
+            <div class="hero-stat-label">Avg Rating</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">5,000+</div>
+            <div class="hero-stat-label">Happy Guests</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-nav" id="sliderNav">
+      <button class="slider-dot active" data-slide="0"></button>
+      <button class="slider-dot" data-slide="1"></button>
+      <button class="slider-dot" data-slide="2"></button>
+    </div>
+  </section>
+
+  <!-- ====== ACTIVITIES WITH FILTERS ====== -->
+  <section class="section" id="activities">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Choose Your Adventure</span>
+        <h2 class="section-title">Top Experiences in Morocco</h2>
+        <p class="section-subtitle mx-auto">Hand-picked activities designed to show you the very best of Morocco — from the Sahara to the sea.</p>
+      </div>
+
+      <div class="filter-bar reveal" id="filterBar">
+        <button class="filter-btn active" data-filter="all" onclick="Filter.set(this, 'all')">All</button>
+        <button class="filter-btn" data-filter="adventure" onclick="Filter.set(this, 'adventure')">Adventure</button>
+        <button class="filter-btn" data-filter="desert" onclick="Filter.set(this, 'desert')">Desert</button>
+        <button class="filter-btn" data-filter="sea" onclick="Filter.set(this, 'sea')">Sea</button>
+        <button class="filter-btn" data-filter="mountains" onclick="Filter.set(this, 'mountains')">Mountains</button>
+        <button class="filter-btn" data-filter="culture" onclick="Filter.set(this, 'culture')">Culture</button>
+      </div>
+
+      <div class="activities-grid" id="activitiesGrid">
+
+        <!-- Desert Safari -->
+        <div class="activity-card reveal" data-category="desert adventure">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=80" alt="Desert Safari" loading="lazy">
+            <span class="activity-card-badge">Best Seller</span>
+            <span class="activity-card-price">€55</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> 6 hours</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Desert Safari</h3>
+            <p class="activity-card-text">Ride the golden dunes of the Sahara at sunset. Includes camel trek, sandboarding, and a traditional Berber dinner under the stars.</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>4.9</strong> (320 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20the%20Desert%20Safari" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Camel Ride -->
+        <div class="activity-card reveal" data-category="desert culture">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1508162942367-e4dd14a8ca5f?w=600&q=80" alt="Camel Ride" loading="lazy">
+            <span class="activity-card-badge">Cultural</span>
+            <span class="activity-card-price">€30</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> 2 hours</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot"></span>
+              <span class="difficulty-dot"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Camel Ride</h3>
+            <p class="activity-card-text">Experience Morocco like a nomad. A peaceful camel trek through palm groves and desert landscapes with a local guide.</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>4.8</strong> (210 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20the%20Camel%20Ride" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quad Biking -->
+        <div class="activity-card reveal" data-category="desert adventure">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1547234935-80c7145ec969?w=600&q=80" alt="Quad Biking" loading="lazy">
+            <span class="activity-card-badge">Popular</span>
+            <span class="activity-card-price">€65</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> 3 hours</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Quad Biking</h3>
+            <p class="activity-card-text">Feel the adrenaline as you race across desert dunes on a powerful quad bike. Guided tour with safety gear included.</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>4.9</strong> (185 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20Quad%20Biking" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Surf Lessons -->
+        <div class="activity-card reveal" data-category="sea adventure">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&q=80" alt="Surf Lessons" loading="lazy">
+            <span class="activity-card-badge">Water Sport</span>
+            <span class="activity-card-price">€45</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> 3 hours</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot"></span>
+              <span class="difficulty-dot"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Surf Lessons</h3>
+            <p class="activity-card-text">Catch the Atlantic waves at Taghazout. Professional instruction, equipment provided — beginners welcome!</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>4.7</strong> (156 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20Surf%20Lessons" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Atlas Mountains -->
+        <div class="activity-card reveal" data-category="mountains adventure">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=600&q=80" alt="Atlas Mountains" loading="lazy">
+            <span class="activity-card-badge">Nature</span>
+            <span class="activity-card-price">€50</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> Full day</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Atlas Mountains Hike</h3>
+            <p class="activity-card-text">Hike through breathtaking valleys, berber villages, and waterfalls in the High Atlas. Panoramic views await.</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>4.9</strong> (278 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20Atlas%20Mountains%20Hike" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hot Air Balloon -->
+        <div class="activity-card reveal" data-category="adventure culture">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Hot Air Balloon" loading="lazy">
+            <span class="activity-card-badge">Premium</span>
+            <span class="activity-card-price">€150</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> 4 hours</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot"></span>
+              <span class="difficulty-dot"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Hot Air Balloon</h3>
+            <p class="activity-card-text">Soar above Marrakech at sunrise. Champagne toast, flight certificate, and unforgettable panoramic views.</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>5.0</strong> (142 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20the%20Hot%20Air%20Balloon" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== RECOMMENDED FOR YOU ====== -->
+  <section class="section" id="recommended" style="background: var(--bg-white);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Curated Picks</span>
+        <h2 class="section-title">Recommended for You</h2>
+        <p class="section-subtitle mx-auto">Based on what travelers like you loved most.</p>
+      </div>
+
+      <div class="activities-grid">
+        <div class="activity-card reveal" data-category="desert adventure">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?w=600&q=80" alt="Sahara overnight" loading="lazy">
+            <span class="activity-card-badge">⭐ Top Rated</span>
+            <span class="activity-card-price">€120</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> 2 days</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Sahara Overnight Camp</h3>
+            <p class="activity-card-text">Spend a night under the stars in a luxury desert camp. Dinner, music, and sunrise over the dunes.</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>4.9</strong> (89 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20Sahara%20Overnight%20Camp" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card reveal" data-category="sea adventure">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=600&q=80" alt="Essaouira" loading="lazy">
+            <span class="activity-card-badge">Popular</span>
+            <span class="activity-card-price">€40</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> 4 hours</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Essaouira Coast & Kite Surf</h3>
+            <p class="activity-card-text">Explore the coastal gem Essaouira and try kite surfing on the Atlantic with expert instructors.</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>4.8</strong> (124 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20Essaouira%20Coast" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card reveal" data-category="mountains culture">
+          <div class="activity-card-image">
+            <img src="https://images.unsplash.com/photo-1594756202469-9ff9799b2e4e?w=600&q=80" alt="Ourika Valley" loading="lazy">
+            <span class="activity-card-badge">Nature</span>
+            <span class="activity-card-price">€35</span>
+            <span class="activity-card-duration"><i class="far fa-clock"></i> Half day</span>
+            <span class="activity-card-difficulty">
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot filled"></span>
+              <span class="difficulty-dot"></span>
+              <span class="difficulty-dot"></span>
+            </span>
+          </div>
+          <div class="activity-card-body">
+            <h3 class="activity-card-title">Ourika Valley & Waterfalls</h3>
+            <p class="activity-card-text">Escape to the lush Ourika Valley, visit Berber villages, and hike to stunning cascading waterfalls.</p>
+            <div class="activity-card-footer">
+              <span class="activity-card-rating"><i class="fas fa-star"></i> <strong>4.7</strong> (203 reviews)</span>
+              <a href="https://wa.me/212600000000?text=I'm%20interested%20in%20Ourika%20Valley" target="_blank" class="btn btn-cta btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TRUST SECTION ====== -->
+  <section class="section" id="trust">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Why Book With Us</span>
+        <h2 class="section-title">Crafted for Travelers</h2>
+        <p class="section-subtitle mx-auto">Every experience is carefully curated to ensure you have the trip of a lifetime.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-user-tie"></i></div>
+          <h3 class="trust-card-title">Expert Local Guides</h3>
+          <p class="trust-card-desc">Knowledgeable, friendly guides who know every hidden gem Morocco has to offer.</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-camera"></i></div>
+          <h3 class="trust-card-title">Photo-Worthy Moments</h3>
+          <p class="trust-card-desc">Every activity is staged at the most beautiful times of day for stunning memories.</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-headset"></i></div>
+          <h3 class="trust-card-title">Dedicated Support</h3>
+          <p class="trust-card-desc">From booking to drop-off, a real human is always a message away to help you.</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-rotate-left"></i></div>
+          <h3 class="trust-card-title">Free Cancellation</h3>
+          <p class="trust-card-desc">Plans change — cancel up to 24 hours before and get a full refund, no questions asked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== REVIEWS ====== -->
+  <section class="section reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label" style="color: var(--secondary);">Testimonials</span>
+        <h2 class="section-title" style="color: white;">What Travelers Say</h2>
+        <p class="section-subtitle mx-auto" style="color: rgba(255,255,255,0.6);">Real reviews from real guests who experienced Morocco with us.</p>
+      </div>
+
+      <div class="reviews-carousel reveal" id="reviewsCarousel">
+        <div class="reviews-track" id="reviewsTrack">
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-card-text">"The desert safari was the absolute highlight of our Morocco trip. The sunset over the dunes was magical. Our guide Hassan was incredible!"</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">EK</div>
+              <div>
+                <div class="review-card-name">Emma K.</div>
+                <div class="review-card-role">Desert Safari — Merzouga</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-card-text">"Quad biking through the dunes was an adrenaline rush like no other! Equipment was top quality, and the guide made sure everyone was safe."</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">MR</div>
+              <div>
+                <div class="review-card-name">Marco R.</div>
+                <div class="review-card-role">Quad Biking — Agafay</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="review-card-text">"Surf lessons in Taghazout were amazing! The instructors were patient and professional. Caught my first wave within an hour. Highly recommend!"</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">SJ</div>
+              <div>
+                <div class="review-card-name">Sophie J.</div>
+                <div class="review-card-role">Surf Lessons — Taghazout</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-card-text">"The hot air balloon ride was worth every penny. Floating over Marrakech at sunrise with a champagne toast — absolute perfection."</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">AL</div>
+              <div>
+                <div class="review-card-name">Alex L.</div>
+                <div class="review-card-role">Hot Air Balloon — Marrakech</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-card-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-card-text">"Atlas Mountains hike was challenging but the views from the top were absolutely worth it. Our guide shared so much about Berber culture."</p>
+            <div class="review-card-author">
+              <div class="review-card-avatar">CD</div>
+              <div>
+                <div class="review-card-name">Carlos D.</div>
+                <div class="review-card-role">Atlas Mountains Hike</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-controls reveal">
+        <button class="review-btn" onclick="Reviews.prev()"><i class="fas fa-arrow-left"></i></button>
+        <button class="review-btn" onclick="Reviews.next()"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section class="section" id="faq">
+    <div class="container container-narrow">
+      <div class="section-header text-center reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle mx-auto">Everything you need to know about booking activities.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            How do I book an activity?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Booking is easy! Just click "Book Now" on any activity, or send us a message on WhatsApp. We'll confirm availability and send you all the details within minutes. Pay upon arrival or online — your choice.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            What should I bring for activities?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>We recommend comfortable clothing, sunscreen, a hat, and water. For desert activities, bring a light jacket for the evening. For surf lessons, we provide wetsuits and boards. A full packing list is sent with every booking confirmation.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            Are activities suitable for children?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Many of our activities are family-friendly! Camel rides, desert safaris, and the hot air balloon are suitable for children. Quad biking requires minimum age 12. Check the age rating on each activity card or ask us for recommendations.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            Can I combine multiple activities?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely! We specialize in creating custom itineraries. Many guests combine a morning camel ride with an afternoon quad biking session, or a desert safari followed by an overnight camp. Message us and we'll build your perfect day.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            Is transportation included?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Most activities include pickup and drop-off from your accommodation. For desert activities, we include transport from Marrakech. If you need additional transport, check our private transfer options on the Transport page.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="FAQ.toggle(this)">
+            What is your weather policy?
+            <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Your safety comes first. In case of extreme weather, we'll reschedule your activity at no cost or provide a full refund. We monitor conditions closely and communicate any changes at least 2 hours before your booking.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2 class="cta-title">Your Adventure Awaits</h2>
+        <p class="cta-text">Don't just visit Morocco — experience it. Book an activity today and create stories you'll tell for a lifetime.</p>
+        <div class="cta-actions">
+          <a href="#activities" class="btn btn-cta btn-lg"><i class="fas fa-mountain"></i> View All Activities</a>
+          <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20book%20an%20activity" target="_blank" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section class="section" id="contact" style="background: var(--bg-white);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="section-title">We'd Love to Hear From You</h2>
+        <p class="section-subtitle mx-auto">Have a question, special request, or just want to say hello? Reach out — we're here 24/7.</p>
+      </div>
+
+      <div class="trust-grid" style="margin-top: 48px;">
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-phone"></i></div>
+          <h3 class="trust-card-title">Phone</h3>
+          <p class="trust-card-desc" style="font-size: 1rem; font-weight: 600; color: var(--primary);">+212 600 000 000</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-envelope"></i></div>
+          <h3 class="trust-card-title">Email</h3>
+          <p class="trust-card-desc" style="font-size: 1rem; font-weight: 600; color: var(--primary);">contact@torest.ma</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon" style="background: rgba(37,211,102,0.12); color: #25D366;"><i class="fab fa-whatsapp"></i></div>
+          <h3 class="trust-card-title">WhatsApp</h3>
+          <p class="trust-card-desc" style="font-size: 1rem; font-weight: 600; color: var(--primary);">+212 600 000 000</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-card-icon"><i class="fas fa-map-pin"></i></div>
+          <h3 class="trust-card-title">Location</h3>
+          <p class="trust-card-desc" style="font-size: 1rem; font-weight: 600; color: var(--primary);">Marrakech, Morocco</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="navbar-brand-icon"><i class="fas fa-compass"></i></span>
+            TOREST
+          </div>
+          <p class="footer-desc">Premium transport and travel experiences across Morocco. Your journey, our passion.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="transport.html">Transport</a></li>
+            <li><a href="activities.html">Activities</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Activities</h4>
+          <ul class="footer-links">
+            <li><a href="#activities">Desert Safari</a></li>
+            <li><a href="#activities">Camel Ride</a></li>
+            <li><a href="#activities">Quad Biking</a></li>
+            <li><a href="#activities">Surf Lessons</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 TOREST Travel. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="footer-social" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== WHATSAPP FLOAT ====== -->
+  <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20know%20more%20about%20activities" target="_blank" class="whatsapp-float" aria-label="Contact on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-float-tooltip">Chat with us!</span>
+  </a>
+
+  <!-- ====== MOBILE STICKY CTA ====== -->
+  <div class="sticky-mobile-cta">
+    <a href="#activities" class="btn btn-cta"><i class="fas fa-mountain"></i> Explore</a>
+    <a href="https://wa.me/212600000000?text=Hi!%20I'd%20like%20to%20book%20an%20activity" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
