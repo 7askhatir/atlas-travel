@@ -2128,3 +2128,5 @@ input, select, textarea, button { font: inherit; outline: none; }
   .vehicle-selector { grid-template-columns: repeat(2, 1fr); }
   .destinations-grid { grid-template-columns: 1fr; }
 }
+
+

@@ -455,6 +455,31 @@ input,select,textarea{font:inherit;outline:none}
   .search-tabs{width:100%}
   .search-tab{flex:1;text-align:center}
 }
+
+/* ---- Modal ---- */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease;padding:16px}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal{background:var(--bg-white);border-radius:var(--radius-lg);max-width:680px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-xl);transform:translateY(30px)scale(0.96);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1)}
+.modal-overlay.open .modal{transform:translateY(0)scale(1)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border-light);position:sticky;top:0;background:var(--bg-white);z-index:10;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.modal-title{font-family:var(--font-display);font-size:1.15rem;font-weight:800;color:var(--primary);display:flex;align-items:center;gap:10px}
+.modal-title i{color:var(--secondary)}
+.modal-close{width:36px;height:36px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--text-muted);transition:var(--transition);cursor:pointer;border:none}
+.modal-close:hover{background:var(--border);color:var(--text);transform:rotate(90deg)}
+.modal-body{padding:24px 28px 28px}
+.modal-footer{display:flex;gap:12px;justify-content:flex-end;padding:16px 28px 20px;border-top:1px solid var(--border-light);position:sticky;bottom:0;background:var(--bg-white);border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.modal .flow-steps{padding:20px 0;border-bottom:1px solid var(--border-light);margin-bottom:20px}
+.modal .flow-step-label{font-size:0.65rem}
+.modal .form-grid{grid-template-columns:1fr 1fr}
+.modal .vehicle-selector{grid-template-columns:repeat(5,1fr)}
+@media(max-width:768px){
+  .modal .form-grid,.modal .confirm-grid{grid-template-columns:1fr}
+  .modal .vehicle-selector{grid-template-columns:repeat(2,1fr)}
+  .modal .service-options{grid-template-columns:1fr}
+  .modal{max-height:85vh}
+  .modal-body{padding:16px 20px 20px}
+  .modal-header{padding:16px 20px}
+}
 </style>
 </head>
 <body>
@@ -472,7 +497,7 @@ input,select,textarea{font:inherit;outline:none}
   <a href="#faq" class="navbar-link">FAQ</a>
   <a href="#contact" class="navbar-link">Contact</a>
   <select class="navbar-lang" aria-label="Language"><option value="en">EN</option><option value="fr">FR</option></select>
-  <div class="navbar-cta"><a href="#booking" class="btn btn-cta btn-sm"><i class="fas fa-calendar-check"></i>Book Now</a></div>
+  <div class="navbar-cta"><a href="javascript:void(0)" class="btn btn-cta btn-sm" onclick="BookingModal.open()"><i class="fas fa-calendar-check"></i>Book Now</a></div>
 </div>
 <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
 </div>
@@ -482,7 +507,7 @@ input,select,textarea{font:inherit;outline:none}
 <section class="hero" id="hero">
 <div class="hero-slider" id="heroSlider">
 <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=1920&q=80')"></div>
-<div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1920&q=80')"></div>
+<div class="hero-slide" style="background-image:url('/images/car/SUV/1.jpeg')"></div>
 <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1590075766088-0c0adea94c21?w=1920&q=80')"></div>
 <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=1920&q=80')"></div>
 <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1570168009547-ea4c2a4be0e7?w=1920&q=80')"></div>
@@ -494,7 +519,7 @@ input,select,textarea{font:inherit;outline:none}
 <h1 class="hero-title">Discover Morocco<br>in <span>Style & Comfort</span></h1>
 <p class="hero-text">Private transfers, desert adventures &amp; cultural experiences — all in one place. Professional drivers, fixed prices, 24/7 support.</p>
 <div class="hero-actions">
-  <a href="#booking" class="btn btn-cta btn-lg"><i class="fas fa-car"></i> Book Transport</a>
+  <a href="javascript:void(0)" class="btn btn-cta btn-lg" onclick="BookingModal.open()"><i class="fas fa-car"></i> Book Transport</a>
   <a href="#activities" class="btn btn-outline btn-lg"><i class="fas fa-mountain"></i> Browse Activities</a>
 </div>
 <div class="hero-stats">
@@ -539,116 +564,15 @@ input,select,textarea{font:inherit;outline:none}
 </div>
 </section>
 
-<!-- ====== SMART BOOKING FLOW ====== -->
+<!-- ====== BOOKING FLOW SECTION (triggers modal) ====== -->
 <section class="flow-section" id="bookingFlow">
 <div class="container">
-<div class="flow-card reveal">
-<div class="flow-header"><h2><i class="fas fa-route" style="color:var(--secondary);margin-right:12px"></i>Book Your Morocco Trip</h2></div>
-<div class="flow-steps">
-<div class="flow-step active" data-step="1"><span class="flow-step-number">1</span><span class="flow-step-label">Service</span></div>
-<div class="flow-step" data-step="2"><span class="flow-step-number">2</span><span class="flow-step-label">Details</span></div>
-<div class="flow-step" data-step="3"><span class="flow-step-number">3</span><span class="flow-step-label">Summary</span></div>
-<div class="flow-step" data-step="4"><span class="flow-step-number">4</span><span class="flow-step-label">Confirm</span></div>
-</div>
-<div class="flow-body">
-
-<!-- Step 1 -->
-<div class="flow-step-content active" data-step="1">
-<p style="margin-bottom:24px;font-size:0.9rem;color:var(--text-muted)">What would you like to book today?</p>
-<div class="service-options">
-<div class="service-option selected" data-service="transport" onclick="Booking.selectService(this,'transport')">
-<div class="service-option-check"><i class="fas fa-check"></i></div>
-<div class="service-option-icon" style="background:var(--secondary-light)"><i class="fas fa-car" style="color:var(--secondary)"></i></div>
-<h3 class="service-option-title">Private Transport</h3>
-<p class="service-option-desc">Airport transfers, city-to-city, custom routes with professional drivers</p>
-</div>
-<div class="service-option" data-service="activities" onclick="Booking.selectService(this,'activities')">
-<div class="service-option-check"><i class="fas fa-check"></i></div>
-<div class="service-option-icon"><i class="fas fa-compass" style="color:var(--text-muted)"></i></div>
-<h3 class="service-option-title">Activities &amp; Experiences</h3>
-<p class="service-option-desc">Desert camps, mountain treks, food tours, and cultural experiences</p>
-</div>
-</div>
-<div style="margin-top:28px;display:flex;gap:12px;justify-content:flex-end">
-<button class="btn btn-secondary" onclick="Booking.next()">Next Step <i class="fas fa-arrow-right"></i></button>
-</div>
-</div>
-
-<!-- Step 2 -->
-<div class="flow-step-content" data-step="2">
-<p style="margin-bottom:24px;font-size:0.9rem;color:var(--text-muted)">Fill in your trip details and we'll find the perfect match.</p>
-<div class="form-grid" id="flowFormTransport">
-<div class="form-group"><label class="form-label">Pickup Location</label><input class="form-input" id="flowPickup" type="text" placeholder="Airport, hotel, or address" required><div class="suggestions" id="flowPickupSuggestions"></div></div>
-<div class="form-group"><label class="form-label">Destination</label><input class="form-input" id="flowDest" type="text" placeholder="City or landmark" required><div class="suggestions" id="flowDestSuggestions"></div></div>
-<div class="form-group"><label class="form-label">Date</label><input class="form-input" id="flowDate" type="date" required></div>
-<div class="form-group"><label class="form-label">Time</label><input class="form-input" id="flowTime" type="time" required></div>
-<div class="form-group"><label class="form-label">Passengers</label>
-<div class="stepper"><button class="stepper-btn" type="button" onclick="Booking.changePax(-1)">−</button><span class="stepper-value" id="flowPax">2</span><button class="stepper-btn" type="button" onclick="Booking.changePax(1)">+</button></div>
-</div>
-<div class="form-group"><label class="form-label">Vehicle Type</label>
-<div class="vehicle-selector" id="flowVehicle">
-<div class="vehicle-option selected" data-vehicle="economy" onclick="Booking.selectVehicle(this,'economy')"><div class="vehicle-option-icon">🚗</div><div class="vehicle-option-name">Economy</div><div class="vehicle-option-price">from €40</div></div>
-<div class="vehicle-option" data-vehicle="premium" onclick="Booking.selectVehicle(this,'premium')"><div class="vehicle-option-icon">🚘</div><div class="vehicle-option-name">Premium</div><div class="vehicle-option-badge">⭐ Most Popular</div><div class="vehicle-option-price">from €55</div></div>
-<div class="vehicle-option" data-vehicle="suv" onclick="Booking.selectVehicle(this,'suv')"><div class="vehicle-option-icon">🚙</div><div class="vehicle-option-name">SUV 4x4</div><div class="vehicle-option-badge">Desert Ready</div><div class="vehicle-option-price">from €75</div></div>
-<div class="vehicle-option" data-vehicle="minivan" onclick="Booking.selectVehicle(this,'minivan')"><div class="vehicle-option-icon">🚐</div><div class="vehicle-option-name">Minivan</div><div class="vehicle-option-badge">Group</div><div class="vehicle-option-price">from €95</div></div>
-<div class="vehicle-option" data-vehicle="luxury" onclick="Booking.selectVehicle(this,'luxury')"><div class="vehicle-option-icon">🏎️</div><div class="vehicle-option-name">Luxury</div><div class="vehicle-option-badge">VIP</div><div class="vehicle-option-price">from €130</div></div>
-</div>
-</div>
-<div class="form-group full"><label class="form-label">Special Requests (optional)</label><textarea class="form-input form-textarea" id="flowRequests" placeholder="Child seat? Extra stop? Let us know..."></textarea></div>
-</div>
-<div style="margin-top:28px;display:flex;gap:12px;justify-content:space-between">
-<button class="btn btn-ghost" onclick="Booking.prev()"><i class="fas fa-arrow-left"></i> Back</button>
-<button class="btn btn-secondary" onclick="Booking.next()">See Summary <i class="fas fa-arrow-right"></i></button>
-</div>
-</div>
-
-<!-- Step 3 -->
-<div class="flow-step-content" data-step="3">
-<p style="margin-bottom:24px;font-size:0.9rem;color:var(--text-muted)">Review your booking details. Everything included — no hidden fees.</p>
-<div class="summary-card" id="summaryCard">
-<div class="summary-row"><span class="summary-label"><i class="fas fa-route"></i> Service</span><span class="summary-value" id="sumService">Private Transport</span></div>
-<div class="summary-row"><span class="summary-label"><i class="fas fa-map-pin"></i> Pickup</span><span class="summary-value" id="sumPickup">—</span></div>
-<div class="summary-row"><span class="summary-label"><i class="fas fa-location-dot"></i> Destination</span><span class="summary-value" id="sumDest">—</span></div>
-<div class="summary-row"><span class="summary-label"><i class="far fa-calendar"></i> Date &amp; Time</span><span class="summary-value" id="sumDatetime">—</span></div>
-<div class="summary-row"><span class="summary-label"><i class="fas fa-user"></i> Passengers</span><span class="summary-value" id="sumPax">—</span></div>
-<div class="summary-row"><span class="summary-label"><i class="fas fa-car"></i> Vehicle</span><span class="summary-value" id="sumVehicle">—</span></div>
-<div class="summary-total"><span class="summary-total-label">Total (includes driver, fuel, all taxes)</span><span class="summary-total-value" id="sumPrice">€0</span></div>
-</div>
-<div class="summary-note"><i class="fas fa-check-circle"></i> Price includes: professional driver, fuel, tolls, insurance, and bottled water. No hidden fees.</div>
-<div style="margin-top:28px;display:flex;gap:12px;justify-content:space-between">
-<button class="btn btn-ghost" onclick="Booking.prev()"><i class="fas fa-arrow-left"></i> Back</button>
-<button class="btn btn-secondary" onclick="Booking.next()">Confirm Booking <i class="fas fa-check"></i></button>
-</div>
-</div>
-
-<!-- Step 4 -->
-<div class="flow-step-content" data-step="4">
-<p style="margin-bottom:24px;font-size:0.9rem;color:var(--text-muted)">Almost done! Choose how you'd like to confirm.</p>
-<div class="confirm-grid">
-<a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="confirm-card" onclick="Booking.trackWhatsApp()">
-<div class="confirm-card-icon">💬</div>
-<h3 class="confirm-card-title">WhatsApp Instant Booking</h3>
-<p class="confirm-card-desc">Get reply in under 5 minutes ⚡ Pre-filled with your details</p>
-<div style="margin-top:16px"><span class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Confirm on WhatsApp</span></div>
-</a>
-<div class="confirm-card" onclick="Booking.showForm()">
-<div class="confirm-card-icon">📋</div>
-<h3 class="confirm-card-title">Book via Online Form</h3>
-<p class="confirm-card-desc">Leave your details and we'll call or email you back</p>
-<div style="margin-top:16px"><span class="btn btn-primary btn-sm"><i class="fas fa-pen"></i> Fill Form</span></div>
-</div>
-</div>
-<div id="bookingFormContainer" style="display:none;margin-top:24px;padding:24px;background:var(--bg);border-radius:var(--radius)">
-<div class="form-grid">
-<div class="form-group"><label class="form-label">Full Name</label><input class="form-input" placeholder="Your name"></div>
-<div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="your@email.com"></div>
-<div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" placeholder="+212 6XX XXX XXX"></div>
-<div class="form-group"><label class="form-label">Confirm via</label><select class="form-input"><option>WhatsApp</option><option>Email</option><option>Phone Call</option></select></div>
-</div>
-<button class="btn btn-primary btn-block mt-2" onclick="Booking.submitForm()"><i class="fas fa-check"></i> Submit Booking</button>
-</div>
-</div>
-
+<div class="flow-card reveal" style="cursor:pointer" onclick="BookingModal.open()">
+<div class="flow-header" style="text-align:center;padding:48px 32px">
+<div style="font-size:3rem;margin-bottom:16px">🇲🇦</div>
+<h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--primary);margin-bottom:12px">Book Your Morocco Trip</h2>
+<p style="font-size:0.95rem;color:var(--text-muted);max-width:480px;margin:0 auto 24px">Private transfers, desert adventures &amp; cultural experiences — book everything in one place.</p>
+<button class="btn btn-cta btn-lg" onclick="event.stopPropagation();BookingModal.open()"><i class="fas fa-calendar-check"></i> Start Booking</button>
 </div>
 </div>
 </div>
@@ -672,7 +596,7 @@ input,select,textarea{font:inherit;outline:none}
 </div>
 
 <div class="vehicles-grid">
-<div class="vehicle-card reveal"><div class="vehicle-card-image" style="background-image:url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&q=80')"><span class="vehicle-card-badge best">Best Value</span></div>
+<div class="vehicle-card reveal"><div class="vehicle-card-image" style="background-image:url('/images/car/SUV/1.jpeg')"><span class="vehicle-card-badge best">Best Value</span></div>
 <div class="vehicle-card-body"><h3 class="vehicle-card-name">Economy Sedan</h3><div class="vehicle-card-class">Comfort Class</div><p class="vehicle-card-desc">Perfect for solo travelers or couples. Air-conditioned, clean, and reliable.</p>
 <div class="vehicle-card-features"><span class="vehicle-card-feature"><i class="fas fa-user"></i> 1–3 pax</span><span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 2 bags</span><span class="vehicle-card-feature"><i class="fas fa-wifi"></i> WiFi</span><span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span></div>
 <div class="vehicle-card-footer"><div class="vehicle-card-price">€40 <span>/ trip</span></div><a href="https://wa.me/212673396332?text=I'm%20interested%20in%20Economy%20Sedan" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a></div></div></div>
@@ -682,7 +606,7 @@ input,select,textarea{font:inherit;outline:none}
 <div class="vehicle-card-features"><span class="vehicle-card-feature"><i class="fas fa-user"></i> 1–4 pax</span><span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 3 bags</span><span class="vehicle-card-feature"><i class="fas fa-wifi"></i> 5G WiFi</span><span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span></div>
 <div class="vehicle-card-footer"><div class="vehicle-card-price">€55 <span>/ trip</span></div><a href="https://wa.me/212673396332?text=I'm%20interested%20in%20Premium%20Sedan" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a></div></div></div>
 
-<div class="vehicle-card reveal"><div class="vehicle-card-image" style="background-image:url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80')"></div>
+<div class="vehicle-card reveal"><div class="vehicle-card-image" style="background-image:url('./images/car/SUV/1.jpeg')"></div>
 <div class="vehicle-card-body"><h3 class="vehicle-card-name">SUV / 4x4</h3><div class="vehicle-card-class">Off-Road Ready</div><p class="vehicle-card-desc">Rugged and spacious. Ideal for mountain roads, desert terrain, and group travel.</p>
 <div class="vehicle-card-features"><span class="vehicle-card-feature"><i class="fas fa-user"></i> 1–5 pax</span><span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 4 bags</span><span class="vehicle-card-feature"><i class="fas fa-wifi"></i> WiFi</span><span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span></div>
 <div class="vehicle-card-footer"><div class="vehicle-card-price">€75 <span>/ trip</span></div><a href="https://wa.me/212673396332?text=I'm%20interested%20in%20SUV%204x4" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a></div></div></div>
@@ -895,7 +819,7 @@ input,select,textarea{font:inherit;outline:none}
 <h2 class="cta-title">Your Morocco Adventure Starts Here</h2>
 <p class="cta-text">Book your private transport or dream experience today — and discover why thousands of travelers trust us to make their Morocco trip unforgettable.</p>
 <div class="cta-actions">
-<a href="#booking" class="btn btn-cta btn-lg"><i class="fas fa-car"></i> Book Transport</a>
+<a href="javascript:void(0)" class="btn btn-cta btn-lg" onclick="BookingModal.open()"><i class="fas fa-car"></i> Book Transport</a>
 <a href="#activities" class="btn btn-gold btn-lg"><i class="fas fa-mountain"></i> Browse Activities</a>
 <a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20plan%20my%20Morocco%20trip" target="_blank" class="btn btn-outline btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
 </div>
@@ -951,8 +875,126 @@ input,select,textarea{font:inherit;outline:none}
 </button>
 
 <div class="sticky-mobile-cta">
-<a href="#booking" class="btn btn-cta"><i class="fas fa-car"></i> Book Transport</a>
+<a href="javascript:void(0)" class="btn btn-cta" onclick="BookingModal.open()"><i class="fas fa-car"></i> Book Transport</a>
 <a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20plan%20my%20Morocco%20trip" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+</div>
+
+<!-- ====== BOOKING MODAL ====== -->
+<div class="modal-overlay" id="bookingModalOverlay" onclick="BookingModal.close(event)">
+<div class="modal" onclick="event.stopPropagation()">
+<div class="modal-header">
+<div class="modal-title"><i class="fas fa-route"></i> Book Your Morocco Trip</div>
+<button class="modal-close" onclick="BookingModal.close()"><i class="fas fa-times"></i></button>
+</div>
+<div class="modal-body">
+<div class="flow-steps" id="modalFlowSteps">
+<div class="flow-step active" data-step="1"><span class="flow-step-number">1</span><span class="flow-step-label">Service</span></div>
+<div class="flow-step" data-step="2"><span class="flow-step-number">2</span><span class="flow-step-label">Details</span></div>
+<div class="flow-step" data-step="3"><span class="flow-step-number">3</span><span class="flow-step-label">Summary</span></div>
+<div class="flow-step" data-step="4"><span class="flow-step-number">4</span><span class="flow-step-label">Confirm</span></div>
+</div>
+<div id="modalFlowBody">
+
+<!-- Step 1 -->
+<div class="flow-step-content active" data-step="1">
+<p style="margin-bottom:20px;font-size:0.88rem;color:var(--text-muted)">What would you like to book today?</p>
+<div class="service-options">
+<div class="service-option selected" data-service="transport" onclick="BookingModal.selectService(this,'transport')">
+<div class="service-option-check"><i class="fas fa-check"></i></div>
+<div class="service-option-icon" style="background:var(--secondary-light)"><i class="fas fa-car" style="color:var(--secondary)"></i></div>
+<h3 class="service-option-title">Private Transport</h3>
+<p class="service-option-desc">Airport transfers, city-to-city, custom routes with professional drivers</p>
+</div>
+<div class="service-option" data-service="activities" onclick="BookingModal.selectService(this,'activities')">
+<div class="service-option-check"><i class="fas fa-check"></i></div>
+<div class="service-option-icon"><i class="fas fa-compass" style="color:var(--text-muted)"></i></div>
+<h3 class="service-option-title">Activities &amp; Experiences</h3>
+<p class="service-option-desc">Desert camps, mountain treks, food tours, and cultural experiences</p>
+</div>
+</div>
+<div style="margin-top:24px;display:flex;gap:12px;justify-content:flex-end">
+<button class="btn btn-secondary" onclick="BookingModal.next()">Next Step <i class="fas fa-arrow-right"></i></button>
+</div>
+</div>
+
+<!-- Step 2 -->
+<div class="flow-step-content" data-step="2">
+<p style="margin-bottom:20px;font-size:0.88rem;color:var(--text-muted)">Fill in your trip details and we'll find the perfect match.</p>
+<div class="form-grid" id="modalFormTransport">
+<div class="form-group"><label class="form-label">Pickup Location</label><input class="form-input" id="modalPickup" type="text" placeholder="Airport, hotel, or address" required><div class="suggestions" id="modalPickupSuggestions"></div></div>
+<div class="form-group"><label class="form-label">Destination</label><input class="form-input" id="modalDest" type="text" placeholder="City or landmark" required><div class="suggestions" id="modalDestSuggestions"></div></div>
+<div class="form-group"><label class="form-label">Date</label><input class="form-input" id="modalDate" type="date" required></div>
+<div class="form-group"><label class="form-label">Time</label><input class="form-input" id="modalTime" type="time" required></div>
+<div class="form-group"><label class="form-label">Passengers</label>
+<div class="stepper"><button class="stepper-btn" type="button" onclick="BookingModal.changePax(-1)">−</button><span class="stepper-value" id="modalPax">2</span><button class="stepper-btn" type="button" onclick="BookingModal.changePax(1)">+</button></div>
+</div>
+<div class="form-group"><label class="form-label">Vehicle Type</label>
+<div class="vehicle-selector" id="modalVehicle">
+<div class="vehicle-option selected" data-vehicle="economy" onclick="BookingModal.selectVehicle(this,'economy')"><div class="vehicle-option-icon">🚗</div><div class="vehicle-option-name">Economy</div><div class="vehicle-option-price">from €40</div></div>
+<div class="vehicle-option" data-vehicle="premium" onclick="BookingModal.selectVehicle(this,'premium')"><div class="vehicle-option-icon">🚘</div><div class="vehicle-option-name">Premium</div><div class="vehicle-option-badge" style="font-size:0.5rem">⭐ Most Popular</div><div class="vehicle-option-price">from €55</div></div>
+<div class="vehicle-option" data-vehicle="suv" onclick="BookingModal.selectVehicle(this,'suv')"><div class="vehicle-option-icon">🚙</div><div class="vehicle-option-name">SUV 4x4</div><div class="vehicle-option-badge" style="font-size:0.5rem">Desert Ready</div><div class="vehicle-option-price">from €75</div></div>
+<div class="vehicle-option" data-vehicle="minivan" onclick="BookingModal.selectVehicle(this,'minivan')"><div class="vehicle-option-icon">🚐</div><div class="vehicle-option-name">Minivan</div><div class="vehicle-option-badge" style="font-size:0.5rem">Group</div><div class="vehicle-option-price">from €95</div></div>
+<div class="vehicle-option" data-vehicle="luxury" onclick="BookingModal.selectVehicle(this,'luxury')"><div class="vehicle-option-icon">🏎️</div><div class="vehicle-option-name">Luxury</div><div class="vehicle-option-badge" style="font-size:0.5rem">VIP</div><div class="vehicle-option-price">from €130</div></div>
+</div>
+</div>
+<div class="form-group full"><label class="form-label">Special Requests (optional)</label><textarea class="form-input form-textarea" id="modalRequests" placeholder="Child seat? Extra stop? Let us know..."></textarea></div>
+</div>
+<div style="margin-top:24px;display:flex;gap:12px;justify-content:space-between">
+<button class="btn btn-ghost" onclick="BookingModal.prev()"><i class="fas fa-arrow-left"></i> Back</button>
+<button class="btn btn-secondary" onclick="BookingModal.next()">See Summary <i class="fas fa-arrow-right"></i></button>
+</div>
+</div>
+
+<!-- Step 3 -->
+<div class="flow-step-content" data-step="3">
+<p style="margin-bottom:20px;font-size:0.88rem;color:var(--text-muted)">Review your booking details. Everything included — no hidden fees.</p>
+<div class="summary-card" id="modalSummaryCard">
+<div class="summary-row"><span class="summary-label"><i class="fas fa-route"></i> Service</span><span class="summary-value" id="modalSumService">Private Transport</span></div>
+<div class="summary-row"><span class="summary-label"><i class="fas fa-map-pin"></i> Pickup</span><span class="summary-value" id="modalSumPickup">—</span></div>
+<div class="summary-row"><span class="summary-label"><i class="fas fa-location-dot"></i> Destination</span><span class="summary-value" id="modalSumDest">—</span></div>
+<div class="summary-row"><span class="summary-label"><i class="far fa-calendar"></i> Date &amp; Time</span><span class="summary-value" id="modalSumDatetime">—</span></div>
+<div class="summary-row"><span class="summary-label"><i class="fas fa-user"></i> Passengers</span><span class="summary-value" id="modalSumPax">—</span></div>
+<div class="summary-row"><span class="summary-label"><i class="fas fa-car"></i> Vehicle</span><span class="summary-value" id="modalSumVehicle">—</span></div>
+<div class="summary-total"><span class="summary-total-label">Total (includes driver, fuel, all taxes)</span><span class="summary-total-value" id="modalSumPrice">€0</span></div>
+</div>
+<div class="summary-note"><i class="fas fa-check-circle"></i> Price includes: professional driver, fuel, tolls, insurance, and bottled water. No hidden fees.</div>
+<div style="margin-top:24px;display:flex;gap:12px;justify-content:space-between">
+<button class="btn btn-ghost" onclick="BookingModal.prev()"><i class="fas fa-arrow-left"></i> Back</button>
+<button class="btn btn-secondary" onclick="BookingModal.next()">Confirm Booking <i class="fas fa-check"></i></button>
+</div>
+</div>
+
+<!-- Step 4 -->
+<div class="flow-step-content" data-step="4">
+<p style="margin-bottom:20px;font-size:0.88rem;color:var(--text-muted)">Almost done! Choose how you'd like to confirm.</p>
+<div class="confirm-grid">
+<a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="confirm-card" onclick="BookingModal.trackWhatsApp()">
+<div class="confirm-card-icon">💬</div>
+<h3 class="confirm-card-title">WhatsApp Instant Booking</h3>
+<p class="confirm-card-desc">Get reply in under 5 minutes ⚡ Pre-filled with your details</p>
+<div style="margin-top:12px"><span class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Confirm on WhatsApp</span></div>
+</a>
+<div class="confirm-card" onclick="BookingModal.showForm()">
+<div class="confirm-card-icon">📋</div>
+<h3 class="confirm-card-title">Book via Online Form</h3>
+<p class="confirm-card-desc">Leave your details and we'll call or email you back</p>
+<div style="margin-top:12px"><span class="btn btn-primary btn-sm"><i class="fas fa-pen"></i> Fill Form</span></div>
+</div>
+</div>
+<div id="modalFormContainer" style="display:none;margin-top:20px;padding:20px;background:var(--bg);border-radius:var(--radius)">
+<div class="form-grid">
+<div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="modalName" placeholder="Your name"></div>
+<div class="form-group"><label class="form-label">Email</label><input class="form-input" id="modalEmail" type="email" placeholder="your@email.com"></div>
+<div class="form-group"><label class="form-label">Phone</label><input class="form-input" id="modalPhone" type="tel" placeholder="+212 6XX XXX XXX"></div>
+<div class="form-group"><label class="form-label">Confirm via</label><select class="form-input" id="modalContactMethod"><option>WhatsApp</option><option>Email</option><option>Phone Call</option></select></div>
+</div>
+<button class="btn btn-primary btn-block" style="margin-top:12px" onclick="BookingModal.submitForm()"><i class="fas fa-check"></i> Submit Booking</button>
+</div>
+</div>
+
+</div>
+</div>
+</div>
 </div>
 
 <script>
@@ -987,17 +1029,17 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
 // SEARCH TABS
 window.Search={switch:function(t){document.querySelectorAll('.search-tab').forEach(function(b){b.classList.toggle('active',b.dataset.tab===t)});document.getElementById('searchTransport').classList.toggle('active',t==='transport');document.getElementById('searchActivities').classList.toggle('active',t==='activities')},submitTransport:function(e){e.preventDefault();var p=document.getElementById('sPickup').value,d=document.getElementById('sDest').value,dt=document.getElementById('sDate').value,px=document.getElementById('sPassengers').value;if(!p||!d||!dt)return false;window.open('https://wa.me/212673396332?text=Hi!%20I%27d%20like%20to%20book%20a%20transport%20from%20'+encodeURIComponent(p)+'%20to%20'+encodeURIComponent(d)+'%20on%20'+encodeURIComponent(dt)+'%20for%20'+encodeURIComponent(px)+'%20passengers','_blank');return false},submitActivities:function(e){e.preventDefault();window.open('https://wa.me/212673396332?text=Hi!%20I%27d%20like%20to%20book%20an%20activity','_blank');return false}};
 
-// BOOKING FLOW
-var flowLocations=['Marrakech Airport','Marrakech Medina','Essaouira','Agadir','Merzouga','Fes','Casablanca','Rabat','Tangier','Atlas Mountains','Ourika Valley','Taghazout','Ouarzazate','Chefchaouen','Meknes','Dakhla'];
+// BOOKING MODAL
+var modalLocations=['Marrakech Airport','Marrakech Medina','Essaouira','Agadir','Merzouga','Fes','Casablanca','Rabat','Tangier','Atlas Mountains','Ourika Valley','Taghazout','Ouarzazate','Chefchaouen','Meknes','Dakhla'];
+function setupModalAuto(id,sugId){var inp=document.getElementById(id),box=document.getElementById(sugId);if(!inp||!box)return;inp.addEventListener('input',function(){var v=inp.value.toLowerCase().trim();if(!v||v.length<1){box.innerHTML='';box.style.display='none';return}var m=modalLocations.filter(function(l){return l.toLowerCase().includes(v)}).slice(0,5);if(!m.length){box.innerHTML='';box.style.display='none';return}box.innerHTML=m.map(function(x){return'<div class="suggestion-item" data-value="'+x+'">'+x+'</div>'}).join('');box.style.display='block';box.querySelectorAll('.suggestion-item').forEach(function(el){el.addEventListener('click',function(){inp.value=el.dataset.value;box.innerHTML='';box.style.display='none'})})});inp.addEventListener('blur',function(){setTimeout(function(){box.innerHTML='';box.style.display='none'},200)})}
+setupModalAuto('modalPickup','modalPickupSuggestions');setupModalAuto('modalDest','modalDestSuggestions');
 
-function setupAuto(id,sugId){var inp=document.getElementById(id),box=document.getElementById(sugId);if(!inp||!box)return;inp.addEventListener('input',function(){var v=inp.value.toLowerCase().trim();if(!v||v.length<1){box.innerHTML='';box.style.display='none';return}var m=flowLocations.filter(function(l){return l.toLowerCase().includes(v)}).slice(0,5);if(!m.length){box.innerHTML='';box.style.display='none';return}box.innerHTML=m.map(function(x){return'<div class="suggestion-item" data-value="'+x+'">'+x+'</div>'}).join('');box.style.display='block';box.querySelectorAll('.suggestion-item').forEach(function(el){el.addEventListener('click',function(){inp.value=el.dataset.value;box.innerHTML='';box.style.display='none'})})});inp.addEventListener('blur',function(){setTimeout(function(){box.innerHTML='';box.style.display='none'},200)})}
-setupAuto('flowPickup','flowPickupSuggestions');setupAuto('flowDest','flowDestSuggestions');
+window.BookingModal={step:1,total:4,priceMap:{economy:40,premium:55,suv:75,minivan:95,luxury:130},open:function(){document.getElementById('bookingModalOverlay').classList.add('open');document.body.style.overflow='hidden';this.go(1)},close:function(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('bookingModalOverlay').classList.remove('open');document.body.style.overflow=''},go:function(s){this.step=s;var steps=document.getElementById('modalFlowSteps');steps.querySelectorAll('.flow-step').forEach(function(e){e.classList.remove('active','completed')});var body=document.getElementById('modalFlowBody');body.querySelectorAll('.flow-step-content').forEach(function(e){e.classList.remove('active')});var c=body.querySelector('.flow-step-content[data-step="'+s+'"]');if(c)c.classList.add('active');for(var i=1;i<=this.total;i++){var st=steps.querySelector('.flow-step[data-step="'+i+'"]');if(!st)continue;if(i<s)st.classList.add('completed');else if(i===s)st.classList.add('active')}if(s===3)this.summary()},next:function(){if(this.step<this.total){if(this.step===2&&!this.validate())return;this.go(this.step+1)}},prev:function(){if(this.step>1)this.go(this.step-1)},selectService:function(el,svc){document.querySelectorAll('#bookingModalOverlay .service-option').forEach(function(o){o.classList.remove('selected')});el.classList.add('selected')},changePax:function(d){var el=document.getElementById('modalPax');var v=parseInt(el.textContent)+d;v=Math.max(1,Math.min(8,v));el.textContent=v},selectVehicle:function(el,v){document.querySelectorAll('#bookingModalOverlay .vehicle-option').forEach(function(o){o.classList.remove('selected')});el.classList.add('selected')},validate:function(){var v=true;['modalPickup','modalDest','modalDate','modalTime'].forEach(function(id){var inp=document.getElementById(id);if(!inp)return;if(!inp.value.trim()){inp.classList.add('error');v=false;inp.addEventListener('input',function f(){this.classList.remove('error');this.removeEventListener('input',f)},{once:true})}else inp.classList.remove('error')});if(!v){var fe=document.querySelector('#bookingModalOverlay .form-input.error');if(fe)fe.focus()}return v},summary:function(){var p=document.getElementById('modalPickup').value||'—',d=document.getElementById('modalDest').value||'—',dt=document.getElementById('modalDate').value||'',tm=document.getElementById('modalTime').value||'',px=document.getElementById('modalPax').textContent||'—',ve=document.querySelector('#bookingModalOverlay .vehicle-option.selected'),vn=ve?ve.querySelector('.vehicle-option-name')?.textContent:'Economy',vk=ve?ve.dataset.vehicle:'economy',pr=this.priceMap[vk]||40,total=pr+(parseInt(px)>4?15:0);document.getElementById('modalSumService').textContent='Private Transport';document.getElementById('modalSumPickup').textContent=p;document.getElementById('modalSumDest').textContent=d;if(dt&&tm){try{var dd=new Date(dt+'T'+tm);document.getElementById('modalSumDatetime').textContent=dd.toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){document.getElementById('modalSumDatetime').textContent=dt+' '+tm}}else{document.getElementById('modalSumDatetime').textContent=(dt||'—')+' '+(tm||'—')}document.getElementById('modalSumPax').textContent=px;document.getElementById('modalSumVehicle').textContent=vn;document.getElementById('modalSumPrice').textContent='€'+total},showForm:function(){document.getElementById('modalFormContainer').style.display='block';window.scrollTo({top:document.getElementById('modalFormContainer').offsetTop+200,behavior:'smooth'})},submitForm:function(){var name=document.getElementById('modalName').value.trim(),email=document.getElementById('modalEmail').value.trim(),phone=document.getElementById('modalPhone').value.trim();if(!name||!email||!phone){alert('Please fill in your name, email, and phone.');return}var msg='Hi!%20I%27d%20like%20to%20book%20a%20trip:%0A%0A'+(name?'Name:%20'+name+'%0A':'')+(email?'Email:%20'+email+'%0A':'')+(phone?'Phone:%20'+phone+'%0A':'')+'%0A📍%20Pickup:%20'+(document.getElementById('modalPickup').value||'—')+'%0A🏁%20Destination:%20'+(document.getElementById('modalDest').value||'—')+'%0A📅%20When:%20'+(document.getElementById('modalDate').value||'')+'%20'+(document.getElementById('modalTime').value||'')+'%0A👥%20Passengers:%20'+document.getElementById('modalPax').textContent;window.open('https://wa.me/212673396332?text='+msg,'_blank');this.close();alert('✅%20Thank%20you!%20We%27ll%20respond%20within%205%20minutes.')},trackWhatsApp:function(){}};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){BookingModal.close()}});
 
-window.Booking={step:1,total:4,priceMap:{economy:40,premium:55,suv:75,minivan:95,luxury:130},go:function(s){this.step=s;document.querySelectorAll('.flow-step-content').forEach(function(e){e.classList.remove('active')});document.querySelectorAll('.flow-step').forEach(function(e){e.classList.remove('active','completed')});var c=document.querySelector('.flow-step-content[data-step="'+s+'"]');if(c)c.classList.add('active');for(var i=1;i<=this.total;i++){var st=document.querySelector('.flow-step[data-step="'+i+'"]');if(!st)continue;if(i<s)st.classList.add('completed');else if(i===s)st.classList.add('active')}if(s===3)this.summary();var sec=document.getElementById('bookingFlow');if(sec)window.scrollTo({top:sec.offsetTop-70,behavior:'smooth'})},next:function(){if(this.step<this.total){if(this.step===2&&!this.validate())return;this.go(this.step+1)}},prev:function(){if(this.step>1)this.go(this.step-1)},selectService:function(el,svc){document.querySelectorAll('.service-option').forEach(function(o){o.classList.remove('selected')});el.classList.add('selected')},changePax:function(d){var el=document.getElementById('flowPax');var v=parseInt(el.textContent)+d;v=Math.max(1,Math.min(8,v));el.textContent=v},selectVehicle:function(el,v){document.querySelectorAll('.vehicle-option').forEach(function(o){o.classList.remove('selected')});el.classList.add('selected')},validate:function(){var v=true;['flowPickup','flowDest','flowDate','flowTime'].forEach(function(id){var inp=document.getElementById(id);if(!inp)return;if(!inp.value.trim()){inp.classList.add('error');v=false;inp.addEventListener('input',function f(){this.classList.remove('error');this.removeEventListener('input',f)},{once:true})}else inp.classList.remove('error')});if(!v){var fe=document.querySelector('.form-input.error');if(fe)fe.focus()}return v},summary:function(){var p=document.getElementById('flowPickup').value||'—',d=document.getElementById('flowDest').value||'—',dt=document.getElementById('flowDate').value||'',tm=document.getElementById('flowTime').value||'',px=document.getElementById('flowPax').textContent,ve=document.querySelector('.vehicle-option.selected'),vk=ve?ve.dataset.vehicle:'economy',vn=ve?ve.querySelector('.vehicle-option-name').textContent:'Economy';document.getElementById('sumPickup').textContent=p;document.getElementById('sumDest').textContent=d;if(dt&&tm){var dd=new Date(dt+'T'+tm);document.getElementById('sumDatetime').textContent=dd.toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}else document.getElementById('sumDatetime').textContent=dt||'—';document.getElementById('sumPax').textContent=px;document.getElementById('sumVehicle').textContent=vn;var bp=this.priceMap[vk]||40,extra=parseInt(px)>4?15:0;document.getElementById('sumPrice').textContent='€'+(bp+extra)},trackWhatsApp:function(){var p=document.getElementById('flowPickup').value||'',d=document.getElementById('flowDest').value||'',dt=document.getElementById('flowDate').value||'',tm=document.getElementById('flowTime').value||'',px=document.getElementById('flowPax').textContent,ve=document.querySelector('.vehicle-option.selected'),vn=ve?ve.querySelector('.vehicle-option-name').textContent:'Economy';var msg='Hi!%20I%27d%20like%20to%20book%20a%20transport%3A%0A📍%20Pickup%3A%20'+encodeURIComponent(p)+'%0A🏁%20Destination%3A%20'+encodeURIComponent(d)+'%0A📅%20When%3A%20'+encodeURIComponent(dt+' at '+tm)+'%0A👥%20Passengers%3A%20'+px+'%0A🚗%20Vehicle%3A%20'+encodeURIComponent(vn);window.open('https://wa.me/212673396332?text='+msg,'_blank')},showForm:function(){var el=document.getElementById('bookingFormContainer');el.style.display=el.style.display==='none'?'block':'none'},submitForm:function(){alert('✅ Booking request submitted! We\'ll contact you within 5 minutes via your preferred channel. Thank you for choosing ATLAS TRAVEL.');this.go(1)}};
-
-// Set default date
-var fd=document.getElementById('flowDate');if(fd){var n=new Date();n.setDate(n.getDate()+1);fd.value=n.toISOString().slice(0,10)}
-var ft=document.getElementById('flowTime');if(ft){ft.value='09:00'}
+// Set default dates
+var mfd=document.getElementById('modalDate');if(mfd){var mn=new Date();mn.setDate(mn.getDate()+1);mfd.value=mn.toISOString().slice(0,10)}
+var mft=document.getElementById('modalTime');if(mft){mft.value='09:00'}
 var sd=document.getElementById('sDate');if(sd){var nn=new Date();nn.setDate(nn.getDate()+1);sd.value=nn.toISOString().slice(0,10)}
 
 // ACTIVITY FILTER
