@@ -186,12 +186,25 @@ document.addEventListener('DOMContentLoaded', () => {
       luxury: 120
     },
 
+    prefill(pickup, dest) {
+      if (pickup) { const el = document.getElementById('pickup'); if (el) el.value = pickup; }
+      if (dest) { const el = document.getElementById('destination'); if (el) el.value = dest; }
+      this.go(2);
+      setTimeout(() => {
+        const fe = document.getElementById('flowName');
+        if (fe && !fe.value) fe.focus();
+      }, 500);
+    },
+
     validateForm() {
       let valid = true;
       const fields = [
-        { id: 'pickup', name: 'Pickup location' },
-        { id: 'destination', name: 'Destination' },
-        { id: 'datetime', name: 'Date & time' }
+        { id: 'flowName', name: Lang.t('validate.name') },
+        { id: 'flowPhone', name: 'Phone' },
+        { id: 'flowEmail', name: 'Email' },
+        { id: 'pickup', name: Lang.t('validate.pickup') },
+        { id: 'destination', name: Lang.t('validate.destination') },
+        { id: 'datetime', name: Lang.t('validate.datetime') }
       ];
 
       fields.forEach(f => {
@@ -218,17 +231,23 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     updateSummary() {
+      const name = document.getElementById('flowName')?.value || '—';
+      const phone = document.getElementById('flowPhone')?.value || '—';
+      const email = document.getElementById('flowEmail')?.value || '—';
       const pickup = document.getElementById('pickup')?.value || '—';
       const dest = document.getElementById('destination')?.value || '—';
       const dt = document.getElementById('datetime')?.value || '—';
       const passengers = document.getElementById('passengerCount')?.textContent || '—';
       const vehicleEl = document.querySelector('.vehicle-option.selected');
-      const vehicle = vehicleEl ? vehicleEl.querySelector('.vehicle-option-name')?.textContent || 'Standard' : 'Standard';
+      const vehicle = vehicleEl ? vehicleEl.querySelector('.vehicle-option-name')?.textContent || Lang.t('flow.vehicle.standard') : Lang.t('flow.vehicle.standard');
       const vehicleKey = vehicleEl ? vehicleEl.dataset.vehicle : 'standard';
 
       const price = this.vehiclePrices[vehicleKey] || 45;
       const total = price + (parseInt(passengers) > 4 ? 15 : 0);
 
+      document.getElementById('summaryName').textContent = name;
+      document.getElementById('summaryPhone').textContent = phone;
+      document.getElementById('summaryEmail').textContent = email;
       document.getElementById('summaryPickup').textContent = pickup;
       document.getElementById('summaryDest').textContent = dest;
       document.getElementById('summaryPassengers').textContent = passengers;
@@ -236,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dt !== '—') {
         try {
           const d = new Date(dt);
-          document.getElementById('summaryDatetime').textContent = d.toLocaleString('en-GB', {
+          document.getElementById('summaryDatetime').textContent = d.toLocaleString((Lang.current === 'fr' ? 'fr-FR' : 'en-GB'), {
             day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
           });
         } catch (_) {
@@ -251,26 +270,35 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     submitWhatsApp() {
+      const name = document.getElementById('flowName')?.value || '';
+      const phone = document.getElementById('flowPhone')?.value || '';
+      const email = document.getElementById('flowEmail')?.value || '';
       const pickup = document.getElementById('pickup')?.value || '';
       const dest = document.getElementById('destination')?.value || '';
       const dt = document.getElementById('datetime')?.value || '';
       const pax = document.getElementById('passengerCount')?.textContent || '';
       const vehicleEl = document.querySelector('.vehicle-option.selected');
-      const vehicle = vehicleEl ? vehicleEl.querySelector('.vehicle-option-name')?.textContent || 'Standard' : 'Standard';
+      const vehicle = vehicleEl ? vehicleEl.querySelector('.vehicle-option-name')?.textContent || Lang.t('flow.vehicle.standard') : Lang.t('flow.vehicle.standard');
 
-      const msg = `Hi! I'd like to book a transport:%0A` +
-        `📍 Pickup: ${pickup}%0A` +
-        `🏁 Destination: ${dest}%0A` +
-        `📅 When: ${dt ? new Date(dt).toLocaleString('en-GB') : '—'}%0A` +
-        `👥 Passengers: ${pax}%0A` +
-        `🚗 Vehicle: ${vehicle}`;
-
+      const when = dt ? new Date(dt).toLocaleString((Lang.current === 'fr' ? 'fr-FR' : 'en-GB')) : '—';
+      const msg = Lang.t('whatsapp.flow.header').replace(/\n/g,'%0A') +
+        Lang.t('whatsapp.flow.name') + name + '%0A' +
+        Lang.t('whatsapp.flow.phone') + phone + '%0A' +
+        Lang.t('whatsapp.flow.email') + email + '%0A' +
+        Lang.t('whatsapp.flow.pickup') + pickup + '%0A' +
+        Lang.t('whatsapp.flow.destination') + dest + '%0A' +
+        Lang.t('whatsapp.flow.when') + when + '%0A' +
+        Lang.t('whatsapp.flow.passengers') + pax + '%0A' +
+        Lang.t('whatsapp.flow.vehicle') + vehicle;
       window.open(`https://wa.me/212673396332?text=${msg}`, '_blank');
     },
 
     showSuccess() {
-      alert('✅ Thank you! We\'ll call you within 5 minutes at the number provided. You can also reach us anytime on WhatsApp.');
+      alert(Lang.t('success.message'));
       this.go(1);
+      document.getElementById('flowName').value = '';
+      document.getElementById('flowPhone').value = '';
+      document.getElementById('flowEmail').value = '';
       document.getElementById('pickup').value = '';
       document.getElementById('destination').value = '';
       document.getElementById('passengerCount').textContent = '2';
@@ -430,6 +458,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setupAutocomplete('pickup', 'pickupSuggestions');
   setupAutocomplete('destination', 'destSuggestions');
+
+  // ==========================================
+  // DESTINATION CARD CLICK HANDLER
+  // ==========================================
+  document.querySelector('#destinations .destinations-grid')?.addEventListener('click', (e) => {
+    const card = e.target.closest('.destination-card');
+    if (!card) return;
+    const nameEl = card.querySelector('.destination-card-name');
+    if (!nameEl) return;
+    window.Flow.prefill('', nameEl.textContent);
+  });
+
+  // ==========================================
+  // VEHICLE FLEET CARD CLICK HANDLER
+  // ==========================================
+  document.querySelector('#fleet .vehicles-grid')?.addEventListener('click', (e) => {
+    const card = e.target.closest('.vehicle-card');
+    if (!card) return;
+    window.Flow.prefill('', '');
+  });
 
   // Add basic suggestion styles
   const style = document.createElement('style');

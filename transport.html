@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -16,21 +16,22 @@
     <div class="container">
       <a href="transport.html" class="navbar-brand">
         <span class="navbar-brand-icon"><i class="fas fa-compass"></i></span>
-        TOREST
+        <span data-i18n="nav.brand.transport">TOREST</span>
       </a>
       <div class="navbar-menu" id="navbarMenu">
-        <a href="transport.html" class="navbar-link active">Transport</a>
-        <a href="#destinations" class="navbar-link">Destinations</a>
-        <a href="#reviews" class="navbar-link">Reviews</a>
-        <a href="#faq" class="navbar-link">FAQ</a>
-        <a href="#contact" class="navbar-link">Contact</a>
+        <a href="transport.html" class="navbar-link active" data-i18n="nav.transport">Transport</a>
+        <a href="#destinations" class="navbar-link" data-i18n="nav.destinations">Destinations</a>
+        <a href="#reviews" class="navbar-link" data-i18n="nav.reviews">Reviews</a>
+        <a href="#faq" class="navbar-link" data-i18n="nav.faq">FAQ</a>
+        <a href="#contact" class="navbar-link" data-i18n="nav.contact">Contact</a>
+        <select class="navbar-lang" data-i18n-aria="aria.lang"><option value="en">EN</option><option value="fr">FR</option></select>
         <div class="navbar-cta">
           <a href="#booking" class="btn btn-cta btn-sm">
-            <i class="fas fa-calendar-check"></i> Book Now
+            <i class="fas fa-calendar-check"></i> <span data-i18n="nav.book">Book Now</span>
           </a>
         </div>
       </div>
-      <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu">
+      <button class="navbar-toggle" id="navbarToggle" data-i18n-aria="aria.toggle">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -47,37 +48,37 @@
 
     <div class="hero-content">
       <div class="container">
-        <div class="hero-badge">
+        <div class="hero-badge" data-i18n="hero.transport.badge">
           <span class="hero-badge-dot"></span>
           Since 2018 — Premium Transport Service
         </div>
-        <h1 class="hero-title">
+        <h1 class="hero-title" data-i18n="hero.transport.title">
           Private Transport<br>in <span>Morocco</span>
         </h1>
-        <p class="hero-text">
+        <p class="hero-text" data-i18n="hero.transport.text">
           Experience comfort, safety, and reliability with our 24/7 private transport service.
           Professional drivers, premium vehicles, and tailor-made journeys across Morocco.
         </p>
         <div class="hero-actions">
           <a href="#booking" class="btn btn-cta btn-lg">
-            <i class="fas fa-car"></i> Book a Ride
+            <i class="fas fa-car"></i> <span data-i18n="hero.transport.cta">Book a Ride</span>
           </a>
           <a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="btn btn-whatsapp btn-lg">
-            <i class="fab fa-whatsapp"></i> WhatsApp
+            <i class="fab fa-whatsapp"></i> <span data-i18n="hero.transport.whatsapp">WhatsApp</span>
           </a>
         </div>
         <div class="hero-stats">
           <div>
             <div class="hero-stat-value">5,000+</div>
-            <div class="hero-stat-label">Happy Clients</div>
+            <div class="hero-stat-label" data-i18n="hero.transport.clients">Happy Clients</div>
           </div>
           <div>
             <div class="hero-stat-value">24/7</div>
-            <div class="hero-stat-label">Support</div>
+            <div class="hero-stat-label" data-i18n="hero.stat.support">Support</div>
           </div>
           <div>
             <div class="hero-stat-value">98%</div>
-            <div class="hero-stat-label">On Time</div>
+            <div class="hero-stat-label" data-i18n="hero.transport.ontime">On Time</div>
           </div>
         </div>
       </div>
@@ -95,32 +96,32 @@
     <div class="container">
       <div class="flow-card reveal">
         <div class="flow-header">
-          <h2 class="flow-title"><i class="fas fa-route" style="color: var(--secondary); margin-right: 10px;"></i>Book Your Journey</h2>
+          <h2 class="flow-title" data-i18n="flow.title"><i class="fas fa-route" style="color: var(--secondary); margin-right: 10px;"></i>Book Your Journey</h2>
         </div>
 
         <div class="flow-steps">
           <div class="flow-step active" data-step="1">
             <span class="flow-step-number">1</span>
-            <span class="flow-step-label">Service</span>
+            <span class="flow-step-label" data-i18n="flow.step1">Service</span>
           </div>
           <div class="flow-step" data-step="2">
             <span class="flow-step-number">2</span>
-            <span class="flow-step-label">Details</span>
+            <span class="flow-step-label" data-i18n="flow.step2">Details</span>
           </div>
           <div class="flow-step" data-step="3">
             <span class="flow-step-number">3</span>
-            <span class="flow-step-label">Summary</span>
+            <span class="flow-step-label" data-i18n="flow.step3">Summary</span>
           </div>
           <div class="flow-step" data-step="4">
             <span class="flow-step-number">4</span>
-            <span class="flow-step-label">Confirm</span>
+            <span class="flow-step-label" data-i18n="flow.step4">Confirm</span>
           </div>
         </div>
 
         <div class="flow-body">
           <!-- Step 1: Choose Service -->
           <div class="flow-step-content active" data-step="1">
-            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;">
+            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;" data-i18n="flow.step1.text">
               What would you like to book?
             </p>
             <div class="service-options">
@@ -136,33 +137,45 @@
             </div>
             <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: flex-end;">
               <button class="btn btn-secondary" onclick="Flow.next()">
-                Next Step <i class="fas fa-arrow-right"></i>
+                <span data-i18n="flow.next">Next Step</span> <i class="fas fa-arrow-right"></i>
               </button>
             </div>
           </div>
 
           <!-- Step 2: Fill Details -->
           <div class="flow-step-content" data-step="2">
-            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;">
+            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;" data-i18n="flow.step2.text">
               Enter your trip details and we'll find the perfect vehicle for you.
             </p>
             <div class="form-grid">
+              <div class="form-group full">
+                <label class="form-label" data-i18n="flow.label.name">Full Name</label>
+                <input class="form-input" id="flowName" type="text" placeholder="Your full name" required data-i18n-placeholder="flow.placeholder.name">
+              </div>
               <div class="form-group">
-                <label class="form-label">Pickup Location</label>
-                <input class="form-input" id="pickup" type="text" placeholder="Airport, hotel, or address" required autocomplete="off">
+                <label class="form-label" data-i18n="flow.label.phone">Phone Number</label>
+                <input class="form-input" id="flowPhone" type="tel" placeholder="+212 6XX XXX XXX" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="flow.label.email">Email</label>
+                <input class="form-input" id="flowEmail" type="email" placeholder="email@example.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="flow.label.pickup">Pickup Location</label>
+                <input class="form-input" id="pickup" type="text" placeholder="Airport, hotel, or address" required autocomplete="off" data-i18n-placeholder="flow.placeholder.pickup">
                 <div class="suggestions" id="pickupSuggestions"></div>
               </div>
               <div class="form-group">
-                <label class="form-label">Destination</label>
-                <input class="form-input" id="destination" type="text" placeholder="City or landmark" required autocomplete="off">
+                <label class="form-label" data-i18n="flow.label.dest">Destination</label>
+                <input class="form-input" id="destination" type="text" placeholder="City or landmark" required autocomplete="off" data-i18n-placeholder="flow.placeholder.dest">
                 <div class="suggestions" id="destSuggestions"></div>
               </div>
               <div class="form-group">
-                <label class="form-label">Date &amp; Time</label>
+                <label class="form-label" data-i18n="flow.label.date">Date &amp; Time</label>
                 <input class="form-input" id="datetime" type="datetime-local" required>
               </div>
               <div class="form-group">
-                <label class="form-label">Passengers</label>
+                <label class="form-label" data-i18n="flow.label.passengers">Passengers</label>
                 <div class="stepper">
                   <button class="stepper-btn" type="button" onclick="Flow.changePassengers(-1)">−</button>
                   <span class="stepper-value" id="passengerCount">2</span>
@@ -170,100 +183,110 @@
                 </div>
               </div>
               <div class="form-group full">
-                <label class="form-label">Vehicle Type</label>
+                <label class="form-label" data-i18n="flow.label.vehicle">Vehicle Type</label>
                 <div class="vehicle-selector" id="vehicleSelector">
                   <div class="vehicle-option selected" data-vehicle="standard" onclick="Flow.selectVehicle(this, 'standard')" style="background-image:url('https://picsum.photos/seed/standard/300/200')">
                     <div class="vehicle-option-info">
-                      <div class="vehicle-option-name">Standard</div>
-                      <div class="vehicle-option-price">from €45</div>
+                      <div class="vehicle-option-name" data-i18n="flow.vehicle.standard">Standard</div>
+                      <div class="vehicle-option-price"><span data-i18n="flow.vehicle.price.from">from €</span>45</div>
                     </div>
                   </div>
                   <div class="vehicle-option" data-vehicle="suv" onclick="Flow.selectVehicle(this, 'suv')" style="background-image:url('https://picsum.photos/seed/suv/300/200')">
                     <div class="vehicle-option-info">
-                      <div class="vehicle-option-name">SUV / 4x4</div>
-                      <div class="vehicle-option-price">from €70</div>
+                      <div class="vehicle-option-name" data-i18n="flow.vehicle.suv">SUV / 4x4</div>
+                      <div class="vehicle-option-price"><span data-i18n="flow.vehicle.price.from">from €</span>70</div>
                     </div>
                   </div>
                   <div class="vehicle-option" data-vehicle="minivan" onclick="Flow.selectVehicle(this, 'minivan')" style="background-image:url('https://picsum.photos/seed/minivan/300/200')">
                     <div class="vehicle-option-info">
-                      <div class="vehicle-option-name">Minivan</div>
-                      <div class="vehicle-option-price">from €90</div>
+                      <div class="vehicle-option-name" data-i18n="flow.vehicle.minivan">Minivan</div>
+                      <div class="vehicle-option-price"><span data-i18n="flow.vehicle.price.from">from €</span>90</div>
                     </div>
                   </div>
                   <div class="vehicle-option" data-vehicle="luxury" onclick="Flow.selectVehicle(this, 'luxury')" style="background-image:url('https://picsum.photos/seed/luxury/300/200')">
                     <div class="vehicle-option-info">
-                      <div class="vehicle-option-name">Luxury</div>
-                      <div class="vehicle-option-price">from €120</div>
+                      <div class="vehicle-option-name" data-i18n="flow.vehicle.luxury">Luxury</div>
+                      <div class="vehicle-option-price"><span data-i18n="flow.vehicle.price.from">from €</span>120</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: space-between;">
-              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> Back</button>
-              <button class="btn btn-secondary" onclick="Flow.next()">Next Step <i class="fas fa-arrow-right"></i></button>
+              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> <span data-i18n="flow.back">Back</span></button>
+              <button class="btn btn-secondary" onclick="Flow.next()"><span data-i18n="flow.next">Next Step</span> <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
 
           <!-- Step 3: Summary -->
           <div class="flow-step-content" data-step="3">
-            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;">
+            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;" data-i18n="flow.step3.text">
               Review your booking details before confirming.
             </p>
             <div class="summary-card">
               <div class="summary-row">
-                <span class="summary-label"><i class="fas fa-map-pin"></i> Pickup</span>
+                <span class="summary-label"><i class="fas fa-user"></i> <span data-i18n="flow.summary.name">Name</span></span>
+                <span class="summary-value" id="summaryName">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label"><i class="fas fa-phone"></i> <span data-i18n="flow.summary.phone">Phone</span></span>
+                <span class="summary-value" id="summaryPhone">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label"><i class="fas fa-envelope"></i> <span data-i18n="flow.summary.email">Email</span></span>
+                <span class="summary-value" id="summaryEmail">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label"><i class="fas fa-map-pin"></i> <span data-i18n="flow.summary.pickup">Pickup</span></span>
                 <span class="summary-value" id="summaryPickup">—</span>
               </div>
               <div class="summary-row">
-                <span class="summary-label"><i class="fas fa-location-dot"></i> Destination</span>
+                <span class="summary-label"><i class="fas fa-location-dot"></i> <span data-i18n="flow.summary.dest">Destination</span></span>
                 <span class="summary-value" id="summaryDest">—</span>
               </div>
               <div class="summary-row">
-                <span class="summary-label"><i class="far fa-calendar"></i> Date &amp; Time</span>
+                <span class="summary-label"><i class="far fa-calendar"></i> <span data-i18n="flow.summary.date">Date &amp; Time</span></span>
                 <span class="summary-value" id="summaryDatetime">—</span>
               </div>
               <div class="summary-row">
-                <span class="summary-label"><i class="fas fa-user"></i> Passengers</span>
+                <span class="summary-label"><i class="fas fa-user"></i> <span data-i18n="flow.summary.passengers">Passengers</span></span>
                 <span class="summary-value" id="summaryPassengers">—</span>
               </div>
               <div class="summary-row">
-                <span class="summary-label"><i class="fas fa-car"></i> Vehicle</span>
+                <span class="summary-label"><i class="fas fa-car"></i> <span data-i18n="flow.summary.vehicle">Vehicle</span></span>
                 <span class="summary-value" id="summaryVehicle">—</span>
               </div>
               <div class="summary-total">
-                <span class="summary-total-label">Estimated Total</span>
+                <span class="summary-total-label" data-i18n="flow.summary.total">Estimated Total</span>
                 <span class="summary-total-value" id="summaryPrice">€0</span>
               </div>
             </div>
             <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: space-between;">
-              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> Back</button>
-              <button class="btn btn-secondary" onclick="Flow.next()">Confirm Booking <i class="fas fa-check"></i></button>
+              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> <span data-i18n="flow.back">Back</span></button>
+              <button class="btn btn-secondary" onclick="Flow.next()"><span data-i18n="flow.confirm">Confirm Booking</span> <i class="fas fa-check"></i></button>
             </div>
           </div>
 
           <!-- Step 4: Confirm -->
           <div class="flow-step-content" data-step="4">
-            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;">
+            <p class="section-subtitle" style="margin-bottom: 24px; font-size: 0.9rem;" data-i18n="flow.step4.text">
               Almost done! Choose how you'd like to confirm your booking.
             </p>
             <div class="confirm-grid">
               <a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="confirm-card">
                 <div class="confirm-card-icon">💬</div>
-                <h3 class="confirm-card-title">Book via WhatsApp</h3>
-                <p class="confirm-card-desc">Quickest way — get instant confirmation</p>
+                <h3 class="confirm-card-title" data-i18n="flow.whatsapp.card.title">Book via WhatsApp</h3>
+                <p class="confirm-card-desc" data-i18n="flow.whatsapp.card.desc">Quickest way — get instant confirmation</p>
               </a>
               <div class="confirm-card" onclick="Flow.showSuccess()">
                 <div class="confirm-card-icon">📋</div>
-                <h3 class="confirm-card-title">Request a Callback</h3>
-                <p class="confirm-card-desc">We'll call you within 5 minutes</p>
+                <h3 class="confirm-card-title" data-i18n="flow.callback.card.title">Request a Callback</h3>
+                <p class="confirm-card-desc" data-i18n="flow.callback.card.desc">We'll call you within 5 minutes</p>
               </div>
             </div>
             <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center;">
-              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> Back</button>
-              <button class="btn btn-cta btn-lg" onclick="Flow.submitWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Confirm via WhatsApp
-              </button>
+              <button class="btn btn-ghost" onclick="Flow.prev()"><i class="fas fa-arrow-left"></i> <span data-i18n="flow.back">Back</span></button>
+              <button class="btn btn-cta btn-lg" onclick="Flow.submitWhatsApp()"><i class="fab fa-whatsapp"></i> <span data-i18n="flow.whatsapp.btn">Confirm via WhatsApp</span></button>
             </div>
           </div>
         </div>
@@ -275,19 +298,19 @@
   <section class="section" id="fleet" style="background: var(--bg-white);">
     <div class="container">
       <div class="section-header text-center reveal">
-        <span class="section-label">Our Fleet</span>
-        <h2 class="section-title">Choose Your Perfect Ride</h2>
-        <p class="section-subtitle mx-auto">From comfortable sedans to luxurious VIP vehicles — every journey deserves the right car.</p>
+        <span class="section-label" data-i18n="fleet.label">Our Fleet</span>
+        <h2 class="section-title" data-i18n="fleet.title">Choose Your Perfect Ride</h2>
+        <p class="section-subtitle mx-auto" data-i18n="fleet.subtitle">From comfortable sedans to luxurious VIP vehicles — every journey deserves the right car.</p>
       </div>
 
       <div class="vehicles-grid">
         <div class="vehicle-card reveal">
           <div class="vehicle-card-image" style="background-image: url('/images/car/SUV/1.jpeg');">
-            <span class="vehicle-card-badge">Most Popular</span>
+            <span class="vehicle-card-badge" data-i18n="vehicle.transport.standard.badge">Most Popular</span>
           </div>
           <div class="vehicle-card-body">
-            <h3 class="vehicle-card-name">Standard Car</h3>
-            <p class="vehicle-card-desc">Comfortable sedan ideal for city transfers and short trips. Air-conditioned with ample luggage space.</p>
+            <h3 class="vehicle-card-name" data-i18n="vehicle.transport.standard.name">Standard Car</h3>
+            <p class="vehicle-card-desc" data-i18n="vehicle.transport.standard.desc">Comfortable sedan ideal for city transfers and short trips. Air-conditioned with ample luggage space.</p>
             <div class="vehicle-card-features">
               <span class="vehicle-card-feature"><i class="fas fa-user"></i> Up to 3</span>
               <span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 2 bags</span>
@@ -295,19 +318,19 @@
               <span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span>
             </div>
             <div class="vehicle-card-footer">
-              <div class="vehicle-card-price">€45 <span>/ trip</span></div>
-              <a href="https://wa.me/212673396332?text=I'm%20interested%20in%20the%20Standard%20Car" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a>
+              <div class="vehicle-card-price">€45 <span data-i18n="vehicle.price.suffix">/ trip</span></div>
+              <a href="https://wa.me/212673396332?text=I'm%20interested%20in%20the%20Standard%20Car" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span data-i18n="vehicle.book">Book</span></a>
             </div>
           </div>
         </div>
 
         <div class="vehicle-card reveal">
           <div class="vehicle-card-image" style="background-image: url('images/car/SUV/1.jpeg');">
-            <span class="vehicle-card-badge">Popular</span>
+            <span class="vehicle-card-badge" data-i18n="vehicle.transport.suv.badge">Popular</span>
           </div>
           <div class="vehicle-card-body">
-            <h3 class="vehicle-card-name">SUV / 4x4</h3>
-            <p class="vehicle-card-desc">Powerful 4x4 perfect for mountain roads and desert terrain. Extra ground clearance and rugged reliability.</p>
+            <h3 class="vehicle-card-name" data-i18n="vehicle.transport.suv.name">SUV / 4x4</h3>
+            <p class="vehicle-card-desc" data-i18n="vehicle.transport.suv.desc">Powerful 4x4 perfect for mountain roads and desert terrain. Extra ground clearance and rugged reliability.</p>
             <div class="vehicle-card-features">
               <span class="vehicle-card-feature"><i class="fas fa-user"></i> Up to 5</span>
               <span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 4 bags</span>
@@ -315,8 +338,8 @@
               <span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span>
             </div>
             <div class="vehicle-card-footer">
-              <div class="vehicle-card-price">€70 <span>/ trip</span></div>
-              <a href="https://wa.me/212673396332?text=I'm%20interested%20in%20the%20SUV%204x4" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a>
+              <div class="vehicle-card-price">€70 <span data-i18n="vehicle.price.suffix">/ trip</span></div>
+              <a href="https://wa.me/212673396332?text=I'm%20interested%20in%20the%20SUV%204x4" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span data-i18n="vehicle.book">Book</span></a>
             </div>
           </div>
         </div>
@@ -324,8 +347,8 @@
         <div class="vehicle-card reveal">
           <div class="vehicle-card-image" style="background-image: url('https://images.unsplash.com/photo-1562516157-e7c43e3d2c4f?w=600&q=80');"></div>
           <div class="vehicle-card-body">
-            <h3 class="vehicle-card-name">Minivan</h3>
-            <p class="vehicle-card-desc">Spacious minivan for groups and families. Maximum comfort with generous seating and cargo capacity.</p>
+            <h3 class="vehicle-card-name" data-i18n="vehicle.transport.minivan.name">Minivan</h3>
+            <p class="vehicle-card-desc" data-i18n="vehicle.transport.minivan.desc">Spacious minivan for groups and families. Maximum comfort with generous seating and cargo capacity.</p>
             <div class="vehicle-card-features">
               <span class="vehicle-card-feature"><i class="fas fa-user"></i> Up to 7</span>
               <span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 6 bags</span>
@@ -333,19 +356,19 @@
               <span class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span>
             </div>
             <div class="vehicle-card-footer">
-              <div class="vehicle-card-price">€90 <span>/ trip</span></div>
-              <a href="https://wa.me/212673396332?text=I'm%20interested%20in%20the%20Minivan" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a>
+              <div class="vehicle-card-price">€90 <span data-i18n="vehicle.price.suffix">/ trip</span></div>
+              <a href="https://wa.me/212673396332?text=I'm%20interested%20in%20the%20Minivan" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span data-i18n="vehicle.book">Book</span></a>
             </div>
           </div>
         </div>
 
         <div class="vehicle-card reveal">
           <div class="vehicle-card-image" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80');">
-            <span class="vehicle-card-badge">Premium</span>
+            <span class="vehicle-card-badge" data-i18n="vehicle.transport.luxury.badge">Premium</span>
           </div>
           <div class="vehicle-card-body">
-            <h3 class="vehicle-card-name">Luxury Car</h3>
-            <p class="vehicle-card-desc">Top-of-the-line luxury sedan for VIP experiences. Leather interior, premium sound, and privacy glass.</p>
+            <h3 class="vehicle-card-name" data-i18n="vehicle.transport.luxury.name">Luxury Car</h3>
+            <p class="vehicle-card-desc" data-i18n="vehicle.transport.luxury.desc">Top-of-the-line luxury sedan for VIP experiences. Leather interior, premium sound, and privacy glass.</p>
             <div class="vehicle-card-features">
               <span class="vehicle-card-feature"><i class="fas fa-user"></i> Up to 3</span>
               <span class="vehicle-card-feature"><i class="fas fa-suitcase"></i> 2 bags</span>
@@ -353,8 +376,8 @@
               <span class="vehicle-card-feature"><i class="fas fa-champagne-glasses"></i> Refreshments</span>
             </div>
             <div class="vehicle-card-footer">
-              <div class="vehicle-card-price">€120 <span>/ trip</span></div>
-              <a href="https://wa.me/212673396332?text=I'm%20interested%20in%20the%20Luxury%20Car" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Book</a>
+              <div class="vehicle-card-price">€120 <span data-i18n="vehicle.price.suffix">/ trip</span></div>
+              <a href="https://wa.me/212673396332?text=I'm%20interested%20in%20the%20Luxury%20Car" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span data-i18n="vehicle.book">Book</span></a>
             </div>
           </div>
         </div>
@@ -366,9 +389,9 @@
   <section class="section" id="destinations">
     <div class="container">
       <div class="section-header text-center reveal">
-        <span class="section-label">Explore Destinations</span>
+        <span class="section-label" data-i18n="dest.transport.label">Explore Destinations</span>
         <h2 class="section-title">Popular Routes</h2>
-        <p class="section-subtitle mx-auto">From the bustling medinas to the golden dunes — discover Morocco's most iconic destinations.</p>
+        <p class="section-subtitle mx-auto" data-i18n="dest.transport.subtitle">From the bustling medinas to the golden dunes — discover Morocco's most iconic destinations.</p>
       </div>
 
       <div class="destinations-grid">
@@ -377,8 +400,8 @@
           <div class="destination-card-overlay"></div>
           <div class="destination-card-body">
             <h3 class="destination-card-name">Marrakech</h3>
-            <p class="destination-card-desc">The Red City — vibrant souks, palaces, and gardens at the foot of the Atlas Mountains.</p>
-            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 12 Available Tours</span>
+            <p class="destination-card-desc" data-i18n="dest.transport.marrakech.desc">The Red City — vibrant souks, palaces, and gardens at the foot of the Atlas Mountains.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> <span data-i18n="dest.tours.count12">12 Available Tours</span></span>
           </div>
         </div>
 
@@ -387,8 +410,8 @@
           <div class="destination-card-overlay"></div>
           <div class="destination-card-body">
             <h3 class="destination-card-name">Essaouira</h3>
-            <p class="destination-card-desc">Coastal breeze, blue boats, and fresh seafood in this UNESCO-listed port city.</p>
-            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 8 Available Tours</span>
+            <p class="destination-card-desc" data-i18n="dest.transport.essaouira.desc">Coastal breeze, blue boats, and fresh seafood in this UNESCO-listed port city.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> <span data-i18n="dest.tours.count8">8 Available Tours</span></span>
           </div>
         </div>
 
@@ -397,8 +420,8 @@
           <div class="destination-card-overlay"></div>
           <div class="destination-card-body">
             <h3 class="destination-card-name">Merzouga</h3>
-            <p class="destination-card-desc">The gateway to the Sahara — witness the largest sand dunes in Morocco.</p>
-            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 6 Available Tours</span>
+            <p class="destination-card-desc" data-i18n="dest.transport.merzouga.desc">The gateway to the Sahara — witness the largest sand dunes in Morocco.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> <span data-i18n="dest.tours.count6">6 Available Tours</span></span>
           </div>
         </div>
 
@@ -407,8 +430,8 @@
           <div class="destination-card-overlay"></div>
           <div class="destination-card-body">
             <h3 class="destination-card-name">Atlas Mountains</h3>
-            <p class="destination-card-desc">Hike through valleys, waterfalls, and traditional Berber villages in the High Atlas.</p>
-            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 10 Available Tours</span>
+            <p class="destination-card-desc" data-i18n="dest.transport.atlas.desc">Hike through valleys, waterfalls, and traditional Berber villages in the High Atlas.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> <span data-i18n="dest.tours.count10">10 Available Tours</span></span>
           </div>
         </div>
 
@@ -417,8 +440,8 @@
           <div class="destination-card-overlay"></div>
           <div class="destination-card-body">
             <h3 class="destination-card-name">Agadir</h3>
-            <p class="destination-card-desc">Sun, surf, and golden beaches — the perfect coastal escape on the Atlantic.</p>
-            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> 7 Available Tours</span>
+            <p class="destination-card-desc" data-i18n="dest.transport.agadir.desc">Sun, surf, and golden beaches — the perfect coastal escape on the Atlantic.</p>
+            <span class="destination-card-tours"><i class="fas fa-arrow-right"></i> <span data-i18n="dest.tours.count7">7 Available Tours</span></span>
           </div>
         </div>
       </div>
@@ -429,9 +452,9 @@
   <section class="section" style="background: var(--bg-white);" id="trust">
     <div class="container">
       <div class="section-header text-center reveal">
-        <span class="section-label">Why Travel with Us</span>
-        <h2 class="section-title">Trusted by Thousands</h2>
-        <p class="section-subtitle mx-auto">We set the standard for premium travel in Morocco.</p>
+        <span class="section-label" data-i18n="trust.transport.label">Why Travel with Us</span>
+        <h2 class="section-title" data-i18n="trust.transport.title">Trusted by Thousands</h2>
+        <p class="section-subtitle mx-auto" data-i18n="trust.transport.subtitle">We set the standard for premium travel in Morocco.</p>
       </div>
 
       <div class="trust-grid">
@@ -625,8 +648,8 @@
         <h2 class="cta-title">Ready to Explore Morocco?</h2>
         <p class="cta-text">Book your private transport now and enjoy a seamless travel experience across Morocco. Our team is ready to serve you 24/7.</p>
         <div class="cta-actions">
-          <a href="#booking" class="btn btn-cta btn-lg"><i class="fas fa-car"></i> Book Now</a>
-          <a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+          <a href="#booking" class="btn btn-cta btn-lg" data-i18n="hero.transport.cta"><i class="fas fa-car"></i> <span>Book Now</span></a>
+          <a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20book%20a%20transport" target="_blank" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> <span data-i18n="hero.transport.whatsapp">WhatsApp</span> Us</a>
         </div>
       </div>
     </div>
@@ -720,8 +743,8 @@
 
   <!-- ====== MOBILE STICKY CTA ====== -->
   <div class="sticky-mobile-cta">
-    <a href="#booking" class="btn btn-cta"><i class="fas fa-car"></i> Book Transport</a>
-    <a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20book" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="#booking" class="btn btn-cta" data-i18n="hero.transport.cta"><i class="fas fa-car"></i> <span>Book Transport</span></a>
+    <a href="https://wa.me/212673396332?text=Hi!%20I'd%20like%20to%20book" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="hero.transport.whatsapp">WhatsApp</span></a>
   </div>
 
   <script src="js/main.js"></script>
