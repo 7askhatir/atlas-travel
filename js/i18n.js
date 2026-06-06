@@ -305,7 +305,7 @@
     'reviews.title.transport': { en: 'What Travelers Say', fr: 'Avis des Voyageurs' },
     'reviews.subtitle': { en: 'Over 5,000 happy guests from 40+ countries trust ATLAS TRAVEL.', fr: 'Plus de 5 000 clients heureux de plus de 40 pays font confiance à ATLAS TRAVEL.' },
     'reviews.subtitle.transport': { en: 'Real reviews from real guests who experienced Morocco with us.', fr: 'De vrais avis de vrais clients qui ont découvert le Maroc avec nous.' },
-    'reviews.summary': { en: '4.9 / 5 average rating from 500+ verified reviews', fr: '4.9 / 5 note moyenne sur plus de 500 avis vérifiés' },
+    'reviews.summary': { en: '⭐ 4.9 / 5 average rating from 500+ verified reviews', fr: '⭐ 4.9 / 5 note moyenne sur plus de 500 avis vérifiés' },
 
     /* Review 1 */
     'review1.text': { en: '"Absolutely breathtaking. Our driver was professional and friendly, the desert camp was beyond what we expected. The camel ride at sunset was the highlight of our entire trip to Morocco. Will 100% book again!"', fr: '"Absolument à couper le souffle. Notre chauffeur était professionnel et sympathique, le camp dans le désert a dépassé nos attentes. La balade à chameau au coucher du soleil était le point culminant de notre voyage au Maroc. Je réserverai à 100% !"' },
@@ -374,7 +374,7 @@
     'trust.local.desc': { en: 'Born and raised in Morocco. We know the hidden gems, best routes, and authentic experiences.', fr: 'Nés et élevés au Maroc. Nous connaissons les joyaux cachés, les meilleurs itinéraires et les expériences authentiques.' },
     'trust.support.title': { en: '24/7 Support', fr: 'Support 24/7' },
     'trust.support.desc': { en: 'Available around the clock via WhatsApp, phone, and email. Real humans, real help.', fr: 'Disponible 24h/24 via WhatsApp, téléphone et email. De vrais humains, une vraie aide.' },
-    'trust.rating': { en: '4.9/5 Rating', fr: 'Note 4.9/5' },
+    'trust.rating': { en: '⭐ 4.9/5 Rating', fr: '⭐ Note 4.9/5' },
     'trust.rating.desc': { en: '500+ verified reviews across TripAdvisor, Google, and Booking.com. Excellence is our standard.', fr: 'Plus de 500 avis vérifiés sur TripAdvisor, Google et Booking.com. L\'excellence est notre standard.' },
     'trust.card1.title': { en: 'Licensed & Insured', fr: 'Agréé & Assuré' },
     'trust.card1.desc': { en: 'All drivers professionally licensed, vehicles fully insured, registered with Morocco\'s Ministry of Tourism.', fr: 'Tous les chauffeurs sont agréés, les véhicules sont entièrement assurés, enregistrés auprès du Ministère du Tourisme marocain.' },
@@ -386,7 +386,7 @@
     'trust.card4.desc': { en: 'Born and raised in Morocco. We know the hidden gems, best routes, and authentic experiences.', fr: 'Nés et élevés au Maroc. Nous connaissons les joyaux cachés, les meilleurs itinéraires et les expériences authentiques.' },
     'trust.card5.title': { en: '24/7 Support', fr: 'Support 24/7' },
     'trust.card5.desc': { en: 'Available around the clock via WhatsApp, phone, and email. Real humans, real help.', fr: 'Disponible 24h/24 via WhatsApp, téléphone et email. De vrais humains, une vraie aide.' },
-    'trust.card6.title': { en: '4.9/5 Rating', fr: 'Note 4.9/5' },
+    'trust.card6.title': { en: '⭐ 4.9/5 Rating', fr: '⭐ Note 4.9/5' },
     'trust.card6.desc': { en: '500+ verified reviews across TripAdvisor, Google, and Booking.com. Excellence is our standard.', fr: 'Plus de 500 avis vérifiés sur TripAdvisor, Google et Booking.com. L\'excellence est notre standard.' },
 
     /* Trust section (transport page) */
@@ -499,8 +499,7 @@
     'modal.label.email': { en: 'Email', fr: 'Email' },
     'modal.label.pickup': { en: 'Pickup Location', fr: 'Lieu de Prise en Charge' },
     'modal.label.dest': { en: 'Destination', fr: 'Destination' },
-    'modal.label.date': { en: 'Date', fr: 'Date' },
-    'modal.label.time': { en: 'Time', fr: 'Heure' },
+    'modal.label.datetime': { en: 'Date & Time', fr: 'Date & Heure' },
     'modal.label.vehicle': { en: 'Vehicle', fr: 'Véhicule' },
     'modal.label.passengers': { en: 'Passengers', fr: 'Passagers' },
 

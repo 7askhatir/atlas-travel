@@ -383,15 +383,15 @@
     .navbar-link {
       position: relative;
       font-size: 0.8rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
       padding: 8px 14px;
       border-radius: var(--radius-sm);
       transition: var(--transition)
     }
 
     .navbar.scrolled .navbar-link {
-      color: var(--text-muted)
+      color: var(--text)
     }
 
     .navbar-link:hover {
@@ -410,8 +410,8 @@
     }
 
     .navbar.scrolled .navbar-link.active {
-      color: var(--primary);
-      background: rgba(11, 45, 77, 0.06)
+      color: var(--primary-dark);
+      background: rgba(11, 45, 77, 0.08)
     }
 
     .navbar-link.active::after {
@@ -1000,6 +1000,30 @@
 
     .form-input::placeholder {
       color: #adb5bd
+    }
+
+    input[type="datetime-local"] {
+      font-family: var(--font-ui);
+      color-scheme: light;
+      min-height: 52px;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer
+    }
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+      background: none;
+      color: transparent;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      margin-left: 4px;
+      opacity: 0.6;
+      transition: opacity 0.2s
+    }
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+      opacity: 1
     }
 
     .form-input.error {
@@ -2653,7 +2677,7 @@
             <div class="hero-stat-label" data-i18n="hero.stat.support">Support</div>
           </div>
           <div>
-            <div class="hero-stat-value">4.9?</div>
+            <div class="hero-stat-value">⭐ 4.9</div>
             <div class="hero-stat-label" data-i18n="hero.stat.rating">Average Rating</div>
           </div>
         </div>
@@ -3115,7 +3139,7 @@
       <div class="review-summary reveal">
         <div class="review-summary-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <div class="review-summary-text" data-i18n="reviews.summary">4.9 / 5 average rating from 500+ verified reviews
+        <div class="review-summary-text" data-i18n="reviews.summary">⭐ 4.9 / 5 average rating from 500+ verified reviews
         </div>
       </div>
 
@@ -3256,7 +3280,7 @@
         </div>
         <div class="trust-card">
           <div class="trust-card-icon"><i class="fas fa-star"></i></div>
-          <h3 class="trust-card-title" data-i18n="trust.card6.title">4.9/5 Rating</h3>
+          <h3 class="trust-card-title" data-i18n="trust.card6.title">⭐ 4.9/5 Rating</h3>
           <p class="trust-card-desc" data-i18n="trust.card6.desc">500+ verified reviews across TripAdvisor, Google, and
             Booking.com. Excellence is our standard.</p>
           <div class="trust-card-rating">?????</div>
@@ -3480,10 +3504,8 @@
                 <div class="suggestions" id="modalDestSuggestions"></div>
               </div>
 
-              <div class="form-group"><label class="form-label" data-i18n="modal.label.date">Date</label><input
-                  class="form-input" id="modalDate" type="date" required></div>
-              <div class="form-group"><label class="form-label" data-i18n="modal.label.time">Time</label><input
-                  class="form-input" id="modalTime" type="time" required></div>
+              <div class="form-group"><label class="form-label" data-i18n="modal.label.datetime">Date &amp; Time</label><input
+                  class="form-input" id="modalDatetime" type="datetime-local" required></div>
               <div class="form-group"><label class="form-label" data-i18n="modal.label.passengers">Passengers</label>
                 <div class="stepper"><button class="stepper-btn" type="button"
                     onclick="BookingModal.changePax(-1)">-</button><span class="stepper-value"
@@ -3586,7 +3608,7 @@
       (function () { var slides = document.querySelectorAll('.hero-slide'), dots = document.querySelectorAll('.slider-dot'); if (!slides.length) return; var cur = 0, interval; function go(i) { slides.forEach(function (s) { s.classList.remove('active') }); dots.forEach(function (d) { d.classList.remove('active') }); slides[i].classList.add('active'); dots[i].classList.add('active'); cur = i } function nextI() { go((cur + 1) % slides.length) } function start() { interval = setInterval(nextI, 5000) } function stop() { clearInterval(interval) } dots.forEach(function (d) { d.addEventListener('click', function () { go(parseInt(d.dataset.slide)); stop(); start() }) }); start() })();
 
       // SEARCH TABS
-      window.Search = { submitTransport: function (e) { e.preventDefault(); var p = document.getElementById('sPickup').value, d = document.getElementById('sDest').value, dt = document.getElementById('sDate').value, px = document.getElementById('sPassengers').value; if (!p || !d || !dt) return false; BookingModal.open(p, d); var md = document.getElementById('modalDate'); if (md && !md.value) md.value = dt; var mp = document.getElementById('modalPax'); if (mp) { var n = parseInt(px); if (!isNaN(n)) mp.textContent = Math.max(1, Math.min(8, n)) } return false }, bookRoute: function (pickup, dest) { BookingModal.open(pickup, dest) } };
+      window.Search = { submitTransport: function (e) { e.preventDefault(); var p = document.getElementById('sPickup').value, d = document.getElementById('sDest').value, dt = document.getElementById('sDate').value, px = document.getElementById('sPassengers').value; if (!p || !d || !dt) return false; BookingModal.open(p, d); var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) mdt.value = dt + 'T09:00'; var mp = document.getElementById('modalPax'); if (mp) { var n = parseInt(px); if (!isNaN(n)) mp.textContent = Math.max(1, Math.min(8, n)) } return false }, bookRoute: function (pickup, dest) { BookingModal.open(pickup, dest) } };
 
       // POPULAR ROUTES CLICK HANDLER
       document.querySelector('.routes-grid')?.addEventListener('click', function (e) { var card = e.target.closest('.route-card'); if (!card) return; var nameEl = card.querySelector('.route-name'); if (!nameEl) return; var parts = nameEl.textContent.split('→'); if (parts.length !== 2) return; Search.bookRoute(parts[0].trim(), parts[1].trim()) });
@@ -3607,12 +3629,12 @@
       setupModalAuto('modalPickup', 'modalPickupSuggestions'); setupModalAuto('modalDest', 'modalDestSuggestions');
       setupModalAuto('sPickup', 'sPickupSuggestions'); setupModalAuto('sDest', 'sDestSuggestions');
 
-      window.CardSlider = { indices: [0, 0, 0, 0, 0], go: function (id, i) { var el = document.getElementById('vcard' + id); if (!el) return; var track = el.querySelector('.vehicle-card-image-track'); var slides = track.querySelectorAll('.vehicle-card-image-slide'); if (i < 0 || i >= slides.length) return; this.indices[id] = i; track.style.transform = 'translateX(-' + (i * 100) + '%)'; var dots = document.getElementById('vcdots' + id); if (dots) { dots.querySelectorAll('.vehicle-card-image-dot').forEach(function (d) { d.classList.remove('active') }); var dot = dots.querySelectorAll('.vehicle-card-image-dot')[i]; if (dot) dot.classList.add('active') } }, next: function (id) { var el = document.getElementById('vcard' + id); if (!el) return; var slides = el.querySelectorAll('.vehicle-card-image-slide'); this.go(id, Math.min(this.indices[id] + 1, slides.length - 1)) }, prev: function (id) { this.go(id, Math.max(this.indices[id] - 1, 0)) } }; (function () { var images = document.querySelectorAll('.vehicle-card-image'); images.forEach(function (el) { var id = parseInt(el.id.replace('vcard', '')); if (isNaN(id)) return; el.addEventListener('wheel', function (e) { e.preventDefault(); if (e.deltaY > 0) window.CardSlider.next(id); else window.CardSlider.prev(id) }, { passive: false }); var sx; el.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX }, { passive: true }); el.addEventListener('touchend', function (e) { var d = sx - e.changedTouches[0].screenX; if (Math.abs(d) > 30) { if (d > 0) window.CardSlider.next(id); else window.CardSlider.prev(id) } }, { passive: true }) }) })(); window.BookingModal = { step: 1, total: 3, open: function (pickup, dest) { document.getElementById('bookingModalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; this.go(1);['modalName', 'modalPhone'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = '' }); if (pickup) { var pi = document.getElementById('modalPickup'); if (pi) pi.value = pickup } if (dest) { var di = document.getElementById('modalDest'); if (di) di.value = dest } var md = document.getElementById('modalDate'); if (md && !md.value) { var d = new Date(); d.setDate(d.getDate() + 1); md.value = d.toISOString().split('T')[0] } var mt = document.getElementById('modalTime'); if (mt && !mt.value) mt.value = '09:00'; document.getElementById('modalPax').textContent = '1'; setTimeout(function () { var fe = document.getElementById('modalPickup'); if (fe) fe.focus() }, 400) }, close: function (e) { if (e && e.target !== e.currentTarget) return; document.getElementById('bookingModalOverlay').classList.remove('open'); document.body.style.overflow = '' }, go: function (s) { this.step = s; var steps = document.getElementById('modalFlowSteps'); steps.querySelectorAll('.flow-step').forEach(function (e) { e.classList.remove('active', 'completed') }); var body = document.getElementById('modalFlowBody'); body.querySelectorAll('.flow-step-content').forEach(function (e) { e.classList.remove('active') }); var c = body.querySelector('.flow-step-content[data-step="' + s + '"]'); if (c) c.classList.add('active'); for (var i = 1; i <= this.total; i++) { var st = steps.querySelector('.flow-step[data-step="' + i + '"]'); if (!st) continue; if (i < s) st.classList.add('completed'); else if (i === s) st.classList.add('active') } if (s === 3) this.summary() }, next: function () { if (this.step < this.total) { if (!this.validate()) return; this.go(this.step + 1) } }, prev: function () { if (this.step > 1) this.go(this.step - 1) }, changePax: function (d) { var el = document.getElementById('modalPax'); var v = parseInt(el.textContent) + d; v = Math.max(1, Math.min(8, v)); el.textContent = v }, validate: function () { var fields; if (this.step === 1) { fields = ['modalPickup', 'modalDest', 'modalDate', 'modalTime'] } else if (this.step === 2) { fields = ['modalName', 'modalPhone'] } else { return true } var v = true; fields.forEach(function (id) { var inp = document.getElementById(id); if (!inp) return; if (!inp.value.trim()) { inp.classList.add('error'); v = false; inp.addEventListener('input', function f() { this.classList.remove('error'); this.removeEventListener('input', f) }, { once: true }) } else inp.classList.remove('error') }); if (!v) { var fe = document.querySelector('#bookingModalOverlay .form-input.error'); if (fe) fe.focus() } return v }, summary: function () { var p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', dt = document.getElementById('modalDate').value || '', tm = document.getElementById('modalTime').value || '', px = document.getElementById('modalPax').textContent || '—', nm = document.getElementById('modalName').value || '—', ph = document.getElementById('modalPhone').value || '—'; document.getElementById('modalSumPickup').textContent = p; document.getElementById('modalSumDest').textContent = d; document.getElementById('modalSumName').textContent = nm; document.getElementById('modalSumPhone').textContent = ph; if (dt && tm) { try { var dd = new Date(dt + 'T' + tm); document.getElementById('modalSumDatetime').textContent = dd.toLocaleString((Lang.current === 'ar' ? 'ar-SA' : Lang.current === 'fr' ? 'fr-FR' : 'en-GB'), { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) } catch (e) { document.getElementById('modalSumDatetime').textContent = dt + ' ' + tm } } else { document.getElementById('modalSumDatetime').textContent = (dt || '—') + ' ' + (tm || '—') } document.getElementById('modalSumPax').textContent = px;  }, confirmAndWhatsApp: function () { var nm = document.getElementById('modalName').value || '', ph = document.getElementById('modalPhone').value || '', p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', dt = document.getElementById('modalDate').value || '', tm = document.getElementById('modalTime').value || '', px = document.getElementById('modalPax').textContent || '1'; var header = encodeURIComponent(Lang.t('whatsapp.modal.header').replace(/\n/g, '%0A')); var msg = header + '%0A%0A' + encodeURIComponent(Lang.t('whatsapp.modal.name')) + encodeURIComponent(nm) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.phone')) + encodeURIComponent(ph) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.pickup')) + encodeURIComponent(p) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.dest')) + encodeURIComponent(d) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.date')) + encodeURIComponent(dt) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.time')) + encodeURIComponent(tm) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.pax')) + px; window.open('https://wa.me/212673396332?text=' + msg, '_blank'); this.close() } };
+      window.CardSlider = { indices: [0, 0, 0, 0, 0], go: function (id, i) { var el = document.getElementById('vcard' + id); if (!el) return; var track = el.querySelector('.vehicle-card-image-track'); var slides = track.querySelectorAll('.vehicle-card-image-slide'); if (i < 0 || i >= slides.length) return; this.indices[id] = i; track.style.transform = 'translateX(-' + (i * 100) + '%)'; var dots = document.getElementById('vcdots' + id); if (dots) { dots.querySelectorAll('.vehicle-card-image-dot').forEach(function (d) { d.classList.remove('active') }); var dot = dots.querySelectorAll('.vehicle-card-image-dot')[i]; if (dot) dot.classList.add('active') } }, next: function (id) { var el = document.getElementById('vcard' + id); if (!el) return; var slides = el.querySelectorAll('.vehicle-card-image-slide'); this.go(id, Math.min(this.indices[id] + 1, slides.length - 1)) }, prev: function (id) { this.go(id, Math.max(this.indices[id] - 1, 0)) } }; (function () { var images = document.querySelectorAll('.vehicle-card-image'); images.forEach(function (el) { var id = parseInt(el.id.replace('vcard', '')); if (isNaN(id)) return; el.addEventListener('wheel', function (e) { e.preventDefault(); if (e.deltaY > 0) window.CardSlider.next(id); else window.CardSlider.prev(id) }, { passive: false }); var sx; el.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX }, { passive: true }); el.addEventListener('touchend', function (e) { var d = sx - e.changedTouches[0].screenX; if (Math.abs(d) > 30) { if (d > 0) window.CardSlider.next(id); else window.CardSlider.prev(id) } }, { passive: true }) }) })(); window.BookingModal = { step: 1, total: 3, open: function (pickup, dest) { document.getElementById('bookingModalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; this.go(1);['modalName', 'modalPhone'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = '' }); if (pickup) { var pi = document.getElementById('modalPickup'); if (pi) pi.value = pickup } if (dest) { var di = document.getElementById('modalDest'); if (di) di.value = dest } var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) { var d = new Date(); d.setDate(d.getDate() + 1); mdt.value = d.toISOString().slice(0, 16) } document.getElementById('modalPax').textContent = '1'; setTimeout(function () { var fe = document.getElementById('modalPickup'); if (fe) fe.focus() }, 400) }, close: function (e) { if (e && e.target !== e.currentTarget) return; document.getElementById('bookingModalOverlay').classList.remove('open'); document.body.style.overflow = '' }, go: function (s) { this.step = s; var steps = document.getElementById('modalFlowSteps'); steps.querySelectorAll('.flow-step').forEach(function (e) { e.classList.remove('active', 'completed') }); var body = document.getElementById('modalFlowBody'); body.querySelectorAll('.flow-step-content').forEach(function (e) { e.classList.remove('active') }); var c = body.querySelector('.flow-step-content[data-step="' + s + '"]'); if (c) c.classList.add('active'); for (var i = 1; i <= this.total; i++) { var st = steps.querySelector('.flow-step[data-step="' + i + '"]'); if (!st) continue; if (i < s) st.classList.add('completed'); else if (i === s) st.classList.add('active') } if (s === 3) this.summary() }, next: function () { if (this.step < this.total) { if (!this.validate()) return; this.go(this.step + 1) } }, prev: function () { if (this.step > 1) this.go(this.step - 1) }, changePax: function (d) { var el = document.getElementById('modalPax'); var v = parseInt(el.textContent) + d; v = Math.max(1, Math.min(8, v)); el.textContent = v }, validate: function () { var fields; if (this.step === 1) { fields = ['modalPickup', 'modalDest', 'modalDatetime'] } else if (this.step === 2) { fields = ['modalName', 'modalPhone'] } else { return true } var v = true; fields.forEach(function (id) { var inp = document.getElementById(id); if (!inp) return; if (!inp.value.trim()) { inp.classList.add('error'); v = false; inp.addEventListener('input', function f() { this.classList.remove('error'); this.removeEventListener('input', f) }, { once: true }) } else inp.classList.remove('error') }); if (!v) { var fe = document.querySelector('#bookingModalOverlay .form-input.error'); if (fe) fe.focus() } return v }, summary: function () { var p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '—', nm = document.getElementById('modalName').value || '—', ph = document.getElementById('modalPhone').value || '—'; document.getElementById('modalSumPickup').textContent = p; document.getElementById('modalSumDest').textContent = d; document.getElementById('modalSumName').textContent = nm; document.getElementById('modalSumPhone').textContent = ph; if (dt && tm) { try { var dd = new Date(dt + 'T' + tm); document.getElementById('modalSumDatetime').textContent = dd.toLocaleString((Lang.current === 'ar' ? 'ar-SA' : Lang.current === 'fr' ? 'fr-FR' : 'en-GB'), { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) } catch (e) { document.getElementById('modalSumDatetime').textContent = dt + ' ' + tm } } else { document.getElementById('modalSumDatetime').textContent = (dt || '—') + ' ' + (tm || '—') } document.getElementById('modalSumPax').textContent = px;  }, confirmAndWhatsApp: function () { var nm = document.getElementById('modalName').value || '', ph = document.getElementById('modalPhone').value || '', p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '1'; var header = encodeURIComponent(Lang.t('whatsapp.modal.header').replace(/\n/g, '%0A')); var msg = header + '%0A%0A' + encodeURIComponent(Lang.t('whatsapp.modal.name')) + encodeURIComponent(nm) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.phone')) + encodeURIComponent(ph) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.pickup')) + encodeURIComponent(p) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.dest')) + encodeURIComponent(d) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.date')) + encodeURIComponent(dt) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.time')) + encodeURIComponent(tm) + '%0A' + encodeURIComponent(Lang.t('whatsapp.modal.pax')) + px; window.open('https://wa.me/212673396332?text=' + msg, '_blank'); this.close() } };
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { BookingModal.close() } });
 
       // Set default dates
-      var mfd = document.getElementById('modalDate'); if (mfd) { var mn = new Date(); mn.setDate(mn.getDate() + 1); mfd.value = mn.toISOString().slice(0, 10) }
-      var mft = document.getElementById('modalTime'); if (mft) { mft.value = '09:00' }
+      var mdd = document.getElementById('modalDatetime'); if (mdd) { var mn = new Date(); mn.setDate(mn.getDate() + 1); mdd.value = mn.toISOString().slice(0, 16) }
+      
       var sd = document.getElementById('sDate'); if (sd) { var nn = new Date(); nn.setDate(nn.getDate() + 1); sd.value = nn.toISOString().slice(0, 10) }
 
       // REVIEWS CAROUSEL
