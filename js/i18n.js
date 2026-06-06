@@ -486,10 +486,12 @@
 
     /* ====== BOOKING MODAL ====== */
     'modal.title': { en: 'Book Your Morocco Trip', fr: 'Réservez Votre Voyage au Maroc' },
-    'modal.step1': { en: 'Details', fr: 'Détails' },
-    'modal.step2': { en: 'Summary', fr: 'Récapitulatif' },
-    'modal.step1.text': { en: 'Enter your details and trip info.', fr: 'Entrez vos coordonnées et les informations du voyage.' },
-    'modal.step2.text': { en: 'Review your booking details. Everything included — no hidden fees.', fr: 'Vérifiez les détails de votre réservation. Tout est inclus — pas de frais cachés.' },
+    'modal.step1': { en: 'Trip Details', fr: 'Détails du Voyage' },
+    'modal.step2': { en: 'Customer Information', fr: 'Informations Client' },
+    'modal.step3': { en: 'Confirmation', fr: 'Confirmation' },
+    'modal.step1.text': { en: 'Where and when — set up your trip details below.', fr: 'Où et quand — configurez les détails de votre voyage ci-dessous.' },
+    'modal.step2.text': { en: 'Who\'s traveling? Just your name and phone.', fr: 'Qui voyage ? Juste votre nom et téléphone.' },
+    'modal.step3.text': { en: 'Review everything and confirm your reservation.', fr: 'Vérifiez tout et confirmez votre réservation.' },
 
     /* Modal field labels */
     'modal.label.name': { en: 'Full Name', fr: 'Nom Complet' },
@@ -527,8 +529,10 @@
 
     /* Modal buttons */
     'modal.back': { en: 'Back', fr: 'Retour' },
+    'modal.next': { en: 'Next Step', fr: 'Étape Suivante' },
     'modal.seesummary': { en: 'See Summary', fr: 'Voir le Récapitulatif' },
     'modal.confirm': { en: 'Confirm Booking', fr: 'Confirmer la Réservation' },
+    'modal.confirm.reservation': { en: 'Confirm Reservation', fr: 'Confirmer la Réservation' },
     'modal.service.default': { en: 'Private Transport', fr: 'Transport Privé' },
 
     /* ====== TRANSPORT DESTINATIONS SECTION ====== */
