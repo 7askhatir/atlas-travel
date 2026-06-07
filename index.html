@@ -1073,7 +1073,10 @@
       font-weight: 600;
       color: var(--text-muted);
       transition: var(--transition);
-      background: transparent
+      background: transparent;
+      touch-action: manipulation;
+      -webkit-touch-callout: none;
+      user-select: none
     }
 
     .stepper-btn:hover {

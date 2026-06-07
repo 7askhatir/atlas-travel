@@ -68,6 +68,7 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
 input, select, textarea, button { font: inherit; outline: none; }
+button, input, select, textarea, a { touch-action: manipulation; }
 ::selection { background: rgba(26, 188, 156, 0.2); color: var(--primary); }
 
 /* ---- Spacing System (8px scale) ---- */
@@ -884,6 +885,9 @@ input, select, textarea, button { font: inherit; outline: none; }
   color: var(--text-muted);
   transition: var(--transition);
   background: transparent;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  user-select: none;
 }
 
 .stepper-btn:hover {
