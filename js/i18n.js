@@ -92,6 +92,7 @@
     'vehicle.luxury.class': { en: 'VIP Experience', fr: 'Expérience VIP' },
     'vehicle.luxury.desc': { en: 'Top-of-the-line luxury sedan with leather interior, privacy glass, and premium refreshments.', fr: 'Berline de luxe haut de gamme avec intérieur cuir, vitres teintées et rafraîchissements premium.' },
     'vehicle.luxury.features': { en: '1–4 pax • 3 bags • 5G WiFi • Refreshments', fr: '1–4 pers • 3 bagages • 5G WiFi • Rafraîchissements' },
+    'vehicle.price.from': { en: 'From', fr: 'À partir de' },
     'vehicle.price.suffix': { en: '/ trip', fr: '/ trajet' },
     'vehicle.book': { en: 'Book', fr: 'Réserver' },
 

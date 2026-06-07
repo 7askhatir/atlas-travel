@@ -1163,7 +1163,7 @@ button, input, select, textarea, a { touch-action: manipulation; }
   color: var(--primary);
 }
 
-.vehicle-card-price span {
+.vehicle-card-price .price-from {
   font-size: 0.78rem;
   font-weight: 400;
   color: var(--text-muted);
