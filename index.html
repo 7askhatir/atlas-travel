@@ -454,6 +454,10 @@
       color: var(--text)
     }
 
+    .navbar-lang-btn {
+      display: none
+    }
+
     .navbar-cta {
       margin-left: 12px
     }
@@ -2567,6 +2571,27 @@
         display: none
       }
 
+      .navbar-lang-btn {
+        display: block;
+        width: 100%;
+        margin-top: 4px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        cursor: pointer;
+        outline: none;
+        text-align: left;
+        font-family: inherit
+      }
+
+      .navbar-lang-btn:hover {
+        background: rgba(255, 255, 255, 0.08)
+      }
+
       .hero {
         min-height: 85vh
       }
@@ -2883,6 +2908,7 @@
           <option value="en">EN</option>
           <option value="fr">FR</option>
         </select>
+        <button class="navbar-lang-btn" id="navbarLangBtn" onclick="var s=document.querySelector('.navbar-lang');s.value=s.value==='en'?'fr':'en';s.dispatchEvent(new Event('change'))">EN</button>
         <div class="navbar-cta"><a href="javascript:void(0)" class="btn btn-cta btn-sm" onclick="BookingModal.open()"><i
               class="fas fa-calendar-check"></i> <span data-i18n="nav.book">Book Now</span></a></div>
       </div>

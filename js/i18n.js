@@ -635,6 +635,7 @@
       this.translatePlaceholders();
       this.translateAria();
       this.setDirection();
+      document.querySelectorAll('.navbar-lang-btn').forEach(b => b.textContent = this.current === 'fr' ? 'FR' : 'EN');
     },
 
     t(key) {
@@ -679,10 +680,11 @@
         sel.addEventListener('change', e => {
           this.switch(e.target.value);
         });
-        // sync other switchers
+        // sync other switchers and lang button
         document.querySelectorAll('.navbar-lang').forEach(s => {
           s.addEventListener('change', () => {
             document.querySelectorAll('.navbar-lang').forEach(ss => ss.value = Lang.current);
+            document.querySelectorAll('.navbar-lang-btn').forEach(b => b.textContent = Lang.current === 'fr' ? 'FR' : 'EN');
           });
         });
       });
