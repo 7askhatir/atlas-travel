@@ -532,6 +532,9 @@
     'modal.confirm': { en: 'Confirm Booking', fr: 'Confirmer la Réservation' },
     'modal.confirm.reservation': { en: 'Confirm Reservation', fr: 'Confirmer la Réservation' },
     'modal.service.default': { en: 'Private Transport', fr: 'Transport Privé' },
+    'modal.argan.heading': { en: 'Free Argan Oil Cooperative Visit', fr: 'Visite Gratuite d\'une Coopérative d\'Huile d\'Argan' },
+    'modal.argan.note': { en: 'Enjoy a complimentary stop at a traditional women\'s Argan Oil Cooperative during your journey between Marrakech and Essaouira.', fr: 'Profitez d\'un arrêt gratuit dans une coopérative féminine d\'huile d\'argan traditionnelle lors de votre voyage entre Marrakech et Essaouira.' },
+    'modal.argan.free': { en: 'No extra charge – optional stop.', fr: 'Sans frais supplémentaires – arrêt facultatif.' },
 
     /* ====== TRANSPORT DESTINATIONS SECTION ====== */
     'dest.transport.label': { en: 'Explore Destinations', fr: 'Explorer les Destinations' },

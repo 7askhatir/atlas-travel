@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#A8892E"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B2D4D"/>
+      <stop offset="100%" stop-color="#07192E"/>
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C9A84C"/>
+      <stop offset="50%" stop-color="#D4B96A"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield / Badge -->
+  <path d="M60 8 C88.7 8 112 31.3 112 60 C112 95 92 116 60 132 C28 116 8 95 8 60 C8 31.3 31.3 8 60 8Z" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="3"/>
+
+  <!-- Moroccan star (heritage touch) -->
+  <path d="M60 22 L63.5 36 L78 36 L66 45 L70.5 59 L60 50 L49.5 59 L54 45 L42 36 L56.5 36 Z" fill="url(#goldGrad)" opacity="0.5"/>
+
+  <!-- Connecting road (Marrakech ↔ Essaouira) -->
+  <path d="M24 72 C24 60, 42 48, 60 65 C78 82, 96 58, 96 48" stroke="url(#roadGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Start point -->
+  <circle cx="24" cy="72" r="6" fill="url(#goldGrad)"/>
+  <circle cx="24" cy="72" r="2.5" fill="#fff"/>
+
+  <!-- End point -->
+  <circle cx="96" cy="48" r="6" fill="url(#goldGrad)"/>
+  <circle cx="96" cy="48" r="2.5" fill="#fff"/>
+
+  <!-- Motion lines -->
+  <line x1="56" y1="67" x2="46" y2="75" stroke="url(#goldGrad)" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+  <line x1="60" y1="62" x2="52" y2="70" stroke="url(#goldGrad)" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+  <line x1="65" y1="56" x2="58" y2="64" stroke="url(#goldGrad)" stroke-width="2" opacity="0.2" stroke-linecap="round"/>
+
+  <!-- Premium car silhouette -->
+  <g transform="translate(76, 48) rotate(-35)">
+    <rect x="-10" y="-5" width="20" height="10" rx="4" fill="#fff" opacity="0.95"/>
+    <rect x="-6" y="-3" width="12" height="5" rx="2" fill="url(#bgGrad)"/>
+    <!-- Window divider -->
+    <line x1="0" y1="-3" x2="0" y2="2" stroke="url(#bgGrad)" stroke-width="1"/>
+  </g>
+
+  <!-- Subtle outer ring for badge feel -->
+  <circle cx="60" cy="60" r="50" fill="none" stroke="url(#goldGrad)" stroke-width="0.5" opacity="0.3"/>
+</svg>
