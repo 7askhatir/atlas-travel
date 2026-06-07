@@ -1002,15 +1002,19 @@
       color: #adb5bd
     }
 
+    input[type="date"],
     input[type="datetime-local"] {
       font-family: var(--font-ui);
       color-scheme: light;
       min-height: 52px;
+      min-width: 0;
+      max-width: 100%;
       appearance: none;
       -webkit-appearance: none;
       cursor: pointer
     }
 
+    input[type="date"]::-webkit-calendar-picker-indicator,
     input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       background: none;
       color: transparent;
@@ -1022,8 +1026,16 @@
       transition: opacity 0.2s
     }
 
+    input[type="date"]::-webkit-calendar-picker-indicator:hover,
     input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
       opacity: 1
+    }
+
+    input[type="date"]::-webkit-datetime-edit {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      width: 100%
     }
 
     .form-input.error {
@@ -2059,6 +2071,29 @@
     .footer-contact-item i {
       width: 16px;
       color: var(--secondary)
+    }
+
+    .footer-contact-link {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      transition: color 0.3s ease
+    }
+
+    .footer-contact-link:hover {
+      color: var(--secondary)
+    }
+
+    .footer-contact-wa {
+      color: #25D366;
+      font-size: 0.85rem;
+      transition: transform 0.3s ease;
+      display: inline-flex;
+      align-items: center
+    }
+
+    .footer-contact-wa:hover {
+      color: #20bd5d;
+      transform: scale(1.15)
     }
 
     .footer-bottom {
@@ -3431,16 +3466,23 @@
         </div>
         <div>
           <h4 class="footer-heading" data-i18n="footer.heading.contact">Contact Us</h4>
-          <div class="footer-contact">
-            <div class="footer-contact-item"><i class="fab fa-whatsapp"></i> <span
-                data-i18n="footer.contact.whatsapp">+212 600 000 000</span></div>
-            <div class="footer-contact-item"><i class="fas fa-envelope"></i> <span
-                data-i18n="footer.contact.email">hello@atlastravel.ma</span></div>
-            <div class="footer-contact-item"><i class="fas fa-map-pin"></i> <span
-                data-i18n="footer.contact.address">Marrakech, Morocco</span></div>
-            <div class="footer-contact-item"><i class="far fa-clock"></i> <span data-i18n="footer.contact.hours">6:00 —
-                22:00 daily</span></div>
-          </div>
+            <div class="footer-contact">
+              <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+212681579803"
+                  class="footer-contact-link">+212 681 579 803</a> <a href="https://wa.me/212681579803"
+                  target="_blank" class="footer-contact-wa" aria-label="WhatsApp +212 681 579 803"><i
+                    class="fab fa-whatsapp"></i></a></div>
+              <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+212601710270"
+                  class="footer-contact-link">+212 601 710 270</a> <a href="https://wa.me/212601710270"
+                  target="_blank" class="footer-contact-wa" aria-label="WhatsApp +212 601 710 270"><i
+                    class="fab fa-whatsapp"></i></a></div>
+              <div class="footer-contact-item"><i class="fas fa-envelope"></i> <a
+                  href="mailto:Taxi.tours.essaouira@gmail.com" class="footer-contact-link"
+                  data-i18n="footer.contact.email">Taxi.tours.essaouira@gmail.com</a></div>
+              <div class="footer-contact-item"><i class="fas fa-map-pin"></i> <span
+                  data-i18n="footer.contact.address">Essaouira, Morocco</span></div>
+              <div class="footer-contact-item"><i class="far fa-clock"></i> <span data-i18n="footer.contact.hours">6:00
+                  — 22:00 daily</span></div>
+            </div>
         </div>
       </div>
       <div class="footer-bottom">
