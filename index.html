@@ -3250,7 +3250,7 @@
           <div class="route-card">
             <div class="route-icon"><i class="fas fa-plane-arrival"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.airportCity">Marrakech Airport ? City Center</span></div>
+              <div class="route-name"><span data-i18n="route.airportCity">Marrakech Airport ↔ City Center</span></div>
               <div class="route-meta" data-i18n="route.meta.airportCity">30 min • 15 km</div>
             </div>
             <div class="route-price">€22</div>
@@ -3258,7 +3258,7 @@
           <div class="route-card">
             <div class="route-icon"><i class="fas fa-city"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechEssaouira">Marrakech ? Essaouira</span></div>
+              <div class="route-name"><span data-i18n="route.marrakechEssaouira">Marrakech ↔ Essaouira</span></div>
               <div class="route-meta" data-i18n="route.meta.essaouira">2.5h • 175 km</div>
             </div>
             <div class="route-price">€65</div>
@@ -3266,7 +3266,7 @@
           <div class="route-card">
             <div class="route-icon"><i class="fas fa-umbrella-beach"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechAgadir">Marrakech ? Agadir</span></div>
+              <div class="route-name"><span data-i18n="route.marrakechAgadir">Marrakech ↔ Agadir</span></div>
               <div class="route-meta" data-i18n="route.meta.agadir">3h • 250 km</div>
             </div>
             <div class="route-price">€85</div>
@@ -3274,7 +3274,7 @@
           <div class="route-card">
             <div class="route-icon"><i class="fas fa-sun"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechMerzouga">Marrakech ? Merzouga</span></div>
+              <div class="route-name"><span data-i18n="route.marrakechMerzouga">Marrakech ↔ Merzouga</span></div>
               <div class="route-meta" data-i18n="route.meta.merzouga">8h • 560 km</div>
             </div>
             <div class="route-price">€150</div>
@@ -3282,7 +3282,7 @@
           <div class="route-card">
             <div class="route-icon"><i class="fas fa-briefcase"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechCasablanca">Marrakech ? Casablanca</span></div>
+              <div class="route-name"><span data-i18n="route.marrakechCasablanca">Marrakech ↔ Casablanca</span></div>
               <div class="route-meta" data-i18n="route.meta.casablanca">3.5h • 240 km</div>
             </div>
             <div class="route-price">€75</div>
@@ -3290,7 +3290,7 @@
           <div class="route-card">
             <div class="route-icon"><i class="fas fa-mountain"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechAtlas">Marrakech ? Atlas Mtns (Imlil)</span></div>
+              <div class="route-name"><span data-i18n="route.marrakechAtlas">Marrakech ↔ Atlas Mtns (Imlil)</span></div>
               <div class="route-meta" data-i18n="route.meta.atlas">1.5h • 65 km</div>
             </div>
             <div class="route-price">€35</div>
@@ -3298,7 +3298,7 @@
           <div class="route-card">
             <div class="route-icon"><i class="fas fa-monument"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechFes">Marrakech ? Fes</span></div>
+              <div class="route-name"><span data-i18n="route.marrakechFes">Marrakech ↔ Fes</span></div>
               <div class="route-meta" data-i18n="route.meta.fes">6h • 530 km</div>
             </div>
             <div class="route-price">€120</div>
@@ -3306,7 +3306,7 @@
           <div class="route-card">
             <div class="route-icon"><i class="fas fa-palette"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechChefchaouen">Marrakech ? Chefchaouen</span></div>
+              <div class="route-name"><span data-i18n="route.marrakechChefchaouen">Marrakech ↔ Chefchaouen</span></div>
               <div class="route-meta" data-i18n="route.meta.chefchaouen">5h • 420 km</div>
             </div>
             <div class="route-price">€110</div>
@@ -3970,10 +3970,10 @@
       (function () { var slides = document.querySelectorAll('.hero-slide'), dots = document.querySelectorAll('.slider-dot'); if (!slides.length) return; var cur = 0, interval; function go(i) { slides.forEach(function (s) { s.classList.remove('active') }); dots.forEach(function (d) { d.classList.remove('active') }); slides[i].classList.add('active'); dots[i].classList.add('active'); cur = i } function nextI() { go((cur + 1) % slides.length) } function start() { interval = setInterval(nextI, 5000) } function stop() { clearInterval(interval) } dots.forEach(function (d) { d.addEventListener('click', function () { go(parseInt(d.dataset.slide)); stop(); start() }) }); start() })();
 
       // SEARCH TABS
-      window.Search = { submitTransport: function (e) { e.preventDefault(); var p = document.getElementById('sPickup').value, d = document.getElementById('sDest').value, dt = document.getElementById('sDate').value, px = document.getElementById('sPassengers').value; if (!p || !d || !dt) return false; BookingModal.open(p, d); var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) mdt.value = dt + 'T09:00'; var mp = document.getElementById('modalPax'); if (mp) { var n = parseInt(px); if (!isNaN(n)) mp.textContent = Math.max(1, Math.min(8, n)) } return false }, bookRoute: function (pickup, dest) { BookingModal.open(pickup, dest) } };
+      window.Search = { submitTransport: function (e) { e.preventDefault(); var p = document.getElementById('sPickup').value, d = document.getElementById('sDest').value, dt = document.getElementById('sDate').value, px = document.getElementById('sPassengers').value; if (!p || !d || !dt) return false; BookingModal.open(p, d); var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) mdt.value = dt + 'T09:00'; var mp = document.getElementById('modalPax'); if (mp) { var n = parseInt(px); if (!isNaN(n)) mp.textContent = Math.max(1, Math.min(8, n)) } return false }, bookRoute: function (dest) { BookingModal.open('', dest) } };
 
       // POPULAR ROUTES CLICK HANDLER
-      document.querySelector('.routes-grid')?.addEventListener('click', function (e) { var card = e.target.closest('.route-card'); if (!card) return; var nameEl = card.querySelector('.route-name'); if (!nameEl) return; var parts = nameEl.textContent.split('?'); if (parts.length !== 2) return; Search.bookRoute(parts[0].trim(), parts[1].trim()) });
+      document.querySelector('.routes-grid')?.addEventListener('click', function (e) { var card = e.target.closest('.route-card'); if (!card) return; var nameEl = card.querySelector('.route-name'); if (!nameEl) return; var parts = nameEl.textContent.split('↔'); if (parts.length !== 2) return; Search.bookRoute(parts[1].trim()) });
 
       // DESTINATION CARDS CLICK HANDLER - opens modal and pre-fills destination
       document.getElementById('destinations')?.querySelector('.destinations-grid')?.addEventListener('click', function (e) { var card = e.target.closest('.destination-card'); if (!card) return; var nameEl = card.querySelector('.destination-card-name'); if (!nameEl) return; BookingModal.open('', nameEl.textContent) });
