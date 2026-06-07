@@ -24,7 +24,7 @@
     /* ====== HERO (index) ====== */
     'hero.badge': { en: 'Morocco Transfers Made Simple', fr: 'Transferts au Maroc, en toute simplicité' },
     'hero.title': { en: 'Discover Morocco<br>in <span>Style & Comfort</span>', fr: 'Découvrez le Maroc<br>avec <span>Style & Confort</span>' },
-    'hero.text': { en: 'Private transfers, desert adventures & cultural experiences — all in one place. Professional drivers, fixed prices, 24/7 support.', fr: 'Transferts privés, aventures dans le désert et expériences culturelles — tout en un seul endroit. Chauffeurs professionnels, prix fixes, support 24/7.' },
+    'hero.text': { en: 'Private transfers, desert adventures & cultural experiences — all in one place. Professional drivers, Affordable Prices, 24/7 support.', fr: 'Transferts privés, aventures dans le désert et expériences culturelles — tout en un seul endroit. Chauffeurs professionnels, Prix raisonnables, support 24/7.' },
     'hero.cta': { en: 'Book Transport', fr: 'Réserver Transport' },
     'hero.stat.travelers': { en: 'Happy Travelers', fr: 'Voyageurs Heureux' },
     'hero.stat.support': { en: 'Support', fr: 'Support' },
@@ -57,7 +57,7 @@
     /* ====== TRANSPORT SECTION ====== */
     'transport.label': { en: 'Private Transport', fr: 'Transport Privé' },
     'transport.title': { en: 'Travel Morocco in Comfort', fr: 'Voyagez au Maroc en Confort' },
-    'transport.subtitle': { en: 'Professional drivers. Fixed prices. Zero stress. From airport pickup to cross-country journeys.', fr: 'Chauffeurs professionnels. Prix fixes. Zéro stress. De la prise en charge aéroport aux voyages inter-villes.' },
+    'transport.subtitle': { en: 'Professional drivers. Affordable Prices. Zero stress. From airport pickup to cross-country journeys.', fr: 'Chauffeurs professionnels. Prix raisonnables. Zéro stress. De la prise en charge aéroport aux voyages inter-villes.' },
 
     /* ====== FEATURES ====== */
     'feature.meet': { en: 'Meet & Greet', fr: 'Accueil Personnalisé' },
@@ -65,7 +65,7 @@
     'feature.flight': { en: 'Flight Tracking', fr: 'Suivi de Vol' },
     'feature.seats': { en: 'Child Seats Free', fr: 'Sièges Enfants Gratuits' },
     'feature.wifi': { en: 'Free WiFi', fr: 'WiFi Gratuit' },
-    'feature.prices': { en: 'Fixed Prices', fr: 'Prix Fixes' },
+    'feature.prices': { en: 'Affordable Prices', fr: 'Prix raisonnables' },
 
     /* ====== VEHICLE CARDS (index) ====== */
     'vehicle.economy.badge': { en: 'Best Value', fr: 'Meilleur Rapport' },
@@ -369,7 +369,7 @@
     'trust.licensed.desc': { en: 'All drivers professionally licensed, vehicles fully insured, registered with Morocco\'s Ministry of Tourism.', fr: 'Tous les chauffeurs sont agréés, les véhicules sont entièrement assurés, enregistrés auprès du Ministère du Tourisme marocain.' },
     'trust.confirm': { en: 'Instant Confirmation', fr: 'Confirmation Instantanée' },
     'trust.confirm.desc': { en: 'Booking confirmed within minutes via WhatsApp or email. No waiting, no uncertainty.', fr: 'Réservation confirmée en quelques minutes via WhatsApp ou email. Pas d\'attente, pas d\'incertitude.' },
-    'trust.fixed': { en: 'Fixed Pricing', fr: 'Prix Fixes' },
+    'trust.fixed': { en: 'Fixed Pricing', fr: 'Prix raisonnables' },
     'trust.fixed.desc': { en: 'What you see is what you pay. Zero hidden fees, no airport surcharges, no fuel surprises.', fr: 'Ce que vous voyez est ce que vous payez. Zéro frais cachés, pas de supplément aéroport, pas de surprise sur le carburant.' },
     'trust.local': { en: 'Local Expertise', fr: 'Expertise Locale' },
     'trust.local.desc': { en: 'Born and raised in Morocco. We know the hidden gems, best routes, and authentic experiences.', fr: 'Nés et élevés au Maroc. Nous connaissons les joyaux cachés, les meilleurs itinéraires et les expériences authentiques.' },
@@ -381,7 +381,7 @@
     'trust.card1.desc': { en: 'All drivers professionally licensed, vehicles fully insured, registered with Morocco\'s Ministry of Tourism.', fr: 'Tous les chauffeurs sont agréés, les véhicules sont entièrement assurés, enregistrés auprès du Ministère du Tourisme marocain.' },
     'trust.card2.title': { en: 'Instant Confirmation', fr: 'Confirmation Instantanée' },
     'trust.card2.desc': { en: 'Booking confirmed within minutes via WhatsApp or email. No waiting, no uncertainty.', fr: 'Réservation confirmée en quelques minutes via WhatsApp ou email. Pas d\'attente, pas d\'incertitude.' },
-    'trust.card3.title': { en: 'Fixed Pricing', fr: 'Prix Fixes' },
+    'trust.card3.title': { en: 'Fixed Pricing', fr: 'Prix raisonnables' },
     'trust.card3.desc': { en: 'What you see is what you pay. Zero hidden fees, no airport surcharges, no fuel surprises.', fr: 'Ce que vous voyez est ce que vous payez. Zéro frais cachés, pas de supplément aéroport, pas de surprise sur le carburant.' },
     'trust.card4.title': { en: 'Local Expertise', fr: 'Expertise Locale' },
     'trust.card4.desc': { en: 'Born and raised in Morocco. We know the hidden gems, best routes, and authentic experiences.', fr: 'Nés et élevés au Maroc. Nous connaissons les joyaux cachés, les meilleurs itinéraires et les expériences authentiques.' },
