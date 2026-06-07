@@ -9,7 +9,7 @@
   const dict = {
 
     /* ====== NAVBAR ====== */
-    'nav.brand': { en: 'ATLAS TRAVEL', fr: 'ATLAS TRAVEL' },
+    'nav.brand': { en: 'TAXI Tours', fr: 'TAXI Tours' },
     'nav.brand.transport': { en: 'TOREST', fr: 'TOREST' },
     'nav.home': { en: 'Home', fr: 'Accueil' },
     'nav.transport': { en: 'Transport', fr: 'Transport' },
@@ -22,7 +22,7 @@
     'nav.toggle': { en: 'Toggle menu', fr: 'Menu' },
 
     /* ====== HERO (index) ====== */
-    'hero.badge': { en: 'Your Morocco, Perfectly Planned', fr: 'Votre Maroc, Parfaitement Planifié' },
+    'hero.badge': { en: 'Morocco Transfers Made Simple', fr: 'Transferts au Maroc, en toute simplicité' },
     'hero.title': { en: 'Discover Morocco<br>in <span>Style & Comfort</span>', fr: 'Découvrez le Maroc<br>avec <span>Style & Confort</span>' },
     'hero.text': { en: 'Private transfers, desert adventures & cultural experiences — all in one place. Professional drivers, fixed prices, 24/7 support.', fr: 'Transferts privés, aventures dans le désert et expériences culturelles — tout en un seul endroit. Chauffeurs professionnels, prix fixes, support 24/7.' },
     'hero.cta': { en: 'Book Transport', fr: 'Réserver Transport' },
@@ -304,7 +304,7 @@
     'reviews.section.label': { en: 'Testimonials', fr: 'Témoignages' },
     'reviews.title': { en: 'What Travelers Say About Us', fr: 'Ce Que Disent Les Voyageurs' },
     'reviews.title.transport': { en: 'What Travelers Say', fr: 'Avis des Voyageurs' },
-    'reviews.subtitle': { en: 'Over 5,000 happy guests from 40+ countries trust ATLAS TRAVEL.', fr: 'Plus de 5 000 clients heureux de plus de 40 pays font confiance à ATLAS TRAVEL.' },
+    'reviews.subtitle': { en: 'Over 5,000 happy guests from 40+ countries trust TAXI Tours.', fr: 'Plus de 5 000 clients heureux de plus de 40 pays font confiance à TAXI Tours.' },
     'reviews.subtitle.transport': { en: 'Real reviews from real guests who experienced Morocco with us.', fr: 'De vrais avis de vrais clients qui ont découvert le Maroc avec nous.' },
     'reviews.summary': { en: '⭐ 4.9 / 5 average rating from 500+ verified reviews', fr: '⭐ 4.9 / 5 note moyenne sur plus de 500 avis vérifiés' },
 
@@ -445,7 +445,7 @@
     'cta.whatsapp': { en: 'WhatsApp Us', fr: 'WhatsApp' },
 
     /* ====== CONTACT / FOOTER ====== */
-    'footer.brand': { en: 'ATLAS TRAVEL', fr: 'ATLAS TRAVEL' },
+    'footer.brand': { en: 'TAXI Tours', fr: 'TAXI Tours' },
     'footer.desc': { en: 'Your Morocco, Perfectly Planned. Private transfers, desert adventures & cultural experiences — all in one place.', fr: 'Votre Maroc, Parfaitement Planifié. Transferts privés, aventures dans le désert et expériences culturelles — tout en un seul endroit.' },
     'footer.services': { en: 'Services', fr: 'Services' },
     'footer.company': { en: 'Company', fr: 'Entreprise' },
@@ -459,7 +459,7 @@
     'footer.location.value': { en: 'Essaouira, Morocco', fr: 'Essaouira, Maroc' },
     'footer.hours': { en: 'Hours', fr: 'Horaires' },
     'footer.hours.value': { en: '6:00 – 22:00 daily', fr: '6:00 – 22:00 tous les jours' },
-    'footer.copyright': { en: '© 2025 ATLAS TRAVEL Morocco. All rights reserved.', fr: '© 2025 ATLAS TRAVEL Maroc. Tous droits réservés.' },
+    'footer.copyright': { en: '© 2025 TAXI Tours Morocco. All rights reserved.', fr: '© 2025 TAXI Tours Maroc. Tous droits réservés.' },
 
     /* Footer (transport page) */
     'footer.transport.brand': { en: 'TOREST', fr: 'TOREST' },

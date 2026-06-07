@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <title>ATLAS TRAVEL — Private Transfers, Desert Adventures & Cultural Experiences in Morocco</title>
+  <title>TAXI Tours — Private Transfers, Desert Adventures & Cultural Experiences in Morocco</title>
   <meta name="description"
     content="Book premium private transport, desert safaris, and cultural experiences in Morocco. Professional drivers. Fixed prices. 24/7 support.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
 
   <style>
     /* ======================================================
-   ATLAS TRAVEL — Design System
+   TAXI Tours — Design System
    ====================================================== */
     :root {
       --primary: #0B2D4D;
@@ -334,7 +334,7 @@
       display: flex;
       align-items: center;
       transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                  box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       background: rgba(255, 255, 255, 0.9);
       -webkit-backdrop-filter: blur(16px);
       backdrop-filter: blur(16px);
@@ -388,7 +388,7 @@
       padding: 8px 14px;
       border-radius: var(--radius-sm);
       transition: color 0.3s ease,
-                  background 0.3s ease;
+        background 0.3s ease;
       letter-spacing: 0.2px
     }
 
@@ -442,8 +442,8 @@
       color: var(--text-muted);
       border: 1px solid var(--border);
       transition: color 0.3s ease,
-                  border-color 0.3s ease,
-                  background 0.3s ease;
+        border-color 0.3s ease,
+        background 0.3s ease;
       background: transparent;
       cursor: pointer;
       outline: none
@@ -489,8 +489,8 @@
       background: var(--primary);
       border-radius: 3px;
       transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  opacity 0.25s ease,
-                  background 0.3s ease
+        opacity 0.25s ease,
+        background 0.3s ease
     }
 
     .navbar-toggle.active span:nth-child(1) {
@@ -1267,12 +1267,12 @@
       margin-top: 3px
     }
 
-    .argan-checkbox input:checked + .argan-checkmark {
+    .argan-checkbox input:checked+.argan-checkmark {
       background: var(--secondary);
       border-color: var(--secondary)
     }
 
-    .argan-checkbox input:checked + .argan-checkmark::after {
+    .argan-checkbox input:checked+.argan-checkmark::after {
       content: '';
       width: 6px;
       height: 10px;
@@ -1348,20 +1348,25 @@
       .argan-option {
         padding: 14px 14px
       }
+
       .argan-checkbox {
         gap: 12px
       }
+
       .argan-icon {
         width: 32px;
         height: 32px;
         font-size: 0.8rem
       }
+
       .argan-heading {
         font-size: 0.82rem
       }
+
       .argan-note {
         font-size: 0.75rem
       }
+
       .argan-free {
         font-size: 0.72rem
       }
@@ -1371,11 +1376,13 @@
       .argan-option {
         padding: 18px 22px
       }
+
       .argan-icon {
         width: 40px;
         height: 40px;
         font-size: 1rem
       }
+
       .argan-heading {
         font-size: 0.92rem
       }
@@ -2919,8 +2926,13 @@
   <!-- ====== NAVBAR ====== -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="#" class="navbar-brand"><span class="navbar-brand-icon"><i class="fas fa-mountain"></i></span><span
-          data-i18n="nav.brand">ATLAS TRAVEL</span></a>
+      <a href="#" class="navbar-brand">
+        <span class="navbar-brand-icon" style="background: beige !important;">
+         <img src="./images/logo-icon.png" alt="" srcset="">
+        </span>
+        <span
+          data-i18n="nav.brand">TAXI Tours
+        </span></a>
       <div class="navbar-menu" id="navbarMenu">
         <button class="navbar-close" id="navbarClose" aria-label="Close menu">&times;</button>
         <a href="#hero" class="navbar-link active" data-i18n="nav.home">Home</a>
@@ -2933,7 +2945,8 @@
           <option value="en">EN</option>
           <option value="fr">FR</option>
         </select>
-        <button class="navbar-lang-btn" id="navbarLangBtn" onclick="var s=document.querySelector('.navbar-lang');s.value=s.value==='en'?'fr':'en';s.dispatchEvent(new Event('change'))">EN</button>
+        <button class="navbar-lang-btn" id="navbarLangBtn"
+          onclick="var s=document.querySelector('.navbar-lang');s.value=s.value==='en'?'fr':'en';s.dispatchEvent(new Event('change'))">EN</button>
         <div class="navbar-cta"><a href="javascript:void(0)" class="btn btn-cta btn-sm" onclick="BookingModal.open()"><i
               class="fas fa-calendar-check"></i> <span data-i18n="nav.book">Book Now</span></a></div>
       </div>
@@ -3125,9 +3138,9 @@
                 class="vehicle-card-feature"><i class="fas fa-wifi"></i> WiFi</span><span
                 class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span></div>
             <div class="vehicle-card-footer">
-              <div class="vehicle-card-price"><span class="price-from" data-i18n="vehicle.price.from">À partir de</span> 40€</div><a
-                href="https://wa.me/212673396332?text=I'm%20interested%20in%20Economy%20Sedan" target="_blank"
-                class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span
+              <div class="vehicle-card-price"><span class="price-from" data-i18n="vehicle.price.from">À partir de</span>
+                40€</div><a href="https://wa.me/212673396332?text=I'm%20interested%20in%20Economy%20Sedan"
+                target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span
                   data-i18n="vehicle.book">Book</span></a>
             </div>
           </div>
@@ -3157,9 +3170,9 @@
                 class="vehicle-card-feature"><i class="fas fa-wifi"></i> 5G WiFi</span><span
                 class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span></div>
             <div class="vehicle-card-footer">
-              <div class="vehicle-card-price"><span class="price-from" data-i18n="vehicle.price.from">À partir de</span> 55€</div><a
-                href="https://wa.me/212673396332?text=I'm%20interested%20in%20Premium%20Sedan" target="_blank"
-                class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span
+              <div class="vehicle-card-price"><span class="price-from" data-i18n="vehicle.price.from">À partir de</span>
+                55€</div><a href="https://wa.me/212673396332?text=I'm%20interested%20in%20Premium%20Sedan"
+                target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span
                   data-i18n="vehicle.book">Book</span></a>
             </div>
           </div>
@@ -3188,8 +3201,8 @@
                 class="vehicle-card-feature"><i class="fas fa-wifi"></i> WiFi</span><span
                 class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span></div>
             <div class="vehicle-card-footer">
-              <div class="vehicle-card-price"><span class="price-from" data-i18n="vehicle.price.from">À partir de</span> 75€</div><a
-                href="https://wa.me/212673396332?text=I'm%20interested%20in%20SUV%204x4" target="_blank"
+              <div class="vehicle-card-price"><span class="price-from" data-i18n="vehicle.price.from">À partir de</span>
+                75€</div><a href="https://wa.me/212673396332?text=I'm%20interested%20in%20SUV%204x4" target="_blank"
                 class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span
                   data-i18n="vehicle.book">Book</span></a>
             </div>
@@ -3220,8 +3233,8 @@
                 class="vehicle-card-feature"><i class="fas fa-wifi"></i> WiFi</span><span
                 class="vehicle-card-feature"><i class="fas fa-snowflake"></i> A/C</span></div>
             <div class="vehicle-card-footer">
-              <div class="vehicle-card-price"><span class="price-from" data-i18n="vehicle.price.from">À partir de</span> 95€</div><a
-                href="https://wa.me/212673396332?text=I'm%20interested%20in%20Minivan" target="_blank"
+              <div class="vehicle-card-price"><span class="price-from" data-i18n="vehicle.price.from">À partir de</span>
+                95€</div><a href="https://wa.me/212673396332?text=I'm%20interested%20in%20Minivan" target="_blank"
                 class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> <span
                   data-i18n="vehicle.book">Book</span></a>
             </div>
@@ -3434,7 +3447,7 @@
         <h2 class="section-title" style="color:var(--text-light)" data-i18n="reviews.title">What Travelers Say About Us
         </h2>
         <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,0.55)" data-i18n="reviews.subtitle">Over 5,000
-          happy guests from 40+ countries trust ATLAS TRAVEL.</p>
+          happy guests from 40+ countries trust TAXI Tours.</p>
       </div>
 
       <div class="review-summary reveal">
@@ -3584,7 +3597,8 @@
           <h3 class="trust-card-title" data-i18n="trust.card6.title">⭐ 4.9/5 Rating</h3>
           <p class="trust-card-desc" data-i18n="trust.card6.desc">500+ verified reviews across TripAdvisor, Google, and
             Booking.com. Excellence is our standard.</p>
-          <div class="trust-card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="trust-card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+              class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         </div>
       </div>
     </div>
@@ -3699,8 +3713,11 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand"><span class="navbar-brand-icon"><i class="fas fa-mountain"></i></span><span
-              data-i18n="footer.brand">ATLAS TRAVEL</span></div>
+          <div class="footer-brand"><span class="navbar-brand-icon" style="background: #1a1a2e !important;">
+         <img src="./images/logo-icon.png" alt="" srcset="">
+        </span>
+            <span
+              data-i18n="footer.brand">TAXI Tours</span></div>
           <p class="footer-desc" data-i18n="footer.desc">Your Morocco, Perfectly Planned. Private transfers, desert
             adventures &amp; cultural experiences — all in one place.</p>
           <div class="footer-socials">
@@ -3732,26 +3749,27 @@
         </div>
         <div>
           <h4 class="footer-heading" data-i18n="footer.heading.contact">Contact Us</h4>
-            <div class="footer-contact">
-              <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+212681579803"
-                  class="footer-contact-link">+212 681 579 803</a> <a href="https://wa.me/212681579803"
-                  target="_blank" class="footer-contact-wa" aria-label="WhatsApp +212 681 579 803"><i
-                    class="fab fa-whatsapp"></i></a></div>
-              <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+212601710270"
-                  class="footer-contact-link">+212 601 710 270</a> <a href="https://wa.me/212601710270"
-                  target="_blank" class="footer-contact-wa" aria-label="WhatsApp +212 601 710 270"><i
-                    class="fab fa-whatsapp"></i></a></div>
-              <div class="footer-contact-item"><i class="fas fa-envelope"></i> <a
-                  href="mailto:Taxi.tours.essaouira@gmail.com" class="footer-contact-link"
-                  data-i18n="footer.contact.email">Taxi.tours.essaouira@gmail.com</a></div>
-              <div class="footer-contact-item"><i class="fas fa-map-pin"></i> <span
-                  data-i18n="footer.contact.address">Essaouira, Morocco</span></div>
-              <div class="footer-contact-item"><i class="far fa-clock"></i> <span data-i18n="footer.contact.hours">6:00 – 22:00 daily</span></div>
+          <div class="footer-contact">
+            <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+212681579803"
+                class="footer-contact-link">+212 681 579 803</a> <a href="https://wa.me/212681579803" target="_blank"
+                class="footer-contact-wa" aria-label="WhatsApp +212 681 579 803"><i class="fab fa-whatsapp"></i></a>
             </div>
+            <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+212601710270"
+                class="footer-contact-link">+212 601 710 270</a> <a href="https://wa.me/212601710270" target="_blank"
+                class="footer-contact-wa" aria-label="WhatsApp +212 601 710 270"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i> <a
+                href="mailto:Taxi.tours.essaouira@gmail.com" class="footer-contact-link"
+                data-i18n="footer.contact.email">Taxi.tours.essaouira@gmail.com</a></div>
+            <div class="footer-contact-item"><i class="fas fa-map-pin"></i> <span
+                data-i18n="footer.contact.address">Essaouira, Morocco</span></div>
+            <div class="footer-contact-item"><i class="far fa-clock"></i> <span data-i18n="footer.contact.hours">6:00 –
+                22:00 daily</span></div>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy" data-i18n="footer.copyright">&copy; 2025 ATLAS TRAVEL Morocco. All rights reserved.
+        <span class="footer-copy" data-i18n="footer.copyright">&copy; 2025 TAXI Tours Morocco. All rights reserved.
           &bull; Designed for travelers ??</span>
       </div>
     </div>
@@ -3811,8 +3829,8 @@
                 <div class="suggestions" id="modalDestSuggestions"></div>
               </div>
 
-              <div class="form-group"><label class="form-label" data-i18n="modal.label.datetime">Date &amp; Time</label><input
-                  class="form-input" id="modalDatetime" type="datetime-local" required></div>
+              <div class="form-group"><label class="form-label" data-i18n="modal.label.datetime">Date &amp;
+                  Time</label><input class="form-input" id="modalDatetime" type="datetime-local" required></div>
               <div class="form-group"><label class="form-label" data-i18n="modal.label.passengers">Passengers</label>
                 <div class="stepper"><button class="stepper-btn" type="button"
                     onclick="BookingModal.changePax(-1)">-</button><span class="stepper-value"
@@ -3866,28 +3884,29 @@
               <div class="summary-row"><span class="summary-label"><i class="fas fa-user"></i> <span
                     data-i18n="modal.summary.name">Name</span></span><span class="summary-value"
                   id="modalSumName">—</span></div>
-            <div class="summary-row"><span class="summary-label"><i class="fas fa-phone"></i> <span
-                  data-i18n="modal.summary.phone">Phone</span></span><span class="summary-value"
-                id="modalSumPhone">—</span></div>
-          </div>
+              <div class="summary-row"><span class="summary-label"><i class="fas fa-phone"></i> <span
+                    data-i18n="modal.summary.phone">Phone</span></span><span class="summary-value"
+                  id="modalSumPhone">—</span></div>
+            </div>
 
-          <!-- Argan Oil Cooperative free experience -->
-          <div class="argan-option" id="arganOption" style="display:none">
-            <label class="argan-checkbox">
-              <input type="checkbox" id="arganCheckbox">
-              <span class="argan-checkmark"></span>
-              <span class="argan-label">
-                <span class="argan-icon"><i class="fas fa-leaf"></i></span>
-                <span class="argan-text">
-                  <span class="argan-heading" data-i18n="modal.argan.heading">Free Argan Oil Cooperative Visit</span>
-                  <span class="argan-note" data-i18n="modal.argan.note">Enjoy a complimentary stop at a traditional women's Argan Oil Cooperative during your journey between Marrakech and Essaouira.</span>
-                  <span class="argan-free" data-i18n="modal.argan.free">No extra charge â€“ optional stop.</span>
+            <!-- Argan Oil Cooperative free experience -->
+            <div class="argan-option" id="arganOption" style="display:none">
+              <label class="argan-checkbox">
+                <input type="checkbox" id="arganCheckbox">
+                <span class="argan-checkmark"></span>
+                <span class="argan-label">
+                  <span class="argan-icon"><i class="fas fa-leaf"></i></span>
+                  <span class="argan-text">
+                    <span class="argan-heading" data-i18n="modal.argan.heading">Free Argan Oil Cooperative Visit</span>
+                    <span class="argan-note" data-i18n="modal.argan.note">Enjoy a complimentary stop at a traditional
+                      women's Argan Oil Cooperative during your journey between Marrakech and Essaouira.</span>
+                    <span class="argan-free" data-i18n="modal.argan.free">No extra charge â€“ optional stop.</span>
+                  </span>
                 </span>
-              </span>
-            </label>
-          </div>
+              </label>
+            </div>
 
-          <div style="margin-top:24px;display:flex;gap:12px;justify-content:space-between">
+            <div style="margin-top:24px;display:flex;gap:12px;justify-content:space-between">
               <button class="btn btn-ghost" onclick="BookingModal.prev()"><i class="fas fa-arrow-left"></i> <span
                   data-i18n="modal.back">Back</span></button>
               <button class="btn btn-secondary" onclick="BookingModal.confirmAndWhatsApp()"><span
@@ -3903,7 +3922,7 @@
   <script src="js/i18n.js"></script>
   <script>
     // =============================================
-    // ATLAS TRAVEL — Application Script
+    // TAXI Tours — Application Script
     // =============================================
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -3977,7 +3996,7 @@
 
       // Set default dates
       var mdd = document.getElementById('modalDatetime'); if (mdd) { var mn = new Date(); mn.setDate(mn.getDate() + 1); mdd.value = mn.toISOString().slice(0, 16) }
-      
+
       var sd = document.getElementById('sDate'); if (sd) { var nn = new Date(); nn.setDate(nn.getDate() + 1); sd.value = nn.toISOString().slice(0, 10) }
 
       // REVIEWS CAROUSEL
@@ -3999,5 +4018,3 @@
 </body>
 
 </html>
-
-
