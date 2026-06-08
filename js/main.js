@@ -187,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'agadir-essaouira': { car: 80 },
     'agadir-essaouira-airport': { car: 90 },
     'essaouira-sidi-kaouki': { car: 25 },
+    'essaouira-agafay': { car: 70 },
     'essaouira-imsouane': { car: 70 },
     'essaouira-taghazout': { car: 70 },
     'essaouira-agadir-airport': { car: 90 },
@@ -421,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Lang.t('whatsapp.flow.when') + when + '%0A' +
         Lang.t('whatsapp.flow.passengers') + pax + '%0A' +
         Lang.t('whatsapp.flow.vehicle') + vehicle;
-      window.open(`https://wa.me/212673396332?text=${msg}`, '_blank');
+      window.open(`https://wa.me/212681579803?text=${msg}`, '_blank');
     },
 
     showSuccess() {

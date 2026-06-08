@@ -616,6 +616,7 @@
     'route.essaouiraMarrakech': { en: 'Essaouira – Marrakech', fr: 'Essaouira – Marrakech' },
     'route.essaouiraAgadir': { en: 'Essaouira – Agadir', fr: 'Essaouira – Agadir' },
     'route.essaouiraCasablanca': { en: 'Essaouira – Casablanca', fr: 'Essaouira – Casablanca' },
+    'route.essaouiraAgafay': { en: 'Essaouira – Agafay', fr: 'Essaouira – Agafay' },
     'route.agadirCasablanca': { en: 'Agadir – Casablanca', fr: 'Agadir – Casablanca' },
     'route.marrakechRabat': { en: 'Marrakech – Rabat', fr: 'Marrakech – Rabat' },
     'price.departures.marrakech': { en: 'From Marrakech', fr: 'Départs de Marrakech' },
