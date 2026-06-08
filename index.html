@@ -4253,12 +4253,12 @@
           gridEl.innerHTML = filtered.map(function (r) {
             var priceStr = r.price + '\u20AC';
             if (r.minibus) priceStr += ' <span class="tariff-minibus">| Minibus ' + r.minibus + '\u20AC</span>';
-            var pickup = encodeURIComponent(r.pickup);
-            var dest = encodeURIComponent(r.dest);
-            return '<div class="tariff-card" onclick="TariffsModal.book(\'' + dest + '\',\'' + pickup + '\')">' +
+            var pVal = r.pickup;
+            var dVal = r.dest;
+            return '<div class="tariff-card" onclick="TariffsModal.book(\'' + dVal.replace(/'/g, "\\'") + '\',\'' + pVal.replace(/'/g, "\\'") + '\')">' +
               '<div class="tariff-route"><span class="tariff-from">' + r.from + '</span> <span class="tariff-arrow"><i class="fas fa-arrow-right"></i></span> <span class="tariff-to">' + r.to + '</span></div>' +
               '<div class="tariff-pricing">' + priceStr + '</div>' +
-              '<button class="tariff-book-btn" onclick="event.stopPropagation();TariffsModal.book(\'' + dest + '\',\'' + pickup + '\')"><i class="fas fa-check"></i> ' + (lang === 'fr' ? 'Réserver' : 'Book') + '</button>' +
+              '<button class="tariff-book-btn" onclick="event.stopPropagation();TariffsModal.book(\'' + dVal.replace(/'/g, "\\'") + '\',\'' + pVal.replace(/'/g, "\\'") + '\')"><i class="fas fa-check"></i> ' + (lang === 'fr' ? 'Réserver' : 'Book') + '</button>' +
               '</div>';
           }).join('');
         },
