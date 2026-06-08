@@ -630,6 +630,8 @@
 
     /* ====== TARIFS MODAL ====== */
     'tariffs.title': { en: 'Price List / Tarifs', fr: 'Liste des Prix / Tarifs' },
+    'tariffs.search': { en: 'Search routes...', fr: 'Rechercher un trajet...' },
+    'tariffs.empty': { en: 'No route found', fr: 'Aucun trajet trouvé' },
     'tariffs.tab.main': { en: 'Main Transfers', fr: 'Transferts Principaux' },
     'tariffs.tab.marrakech': { en: 'Marrakech', fr: 'Marrakech' },
     'tariffs.tab.agadir': { en: 'Agadir', fr: 'Agadir' },

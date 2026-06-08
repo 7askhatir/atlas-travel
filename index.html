@@ -1459,85 +1459,9 @@
     .vehicle-card-image {
       height: 200px;
       position: relative;
-      overflow: hidden
-    }
-
-    .vehicle-card-image-track {
-      display: flex;
-      height: 100%;
-      transition: transform 0.35s ease
-    }
-
-    .vehicle-card-image-slide {
-      min-width: 100%;
-      height: 100%;
+      overflow: hidden;
       background-size: cover;
       background-position: center
-    }
-
-    .vehicle-card-image-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(255, 255, 255, 0.85);
-      color: var(--text);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      transition: var(--transition);
-      z-index: 2;
-      opacity: 0;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15)
-    }
-
-    .vehicle-card:hover .vehicle-card-image-btn {
-      opacity: 1
-    }
-
-    .vehicle-card-image-btn:hover {
-      background: #fff;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2)
-    }
-
-    .vehicle-card-image-btn-left {
-      left: 8px
-    }
-
-    .vehicle-card-image-btn-right {
-      right: 8px
-    }
-
-    .vehicle-card-image-dots {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 5px;
-      z-index: 2
-    }
-
-    .vehicle-card-image-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: var(--transition)
-    }
-
-    .vehicle-card-image-dot.active {
-      background: #fff;
-      width: 16px;
-      border-radius: 3px
     }
 
     .vehicle-card-badge {
@@ -2889,6 +2813,47 @@
       overflow-y: auto
     }
 
+    /* ---- Tariffs Modal - Search ---- */
+    .tariffs-search {
+      position: relative;
+      padding: 12px 20px 0
+    }
+
+    .tariffs-search-icon {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      pointer-events: none;
+      z-index: 1
+    }
+
+    .tariffs-search-input {
+      width: 100%;
+      padding: 10px 14px 10px 36px;
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      font-size: 0.82rem;
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: var(--transition);
+      box-sizing: border-box
+    }
+
+    .tariffs-search-input:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+      background: var(--bg-white)
+    }
+
+    .tariffs-search-input::placeholder {
+      color: var(--text-muted)
+    }
+
     /* ---- Tariffs Modal - Filter + Cards ---- */
     .tariffs-filters {
       display: flex;
@@ -3025,6 +2990,16 @@
     }
 
     @media(max-width:600px) {
+      .tariffs-search {
+        padding: 10px 12px 0
+      }
+      .tariffs-search-icon {
+        left: 20px
+      }
+      .tariffs-search-input {
+        padding: 9px 12px 9px 32px;
+        font-size: 0.78rem
+      }
       .tariffs-filters {
         padding: 12px 12px 8px;
         gap: 6px
@@ -3280,18 +3255,8 @@
 
       <div class="vehicles-grid">
         <div class="vehicle-card reveal">
-          <div class="vehicle-card-image" id="vcard0">
-            <div class="vehicle-card-image-track">
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/3.jpeg')"></div>
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/1.jpeg')"></div>
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/4.jpeg')"></div>
-            </div><button class="vehicle-card-image-btn vehicle-card-image-btn-left" type="button"
-              onclick="CardSlider.prev(0)"><i class="fas fa-chevron-left"></i></button><button
-              class="vehicle-card-image-btn vehicle-card-image-btn-right" type="button" onclick="CardSlider.next(0)"><i
-                class="fas fa-chevron-right"></i></button>
-            <div class="vehicle-card-image-dots" id="vcdots0"><span class="vehicle-card-image-dot active"></span><span
-                class="vehicle-card-image-dot"></span><span class="vehicle-card-image-dot"></span></div><span
-              class="vehicle-card-badge best" data-i18n="vehicle.economy.badge">Best Value</span>
+          <div class="vehicle-card-image" style="background-image:url('./images/car/SUV/3.jpeg')">
+            <span class="vehicle-card-badge best" data-i18n="vehicle.economy.badge">Best Value</span>
           </div>
           <div class="vehicle-card-body">
             <h3 class="vehicle-card-name" data-i18n="vehicle.economy.name">Economy Sedan</h3>
@@ -3312,18 +3277,8 @@
         </div>
 
         <div class="vehicle-card reveal">
-          <div class="vehicle-card-image" id="vcard1">
-            <div class="vehicle-card-image-track">
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/2.jpeg')"></div>
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/4.jpeg')"></div>
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/1.jpeg')"></div>
-            </div><button class="vehicle-card-image-btn vehicle-card-image-btn-left" type="button"
-              onclick="CardSlider.prev(1)"><i class="fas fa-chevron-left"></i></button><button
-              class="vehicle-card-image-btn vehicle-card-image-btn-right" type="button" onclick="CardSlider.next(1)"><i
-                class="fas fa-chevron-right"></i></button>
-            <div class="vehicle-card-image-dots" id="vcdots1"><span class="vehicle-card-image-dot active"></span><span
-                class="vehicle-card-image-dot"></span><span class="vehicle-card-image-dot"></span></div><span
-              class="vehicle-card-badge popular" data-i18n="vehicle.premium.badge">? Most Popular</span>
+          <div class="vehicle-card-image" style="background-image:url('./images/car/SUV/2.jpeg')">
+            <span class="vehicle-card-badge popular" data-i18n="vehicle.premium.badge">? Most Popular</span>
           </div>
           <div class="vehicle-card-body">
             <h3 class="vehicle-card-name" data-i18n="vehicle.premium.name">Premium Sedan</h3>
@@ -3344,17 +3299,7 @@
         </div>
 
         <div class="vehicle-card reveal">
-          <div class="vehicle-card-image" id="vcard2">
-            <div class="vehicle-card-image-track">
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/1.jpeg')"></div>
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/3.jpeg')"></div>
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/2.jpeg')"></div>
-            </div><button class="vehicle-card-image-btn vehicle-card-image-btn-left" type="button"
-              onclick="CardSlider.prev(2)"><i class="fas fa-chevron-left"></i></button><button
-              class="vehicle-card-image-btn vehicle-card-image-btn-right" type="button" onclick="CardSlider.next(2)"><i
-                class="fas fa-chevron-right"></i></button>
-            <div class="vehicle-card-image-dots" id="vcdots2"><span class="vehicle-card-image-dot active"></span><span
-                class="vehicle-card-image-dot"></span><span class="vehicle-card-image-dot"></span></div>
+          <div class="vehicle-card-image" style="background-image:url('./images/car/SUV/1.jpeg')">
           </div>
           <div class="vehicle-card-body">
             <h3 class="vehicle-card-name" data-i18n="vehicle.suv.name">SUV / 4x4</h3>
@@ -3375,18 +3320,8 @@
         </div>
 
         <div class="vehicle-card reveal">
-          <div class="vehicle-card-image" id="vcard3">
-            <div class="vehicle-card-image-track">
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/2.jpeg')"></div>
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/4.jpeg')"></div>
-              <div class="vehicle-card-image-slide" style="background-image:url('./images/car/SUV/3.jpeg')"></div>
-            </div><button class="vehicle-card-image-btn vehicle-card-image-btn-left" type="button"
-              onclick="CardSlider.prev(3)"><i class="fas fa-chevron-left"></i></button><button
-              class="vehicle-card-image-btn vehicle-card-image-btn-right" type="button" onclick="CardSlider.next(3)"><i
-                class="fas fa-chevron-right"></i></button>
-            <div class="vehicle-card-image-dots" id="vcdots3"><span class="vehicle-card-image-dot active"></span><span
-                class="vehicle-card-image-dot"></span><span class="vehicle-card-image-dot"></span></div><span
-              class="vehicle-card-badge best" data-i18n="vehicle.minivan.badge">Group</span>
+          <div class="vehicle-card-image" style="background-image:url('./images/car/SUV/4.jpeg')">
+            <span class="vehicle-card-badge best" data-i18n="vehicle.minivan.badge">Group</span>
           </div>
           <div class="vehicle-card-body">
             <h3 class="vehicle-card-name" data-i18n="vehicle.minivan.name">Minivan</h3>
@@ -3984,10 +3919,14 @@
         <button class="modal-close" onclick="TariffsModal.close()"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
+        <div class="tariffs-search">
+          <i class="fas fa-search tariffs-search-icon"></i>
+          <input type="text" class="tariffs-search-input" id="tariffsSearch" placeholder="Search routes..." data-i18n-placeholder="tariffs.search" oninput="TariffsModal.search(this.value)">
+        </div>
         <div class="tariffs-filters" id="tariffsFilters"></div>
         <div class="tariffs-counter" id="tariffsCounter"></div>
         <div class="tariffs-grid" id="tariffsGrid"></div>
-        <div class="tariffs-empty" id="tariffsEmpty" style="display:none;text-align:center;padding:40px 20px;color:var(--text-muted)"><i class="fas fa-search" style="font-size:1.5rem;display:block;margin-bottom:10px"></i> Aucun trajet trouvé</div>
+        <div class="tariffs-empty" id="tariffsEmpty" style="display:none;text-align:center;padding:40px 20px;color:var(--text-muted)"><i class="fas fa-search" style="font-size:1.5rem;display:block;margin-bottom:10px"></i> <span data-i18n="tariffs.empty">Aucun trajet trouvé</span></div>
       </div>
     </div>
   </div>
@@ -4074,7 +4013,7 @@
       setupModalAuto('modalPickup', 'modalPickupSuggestions'); setupModalAuto('modalDest', 'modalDestSuggestions');
       setupModalAuto('sPickup', 'sPickupSuggestions'); setupModalAuto('sDest', 'sDestSuggestions');
 
-      window.CardSlider = { indices: [0, 0, 0, 0, 0], go: function (id, i) { var el = document.getElementById('vcard' + id); if (!el) return; var track = el.querySelector('.vehicle-card-image-track'); var slides = track.querySelectorAll('.vehicle-card-image-slide'); if (i < 0 || i >= slides.length) return; this.indices[id] = i; track.style.transform = 'translateX(-' + (i * 100) + '%)'; var dots = document.getElementById('vcdots' + id); if (dots) { dots.querySelectorAll('.vehicle-card-image-dot').forEach(function (d) { d.classList.remove('active') }); var dot = dots.querySelectorAll('.vehicle-card-image-dot')[i]; if (dot) dot.classList.add('active') } }, next: function (id) { var el = document.getElementById('vcard' + id); if (!el) return; var slides = el.querySelectorAll('.vehicle-card-image-slide'); this.go(id, Math.min(this.indices[id] + 1, slides.length - 1)) }, prev: function (id) { this.go(id, Math.max(this.indices[id] - 1, 0)) } }; (function () { var images = document.querySelectorAll('.vehicle-card-image'); images.forEach(function (el) { var id = parseInt(el.id.replace('vcard', '')); if (isNaN(id)) return; el.addEventListener('wheel', function (e) { e.preventDefault(); if (e.deltaY > 0) window.CardSlider.next(id); else window.CardSlider.prev(id) }, { passive: false }); var sx; el.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX }, { passive: true }); el.addEventListener('touchend', function (e) { var d = sx - e.changedTouches[0].screenX; if (Math.abs(d) > 30) { if (d > 0) window.CardSlider.next(id); else window.CardSlider.prev(id) } }, { passive: true }) }) })(); window.BookingModal = { step: 1, total: 3, open: function (pickup, dest) { document.getElementById('bookingModalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; this.go(1);['modalName', 'modalPhone'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = '' }); if (pickup) { var pi = document.getElementById('modalPickup'); if (pi) pi.value = pickup } if (dest) { var di = document.getElementById('modalDest'); if (di) di.value = dest } var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) { var d = new Date(); d.setDate(d.getDate() + 1); mdt.value = d.toISOString().slice(0, 16) } document.getElementById('modalPax').textContent = '1'; setTimeout(function () { var fe = document.getElementById('modalPickup'); if (fe) fe.focus() }, 400) }, close: function (e) { if (e && e.target !== e.currentTarget) return; document.getElementById('bookingModalOverlay').classList.remove('open'); document.body.style.overflow = '' }, go: function (s) { this.step = s; var steps = document.getElementById('modalFlowSteps'); steps.querySelectorAll('.flow-step').forEach(function (e) { e.classList.remove('active', 'completed') }); var body = document.getElementById('modalFlowBody'); body.querySelectorAll('.flow-step-content').forEach(function (e) { e.classList.remove('active') }); var c = body.querySelector('.flow-step-content[data-step="' + s + '"]'); if (c) c.classList.add('active'); for (var i = 1; i <= this.total; i++) { var st = steps.querySelector('.flow-step[data-step="' + i + '"]'); if (!st) continue; if (i < s) st.classList.add('completed'); else if (i === s) st.classList.add('active') } if (s === 3) this.summary() }, next: function () { if (this.step < this.total) { if (!this.validate()) return; this.go(this.step + 1) } }, prev: function () { if (this.step > 1) this.go(this.step - 1) }, changePax: function (d) { var el = document.getElementById('modalPax'); var v = parseInt(el.textContent) + d; v = Math.max(1, Math.min(8, v)); el.textContent = v }, validate: function () { var fields; if (this.step === 1) { fields = ['modalPickup', 'modalDest', 'modalDatetime'] } else if (this.step === 2) { fields = ['modalName', 'modalPhone'] } else { return true } var v = true; fields.forEach(function (id) { var inp = document.getElementById(id); if (!inp) return; if (!inp.value.trim()) { inp.classList.add('error'); v = false; inp.addEventListener('input', function f() { this.classList.remove('error'); this.removeEventListener('input', f) }, { once: true }) } else inp.classList.remove('error') }); if (!v) { var fe = document.querySelector('#bookingModalOverlay .form-input.error'); if (fe) fe.focus() } return v }, summary: function () { var p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '—', nm = document.getElementById('modalName').value || '—', ph = document.getElementById('modalPhone').value || '—'; document.getElementById('modalSumPickup').textContent = p; document.getElementById('modalSumDest').textContent = d; document.getElementById('modalSumName').textContent = nm; document.getElementById('modalSumPhone').textContent = ph; if (dt && tm) { try { var dd = new Date(dt + 'T' + tm); document.getElementById('modalSumDatetime').textContent = dd.toLocaleString((Lang.current === 'ar' ? 'ar-SA' : Lang.current === 'fr' ? 'fr-FR' : 'en-GB'), { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) } catch (e) { document.getElementById('modalSumDatetime').textContent = dt + ' ' + tm } } else { document.getElementById('modalSumDatetime').textContent = (dt || '—') + ' ' + (tm || '—') } document.getElementById('modalSumPax').textContent = px; var pl = p.toLowerCase(), dl = d.toLowerCase(); var isArgan = (pl.indexOf('essaouira') > -1 && dl.indexOf('marrakech') > -1) || (pl.indexOf('marrakech') > -1 && dl.indexOf('essaouira') > -1); var ao = document.getElementById('arganOption'); if (ao) { ao.style.display = isArgan ? '' : 'none'; if (!isArgan) { var ac = document.getElementById('arganCheckbox'); if (ac) ac.checked = false } } }, confirmAndWhatsApp: function () { var nm = document.getElementById('modalName').value || '', ph = document.getElementById('modalPhone').value || '', p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '1', arganEl = document.getElementById('arganCheckbox'), msg = Lang.t('whatsapp.modal.header') + Lang.t('whatsapp.modal.name') + nm + '\n' + Lang.t('whatsapp.modal.phone') + ph + '\n' + Lang.t('whatsapp.modal.pickup') + p + '\n' + Lang.t('whatsapp.modal.dest') + d + '\n' + Lang.t('whatsapp.modal.date') + dt + '\n' + Lang.t('whatsapp.modal.time') + tm + '\n' + Lang.t('whatsapp.modal.pax') + px; if (arganEl && arganEl.checked) { msg += '\n\n🌿 Argan Oil Cooperative Visit' } window.open('https://wa.me/212673396332?text=' + encodeURIComponent(msg), '_blank'); this.close() } };
+      window.BookingModal = { step: 1, total: 3, open: function (pickup, dest) { document.getElementById('bookingModalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; this.go(1);['modalName', 'modalPhone'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = '' }); if (pickup) { var pi = document.getElementById('modalPickup'); if (pi) pi.value = pickup } if (dest) { var di = document.getElementById('modalDest'); if (di) di.value = dest } var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) { var d = new Date(); d.setDate(d.getDate() + 1); mdt.value = d.toISOString().slice(0, 16) } document.getElementById('modalPax').textContent = '1'; setTimeout(function () { var fe = document.getElementById('modalPickup'); if (fe) fe.focus() }, 400) }, close: function (e) { if (e && e.target !== e.currentTarget) return; document.getElementById('bookingModalOverlay').classList.remove('open'); document.body.style.overflow = '' }, go: function (s) { this.step = s; var steps = document.getElementById('modalFlowSteps'); steps.querySelectorAll('.flow-step').forEach(function (e) { e.classList.remove('active', 'completed') }); var body = document.getElementById('modalFlowBody'); body.querySelectorAll('.flow-step-content').forEach(function (e) { e.classList.remove('active') }); var c = body.querySelector('.flow-step-content[data-step="' + s + '"]'); if (c) c.classList.add('active'); for (var i = 1; i <= this.total; i++) { var st = steps.querySelector('.flow-step[data-step="' + i + '"]'); if (!st) continue; if (i < s) st.classList.add('completed'); else if (i === s) st.classList.add('active') } if (s === 3) this.summary() }, next: function () { if (this.step < this.total) { if (!this.validate()) return; this.go(this.step + 1) } }, prev: function () { if (this.step > 1) this.go(this.step - 1) }, changePax: function (d) { var el = document.getElementById('modalPax'); var v = parseInt(el.textContent) + d; v = Math.max(1, Math.min(8, v)); el.textContent = v }, validate: function () { var fields; if (this.step === 1) { fields = ['modalPickup', 'modalDest', 'modalDatetime'] } else if (this.step === 2) { fields = ['modalName', 'modalPhone'] } else { return true } var v = true; fields.forEach(function (id) { var inp = document.getElementById(id); if (!inp) return; if (!inp.value.trim()) { inp.classList.add('error'); v = false; inp.addEventListener('input', function f() { this.classList.remove('error'); this.removeEventListener('input', f) }, { once: true }) } else inp.classList.remove('error') }); if (!v) { var fe = document.querySelector('#bookingModalOverlay .form-input.error'); if (fe) fe.focus() } return v }, summary: function () { var p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '—', nm = document.getElementById('modalName').value || '—', ph = document.getElementById('modalPhone').value || '—'; document.getElementById('modalSumPickup').textContent = p; document.getElementById('modalSumDest').textContent = d; document.getElementById('modalSumName').textContent = nm; document.getElementById('modalSumPhone').textContent = ph; if (dt && tm) { try { var dd = new Date(dt + 'T' + tm); document.getElementById('modalSumDatetime').textContent = dd.toLocaleString((Lang.current === 'ar' ? 'ar-SA' : Lang.current === 'fr' ? 'fr-FR' : 'en-GB'), { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) } catch (e) { document.getElementById('modalSumDatetime').textContent = dt + ' ' + tm } } else { document.getElementById('modalSumDatetime').textContent = (dt || '—') + ' ' + (tm || '—') } document.getElementById('modalSumPax').textContent = px; var pl = p.toLowerCase(), dl = d.toLowerCase(); var isArgan = (pl.indexOf('essaouira') > -1 && dl.indexOf('marrakech') > -1) || (pl.indexOf('marrakech') > -1 && dl.indexOf('essaouira') > -1); var ao = document.getElementById('arganOption'); if (ao) { ao.style.display = isArgan ? '' : 'none'; if (!isArgan) { var ac = document.getElementById('arganCheckbox'); if (ac) ac.checked = false } } }, confirmAndWhatsApp: function () { var nm = document.getElementById('modalName').value || '', ph = document.getElementById('modalPhone').value || '', p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '1', arganEl = document.getElementById('arganCheckbox'), msg = Lang.t('whatsapp.modal.header') + Lang.t('whatsapp.modal.name') + nm + '\n' + Lang.t('whatsapp.modal.phone') + ph + '\n' + Lang.t('whatsapp.modal.pickup') + p + '\n' + Lang.t('whatsapp.modal.dest') + d + '\n' + Lang.t('whatsapp.modal.date') + dt + '\n' + Lang.t('whatsapp.modal.time') + tm + '\n' + Lang.t('whatsapp.modal.pax') + px; if (arganEl && arganEl.checked) { msg += '\n\n🌿 Argan Oil Cooperative Visit' } window.open('https://wa.me/212673396332?text=' + encodeURIComponent(msg), '_blank'); this.close() } };
       // Extend BookingModal with price calculation
       var origSummary = BookingModal.summary;
       BookingModal.summary = function () {
@@ -4145,9 +4084,8 @@
         { from: 'Marrakech', to: 'Ouirgane', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouirgane' },
         { from: 'Marrakech', to: 'Lalla Takerkoust', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Lac de Lalla Takerkoust' },
         { from: 'Marrakech', to: 'Agafay', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Agafay' },
-        { from: 'Marrakech', to: 'Essaouira', price: 90, tags: ['marrakech','essaouira'], pickup: 'Marrakech', dest: 'Essaouira' },
+        { from: 'Marrakech', to: 'Essaouira', price: 70, tags: ['marrakech','essaouira'], pickup: 'Marrakech', dest: 'Essaouira' },
         { from: 'Marrakech', to: 'Agadir Airport', price: 120, tags: ['marrakech','agadir','airports'], pickup: 'Marrakech', dest: 'Agadir Airport' },
-        { from: 'Marrakech', to: 'Agadir', price: 130, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Agadir' },
         { from: 'Marrakech', to: 'Taghazout', price: 150, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Taghazout' },
         { from: 'Marrakech', to: 'Imsouane', price: 160, tags: ['marrakech','essaouira'], pickup: 'Marrakech', dest: 'Imsouane' },
         { from: 'Marrakech', to: 'Sidi Ifni', price: 250, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Sidi Ifni' },
@@ -4156,8 +4094,6 @@
         { from: 'Marrakech', to: 'Ouarzazate', price: 140, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouarzazate' },
         { from: 'Marrakech', to: 'Merzouga', price: 400, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Merzouga' },
         { from: 'Marrakech', to: 'Casablanca Airport', price: 120, tags: ['marrakech','casablanca','airports'], pickup: 'Marrakech', dest: 'Casablanca Airport' },
-        { from: 'Marrakech', to: 'Casablanca', price: 140, tags: ['marrakech','casablanca'], pickup: 'Marrakech', dest: 'Casablanca' },
-        { from: 'Marrakech', to: 'Rabat', price: 200, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Rabat' },
         { from: 'Marrakech', to: 'Fes', price: 350, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Fes' },
         { from: 'Marrakech', to: 'Chefchaouen', price: 450, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Chefchaouen' },
         { from: 'Marrakech', to: 'Tangier', price: 450, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Tangier' },
@@ -4172,14 +4108,11 @@
         { from: 'Agadir', to: 'Tafraoute', price: 160, tags: ['agadir'], pickup: 'Agadir', dest: 'Tafraoute' },
         { from: 'Agadir', to: 'Essaouira', price: 80, tags: ['agadir','essaouira'], pickup: 'Agadir', dest: 'Essaouira' },
         { from: 'Agadir', to: 'Essaouira Airport', price: 90, tags: ['agadir','essaouira','airports'], pickup: 'Agadir', dest: 'Essaouira Airport' },
-        { from: 'Agadir', to: 'Casablanca', price: 250, tags: ['agadir','casablanca'], pickup: 'Agadir', dest: 'Casablanca' },
 
         // From Essaouira
-        { from: 'Essaouira', to: 'Airport', price: 15, tags: ['essaouira','airports'], pickup: 'Essaouira', dest: 'Essaouira Airport' },
         { from: 'Essaouira', to: 'Sidi Kaouki', price: 25, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Sidi Kaouki' },
         { from: 'Essaouira', to: 'Imsouane', price: 70, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Imsouane' },
         { from: 'Essaouira', to: 'Taghazout', price: 70, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Taghazout' },
-        { from: 'Essaouira', to: 'Agadir', price: 80, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Agadir' },
         { from: 'Essaouira', to: 'Agadir Airport', price: 90, tags: ['essaouira','agadir','airports'], pickup: 'Essaouira', dest: 'Agadir Airport' },
         { from: 'Essaouira', to: 'Taroudant', price: 180, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Taroudant' },
         { from: 'Essaouira', to: 'Sidi Ifni', price: 250, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Sidi Ifni' },
@@ -4187,7 +4120,6 @@
         { from: 'Essaouira', to: 'Oualidia', price: 130, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Oualidia' },
         { from: 'Essaouira', to: 'El Jadida', price: 150, tags: ['essaouira','casablanca'], pickup: 'Essaouira', dest: 'El Jadida' },
         { from: 'Essaouira', to: 'Casablanca Airport', price: 170, tags: ['essaouira','casablanca','airports'], pickup: 'Essaouira', dest: 'Casablanca Airport' },
-        { from: 'Essaouira', to: 'Casablanca', price: 190, tags: ['essaouira','casablanca'], pickup: 'Essaouira', dest: 'Casablanca' },
         { from: 'Essaouira', to: 'Rabat', price: 250, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Rabat' },
         { from: 'Essaouira', to: 'Fes', price: 420, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Fes' },
         { from: 'Essaouira', to: 'Tangier', price: 500, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Tangier' }
@@ -4205,10 +4137,14 @@
       // TARIFS MODAL
       window.TariffsModal = {
         activeFilter: 'all',
+        searchQuery: '',
         open: function () {
           document.getElementById('tariffsModalOverlay').classList.add('open');
           document.body.style.overflow = 'hidden';
           this.activeFilter = 'all';
+          this.searchQuery = '';
+          var inp = document.getElementById('tariffsSearch');
+          if (inp) inp.value = '';
           this.render();
         },
         close: function (e) {
@@ -4218,6 +4154,10 @@
         },
         setFilter: function (id) {
           this.activeFilter = id;
+          this.render();
+        },
+        search: function (value) {
+          this.searchQuery = value.toLowerCase().trim();
           this.render();
         },
         render: function () {
@@ -4233,11 +4173,21 @@
             return '<button class="tariffs-filter-btn' + active + '" onclick="TariffsModal.setFilter(\'' + f.id + '\')"><i class="fas ' + f.icon + '"></i> ' + f.label[lang] + '</button>';
           }).join('');
 
-          // Filter routes
+          // Filter routes by tag
           var filtered = routesData;
           if (this.activeFilter !== 'all') {
             filtered = routesData.filter(function (r) {
               return r.tags.indexOf(TariffsModal.activeFilter) > -1;
+            });
+          }
+
+          // Filter by search query
+          if (this.searchQuery) {
+            var q = this.searchQuery;
+            filtered = filtered.filter(function (r) {
+              return r.from.toLowerCase().indexOf(q) > -1 ||
+                r.to.toLowerCase().indexOf(q) > -1 ||
+                (r.from + ' ' + r.to).toLowerCase().indexOf(q) > -1;
             });
           }
 

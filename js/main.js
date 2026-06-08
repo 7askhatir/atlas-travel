@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'marrakech-ouirgane': { car: 70 },
     'marrakech-lalla-takerkoust': { car: 70 },
     'marrakech-agafay': { car: 70 },
-    'marrakech-essaouira': { car: 90 },
+    'marrakech-essaouira': { car: 70, minibus: 80 },
     'marrakech-agadir-airport': { car: 120 },
     'marrakech-taghazout': { car: 150 },
     'marrakech-imsouane': { car: 160 },
