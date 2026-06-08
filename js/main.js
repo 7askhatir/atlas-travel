@@ -143,6 +143,118 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // SMART BOOKING FLOW
   // ==========================================
+  // ==========================================
+  // TRANSFER PRICES DATA - flat key-value lookup
+  // Key format: "{normalized-pickup}-{normalized-destination}"
+  // ==========================================
+  window.transferPrices = {
+    'essaouira-airport': { car: 15, minibus: 20 },
+    'essaouira-marrakech': { car: 70, minibus: 80 },
+    'essaouira-agadir': { car: 80, minibus: 90 },
+    'essaouira-casablanca': { car: 150, minibus: 200 },
+    'agadir-casablanca': { car: 250, minibus: 300 },
+    'marrakech-agadir': { car: 120, minibus: 140 },
+    'marrakech-casablanca': { car: 120, minibus: 150 },
+    'marrakech-rabat': { car: 180, minibus: 220 },
+    'marrakech-airport': { car: 15 },
+    'marrakech-palmeraie': { car: 20 },
+    'marrakech-ourika': { car: 70 },
+    'marrakech-oukaimeden': { car: 90 },
+    'marrakech-imlil': { car: 90 },
+    'marrakech-ouirgane': { car: 70 },
+    'marrakech-lalla-takerkoust': { car: 70 },
+    'marrakech-agafay': { car: 70 },
+    'marrakech-essaouira': { car: 90 },
+    'marrakech-agadir-airport': { car: 120 },
+    'marrakech-taghazout': { car: 150 },
+    'marrakech-imsouane': { car: 160 },
+    'marrakech-sidi-ifni': { car: 250 },
+    'marrakech-taroudant': { car: 170 },
+    'marrakech-ouzoud': { car: 120 },
+    'marrakech-ouarzazate': { car: 140 },
+    'marrakech-merzouga': { car: 400 },
+    'marrakech-casablanca-airport': { car: 120 },
+    'marrakech-fes': { car: 350 },
+    'marrakech-chefchaouen': { car: 450 },
+    'marrakech-tanger': { car: 450 },
+    'agadir-airport': { car: 20 },
+    'agadir-taghazout': { car: 40 },
+    'agadir-imsouane': { car: 65 },
+    'agadir-taroudant': { car: 90 },
+    'agadir-tiznit': { car: 100 },
+    'agadir-sidi-ifni': { car: 120 },
+    'agadir-tafraoute': { car: 160 },
+    'agadir-essaouira': { car: 80 },
+    'agadir-essaouira-airport': { car: 90 },
+    'essaouira-sidi-kaouki': { car: 25 },
+    'essaouira-imsouane': { car: 70 },
+    'essaouira-taghazout': { car: 70 },
+    'essaouira-agadir-airport': { car: 90 },
+    'essaouira-taroudant': { car: 180 },
+    'essaouira-sidi-ifni': { car: 250 },
+    'essaouira-safi': { car: 90 },
+    'essaouira-oualidia': { car: 130 },
+    'essaouira-el-jadida': { car: 150 },
+    'essaouira-casablanca-airport': { car: 170 },
+    'essaouira-rabat': { car: 250 },
+    'essaouira-fes': { car: 420 },
+    'essaouira-tanger': { car: 500 }
+  };
+
+  window.getTransferPrice = function(pickup, dest) {
+    if (!pickup || !dest) return null;
+    var n = function(s) {
+      return s.toLowerCase().trim()
+        .replace(/[–\-—]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .replace(/\([^)]*\)/g, '')
+        .replace(/['\u2019]/g, '')
+        .replace(/\bcascades\s+d/g, '')
+        .replace(/\bde\b/g, '')
+        .replace(/\bla\b/g, '')
+        .replace(/\ble\b/g, '')
+        .replace(/\bd\b/g, '')
+        .replace(/\bhassan\b.*$/, '')
+        .replace(/\bmenara\b/g, '')
+        .replace(/\bmedina\b/g, '')
+        .replace(/\bcentre\b/g, '')
+        .replace(/\bcenter\b/g, '')
+        .replace(/massira\b/g, '')
+        .replace(/\bmohammed\b.*$/, '')
+        .replace(/\bv\b/g, '')
+        .replace(/\bcity\b/g, '')
+        .replace(/\bairport\b/g, ' airport ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/\s+/g, '-');
+    };
+    var p = n(pickup);
+    var d = n(dest);
+    // Build candidate keys
+    var pBase = p.replace(/-airport$/, '');
+    var dBase = d.replace(/-airport$/, '');
+    var candidates = [
+      p + '-' + d,
+      d + '-' + p,
+      pBase + '-' + d,
+      d + '-' + pBase,
+      p + '-' + dBase,
+      dBase + '-' + p,
+      pBase + '-' + dBase,
+      dBase + '-' + pBase
+    ];
+    // Handle "X" + "X Airport" → "X-airport" pattern
+    if (pBase === dBase && p !== d) {
+      var ct = p.indexOf('airport') > -1 ? d : p;
+      candidates.push(ct + '-airport');
+      candidates.push('airport-' + ct);
+    }
+    for (var i = 0; i < candidates.length; i++) {
+      if (window.transferPrices[candidates[i]]) return window.transferPrices[candidates[i]];
+    }
+    return null;
+  };
+
   window.Flow = {
     currentStep: 1,
     totalSteps: 4,
@@ -438,10 +550,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // AUTO-SUGGEST (mock)
   // ==========================================
   const locations = [
-    'Marrakech Airport', 'Marrakech Medina', 'Essaouira', 'Agadir',
-    'Merzouga', 'Fes', 'Casablanca', 'Rabat', 'Tangier',
-    'Atlas Mountains', 'Ourika Valley', 'Taghazout', 'Ouarzazate',
-    'Chefchaouen', 'Meknes', 'Ifrane', 'Dakhla'
+    'Marrakech Airport', 'Marrakech Medina', 'Marrakech Palmeraie',
+    'Essaouira', 'Essaouira Airport',
+    'Agadir', 'Agadir Airport',
+    'Casablanca', 'Casablanca Airport',
+    'Merzouga', 'Fes', 'Rabat', 'Tangier', 'Chefchaouen',
+    'Atlas Mountains', 'Ourika Valley', 'Oukaimeden', 'Imlil', 'Ouirgane',
+    'Taghazout', 'Imsouane', 'Sidi Ifni', 'Taroudant', 'Tiznit', 'Tafraoute',
+    'Ouarzazate', 'Safi', 'Oualidia', 'El Jadida',
+    'Lac de Lalla Takerkoust', 'Agafay',
+    'Cascades d\'Ouzoud', 'Sidi Kaouki',
+    'Meknes', 'Ifrane', 'Dakhla'
   ];
 
   function setupAutocomplete(inputId, suggestionsId) {

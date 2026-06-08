@@ -18,6 +18,7 @@
     'nav.faq': { en: 'FAQ', fr: 'FAQ' },
     'nav.contact': { en: 'Contact', fr: 'Contact' },
     'nav.book': { en: 'Book Now', fr: 'Réserver' },
+    'nav.tariffs': { en: 'Prices', fr: 'Tarifs' },
     'nav.lang': { en: 'Language', fr: 'Langue' },
     'nav.toggle': { en: 'Toggle menu', fr: 'Menu' },
 
@@ -177,7 +178,7 @@
     'flow.summary.total': { en: 'Estimated Total', fr: 'Total Estimé' },
 
     /* ====== POPULAR ROUTES ====== */
-    'routes.title': { en: 'Popular Routes', fr: 'Itinéraires Populaires' },
+    'routes.title': { en: 'Main Transfers', fr: 'Transferts Principaux' },
     'route.airport.city': { en: 'Marrakech Airport ↔ City Center', fr: 'Aéroport Marrakech ↔ Centre-Ville' },
     'route.marrakech.essaouira': { en: 'Marrakech ↔ Essaouira', fr: 'Marrakech ↔ Essaouira' },
     'route.marrakech.agadir': { en: 'Marrakech ↔ Agadir', fr: 'Marrakech ↔ Agadir' },
@@ -608,7 +609,31 @@
     'dest.transport.marrakech': { en: 'Marrakech', fr: 'Marrakech' },
     'dest.transport.essaouira': { en: 'Essaouira', fr: 'Essaouira' },
     'dest.transport.agadir': { en: 'Agadir', fr: 'Agadir' },
-    'dest.transport.atlas': { en: 'Atlas Mountains', fr: 'Montagnes de l\'Atlas' }
+    'dest.transport.atlas': { en: 'Atlas Mountains', fr: 'Montagnes de l\'Atlas' },
+
+    /* ====== PRICE LIST / TARIFS ====== */
+    'route.essaouiraAirport': { en: 'Essaouira – Airport', fr: 'Essaouira – Aéroport' },
+    'route.essaouiraMarrakech': { en: 'Essaouira – Marrakech', fr: 'Essaouira – Marrakech' },
+    'route.essaouiraAgadir': { en: 'Essaouira – Agadir', fr: 'Essaouira – Agadir' },
+    'route.essaouiraCasablanca': { en: 'Essaouira – Casablanca', fr: 'Essaouira – Casablanca' },
+    'route.agadirCasablanca': { en: 'Agadir – Casablanca', fr: 'Agadir – Casablanca' },
+    'route.marrakechRabat': { en: 'Marrakech – Rabat', fr: 'Marrakech – Rabat' },
+    'price.departures.marrakech': { en: 'From Marrakech', fr: 'Départs de Marrakech' },
+    'price.departures.agadir': { en: 'From Agadir', fr: 'Départs d\'Agadir' },
+    'price.departures.essaouira': { en: 'From Essaouira', fr: 'Départs d\'Essaouira' },
+    'dest.marrakech.airport': { en: 'Marrakech Airport', fr: 'Aéroport Marrakech' },
+    'dest.marrakech.palmeraie': { en: 'Marrakech Palmeraie', fr: 'Marrakech Palmeraie' },
+    'dest.agadir.airport': { en: 'Agadir Airport', fr: 'Aéroport Agadir' },
+    'dest.essaouira.airport': { en: 'Essaouira Airport', fr: 'Aéroport Essaouira' },
+    'dest.casablanca.airport': { en: 'Casablanca Airport', fr: 'Aéroport Casablanca' },
+    'modal.summary.price.request': { en: 'Request quote', fr: 'Demander devis' },
+
+    /* ====== TARIFS MODAL ====== */
+    'tariffs.title': { en: 'Price List / Tarifs', fr: 'Liste des Prix / Tarifs' },
+    'tariffs.tab.main': { en: 'Main Transfers', fr: 'Transferts Principaux' },
+    'tariffs.tab.marrakech': { en: 'Marrakech', fr: 'Marrakech' },
+    'tariffs.tab.agadir': { en: 'Agadir', fr: 'Agadir' },
+    'tariffs.tab.essaouira': { en: 'Essaouira', fr: 'Essaouira' }
   };
 
   /* ---- Lang engine ---- */

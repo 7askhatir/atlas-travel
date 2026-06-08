@@ -1640,6 +1640,15 @@
       margin-top: 32px
     }
 
+    .summary-price-row {
+      border-top: 2px dashed var(--border);
+      margin-top: 8px;
+      padding-top: 12px;
+    }
+    .summary-price-value {
+      font-size: 1.1rem;
+    }
+
     .route-card {
       display: flex;
       align-items: center;
@@ -2873,6 +2882,173 @@
       border-radius: 0 0 var(--radius-lg) var(--radius-lg)
     }
 
+    /* ---- Tariffs Modal ---- */
+    .modal-tariffs .modal-body {
+      padding: 0;
+      max-height: 70vh;
+      overflow-y: auto
+    }
+
+    /* ---- Tariffs Modal - Filter + Cards ---- */
+    .tariffs-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      background: var(--bg-white);
+      z-index: 2
+    }
+
+    .tariffs-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 24px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-ui);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap
+    }
+
+    .tariffs-filter-btn:hover {
+      border-color: var(--secondary);
+      color: var(--primary);
+      background: var(--secondary-light)
+    }
+
+    .tariffs-filter-btn.active {
+      background: var(--secondary);
+      color: var(--text-light);
+      border-color: var(--secondary);
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3)
+    }
+
+    .tariffs-counter {
+      padding: 10px 20px 4px;
+      font-size: 0.72rem;
+      font-family: var(--font-ui);
+      color: var(--text-muted);
+      font-weight: 500
+    }
+
+    .tariffs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      padding: 8px 20px 20px
+    }
+
+    .tariff-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: var(--transition);
+      gap: 10px
+    }
+
+    .tariff-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--secondary)
+    }
+
+    .tariff-route {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text)
+    }
+
+    .tariff-from {
+      font-weight: 700;
+      color: var(--primary)
+    }
+
+    .tariff-arrow {
+      color: var(--secondary);
+      font-size: 0.7rem
+    }
+
+    .tariff-to {
+      color: var(--text-muted);
+      font-weight: 500
+    }
+
+    .tariff-pricing {
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--secondary)
+    }
+
+    .tariff-minibus {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted)
+    }
+
+    .tariff-book-btn {
+      align-self: flex-end;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 18px;
+      border-radius: 20px;
+      border: none;
+      background: var(--secondary);
+      color: var(--text-light);
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-ui);
+      cursor: pointer;
+      transition: var(--transition-bounce)
+    }
+
+    .tariff-book-btn:hover {
+      background: var(--secondary-dark);
+      transform: scale(1.05)
+    }
+
+    @media(max-width:600px) {
+      .tariffs-filters {
+        padding: 12px 12px 8px;
+        gap: 6px
+      }
+      .tariffs-filter-btn {
+        font-size: 0.7rem;
+        padding: 6px 12px
+      }
+      .tariffs-grid {
+        grid-template-columns: 1fr;
+        padding: 6px 12px 16px;
+        gap: 10px
+      }
+      .tariff-card {
+        padding: 14px 14px
+      }
+    }
+
+    .modal-tariffs .modal-body {
+      padding: 0;
+      max-height: 70vh;
+      overflow-y: auto
+    }
+
     .modal .flow-steps {
       padding: 20px 0;
       border-bottom: 1px solid var(--border-light);
@@ -2936,6 +3112,7 @@
         <button class="navbar-close" id="navbarClose" aria-label="Close menu">&times;</button>
         <a href="#hero" class="navbar-link active" data-i18n="nav.home">Home</a>
         <a href="#transport" class="navbar-link" data-i18n="nav.transport">Transport</a>
+        <a href="javascript:void(0)" class="navbar-link" onclick="TariffsModal.open()" data-i18n="nav.tariffs">Tarifs</a>
         <a href="#destinations" class="navbar-link" data-i18n="nav.destinations">Destinations</a>
         <a href="#reviews" class="navbar-link" data-i18n="nav.reviews">Reviews</a>
         <a href="#faq" class="navbar-link" data-i18n="nav.faq">FAQ</a>
@@ -3233,75 +3410,75 @@
       <div class="reveal" style="margin-top:60px">
         <h3
           style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--primary);margin-bottom:20px;text-align:center"
-          data-i18n="routes.title">Popular Routes</h3>
+          data-i18n="routes.title">Transferts Principaux</h3>
         <div class="routes-grid">
-          <div class="route-card">
+          <div class="route-card" onclick="Search.bookRoute('Essaouira')">
             <div class="route-icon"><i class="fas fa-plane-arrival"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.airportCity">Marrakech Airport ↔ City Center</span></div>
-              <div class="route-meta" data-i18n="route.meta.airportCity">30 min • 15 km</div>
+              <div class="route-name" data-i18n="route.essaouiraAirport">Essaouira – Airport</div>
+              <div class="route-meta">15€ | Minibus 20€</div>
             </div>
-            <div class="route-price">€22</div>
+            <div class="route-price">15€</div>
           </div>
-          <div class="route-card">
+          <div class="route-card" onclick="Search.bookRoute('Marrakech')">
             <div class="route-icon"><i class="fas fa-city"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechEssaouira">Marrakech ↔ Essaouira</span></div>
-              <div class="route-meta" data-i18n="route.meta.essaouira">2.5h • 175 km</div>
+              <div class="route-name" data-i18n="route.essaouiraMarrakech">Essaouira – Marrakech</div>
+              <div class="route-meta">70€ | Minibus 80€</div>
             </div>
-            <div class="route-price">€65</div>
+            <div class="route-price">70€</div>
           </div>
-          <div class="route-card">
+          <div class="route-card" onclick="Search.bookRoute('Agadir')">
             <div class="route-icon"><i class="fas fa-umbrella-beach"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechAgadir">Marrakech ↔ Agadir</span></div>
-              <div class="route-meta" data-i18n="route.meta.agadir">3h • 250 km</div>
+              <div class="route-name" data-i18n="route.essaouiraAgadir">Essaouira – Agadir</div>
+              <div class="route-meta">80€ | Minibus 90€</div>
             </div>
-            <div class="route-price">€85</div>
+            <div class="route-price">80€</div>
           </div>
-          <div class="route-card">
-            <div class="route-icon"><i class="fas fa-sun"></i></div>
-            <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechMerzouga">Marrakech ↔ Merzouga</span></div>
-              <div class="route-meta" data-i18n="route.meta.merzouga">8h • 560 km</div>
-            </div>
-            <div class="route-price">€150</div>
-          </div>
-          <div class="route-card">
+          <div class="route-card" onclick="Search.bookRoute('Casablanca')">
             <div class="route-icon"><i class="fas fa-briefcase"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechCasablanca">Marrakech ↔ Casablanca</span></div>
-              <div class="route-meta" data-i18n="route.meta.casablanca">3.5h • 240 km</div>
+              <div class="route-name" data-i18n="route.essaouiraCasablanca">Essaouira – Casablanca</div>
+              <div class="route-meta">150€ | Minibus 200€</div>
             </div>
-            <div class="route-price">€75</div>
+            <div class="route-price">150€</div>
           </div>
-          <div class="route-card">
+          <div class="route-card" onclick="Search.bookRoute('Casablanca')">
+            <div class="route-icon"><i class="fas fa-briefcase"></i></div>
+            <div class="route-info">
+              <div class="route-name" data-i18n="route.agadirCasablanca">Agadir – Casablanca</div>
+              <div class="route-meta">250€ | Minibus 300€</div>
+            </div>
+            <div class="route-price">250€</div>
+          </div>
+          <div class="route-card" onclick="Search.bookRoute('Agadir')">
             <div class="route-icon"><i class="fas fa-mountain"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechAtlas">Marrakech ↔ Atlas Mtns (Imlil)</span></div>
-              <div class="route-meta" data-i18n="route.meta.atlas">1.5h • 65 km</div>
+              <div class="route-name" data-i18n="route.marrakechAgadir">Marrakech – Agadir</div>
+              <div class="route-meta">120€ | Minibus 140€</div>
             </div>
-            <div class="route-price">€35</div>
+            <div class="route-price">120€</div>
           </div>
-          <div class="route-card">
+          <div class="route-card" onclick="Search.bookRoute('Casablanca')">
+            <div class="route-icon"><i class="fas fa-city"></i></div>
+            <div class="route-info">
+              <div class="route-name" data-i18n="route.marrakechCasablanca">Marrakech – Casablanca</div>
+              <div class="route-meta">120€ | Minibus 150€</div>
+            </div>
+            <div class="route-price">120€</div>
+          </div>
+          <div class="route-card" onclick="Search.bookRoute('Rabat')">
             <div class="route-icon"><i class="fas fa-monument"></i></div>
             <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechFes">Marrakech ↔ Fes</span></div>
-              <div class="route-meta" data-i18n="route.meta.fes">6h • 530 km</div>
+              <div class="route-name" data-i18n="route.marrakechRabat">Marrakech – Rabat</div>
+              <div class="route-meta">180€ | Minibus 220€</div>
             </div>
-            <div class="route-price">€120</div>
-          </div>
-          <div class="route-card">
-            <div class="route-icon"><i class="fas fa-palette"></i></div>
-            <div class="route-info">
-              <div class="route-name"><span data-i18n="route.marrakechChefchaouen">Marrakech ↔ Chefchaouen</span></div>
-              <div class="route-meta" data-i18n="route.meta.chefchaouen">5h • 420 km</div>
-            </div>
-            <div class="route-price">€110</div>
+            <div class="route-price">180€</div>
           </div>
         </div>
       </div>
-    </div>
+
   </section>
 
 
@@ -3764,6 +3941,9 @@
               <div class="summary-row"><span class="summary-label"><i class="fas fa-phone"></i> <span
                     data-i18n="modal.summary.phone">Phone</span></span><span class="summary-value"
                   id="modalSumPhone">—</span></div>
+              <div class="summary-row summary-price-row"><span class="summary-label"><i class="fas fa-euro-sign"></i> <span
+                    data-i18n="modal.summary.total">Price</span></span><span class="summary-value summary-price-value"
+                  id="modalSumPrice">—</span></div>
             </div>
 
             <!-- Argan Oil Cooperative free experience -->
@@ -3792,6 +3972,22 @@
           </div>
 
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== TARIFS MODAL ====== -->
+  <div class="modal-overlay" id="tariffsModalOverlay" onclick="TariffsModal.close(event)">
+    <div class="modal modal-tariffs" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title"><i class="fas fa-euro-sign"></i> <span data-i18n="tariffs.title">Price List / Tarifs</span></div>
+        <button class="modal-close" onclick="TariffsModal.close()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="tariffs-filters" id="tariffsFilters"></div>
+        <div class="tariffs-counter" id="tariffsCounter"></div>
+        <div class="tariffs-grid" id="tariffsGrid"></div>
+        <div class="tariffs-empty" id="tariffsEmpty" style="display:none;text-align:center;padding:40px 20px;color:var(--text-muted)"><i class="fas fa-search" style="font-size:1.5rem;display:block;margin-bottom:10px"></i> Aucun trajet trouvé</div>
       </div>
     </div>
   </div>
@@ -3860,16 +4056,219 @@
 
       // BOOKING MODAL
       var modalLocations = [
-        'Casablanca (CMN) - Mohammed V Airport', 'Rabat (RBA) - Rabat-Salé Airport', 'Marrakech (RAK) - Menara Airport', 'Agadir (AGA) - Al Massira Airport', 'Fes (FEZ) - Fes-Saïss Airport', 'Tangier (TNG) - Ibn Battouta Airport', 'Essaouira (ESU) - Mogador Airport', 'Ouarzazate (OZZ) - Ouarzazate Airport', 'Nador (NDR) - Nador International', 'Oujda (OUD) - Angads Airport', 'Laayoune (EUN) - Hassan I Airport', 'Dakhla (VIL) - Dakhla Airport', 'Al Hoceima (AHU) - Cherif Al Idrissi', 'Errachidia (ERH) - Moulay Ali Cherif', 'Tetouan (TTU) - Sania Ramel Airport', 'Guelmim (GLN) - Guelmim Airport', 'Beni Mellal (BEM) - Beni Mellal Airport', 'Tan-Tan (TTA) - Tan-Tan Airport', 'Zagora (OZG) - Zagora Airport',
-        'Casablanca', 'Rabat', 'Marrakech', 'Fes', 'Tangier', 'Agadir', 'Essaouira', 'Ouarzazate', 'Marrakech Medina', 'Merzouga', 'Chefchaouen', 'Meknes', 'Ifrane', 'Oujda', 'Nador', 'Kenitra', 'Tetouan', 'Safi', 'El Jadida', 'Mohammedia', 'Khouribga', 'Beni Mellal', 'Taza', 'Settat', 'Laayoune', 'Dakhla', 'Taroudant', 'Tiznit', 'Azrou', 'Midelt', 'Zagora', 'Taourirt', 'Berkane', 'Al Hoceima', 'Guelmim', 'Sidi Ifni', 'Tan-Tan', 'Asilah', 'Ouezzane', 'Sefrou', 'Taounate', 'Benslimane', 'Sidi Kacem', 'Larache', 'Errachidia', 'Souk El Arbaa', 'Youssoufia',
-        'Atlas Mountains', 'Ourika Valley', 'Taghazout', 'Tafraoute', 'Legzira Beach', 'Paradise Valley', 'Ouzoud Waterfalls', 'Imlil', 'Toubkal', 'Merzouga Sahara', 'Dades Gorge', 'Todra Gorge', 'Draa Valley', 'Cascade d\'Ouzoud', 'Lake Ifrah'
+        'Marrakech', 'Marrakech Airport', 'Marrakech Medina', 'Marrakech Palmeraie',
+        'Essaouira', 'Essaouira Airport',
+        'Agadir', 'Agadir Airport',
+        'Casablanca', 'Casablanca Airport',
+        'Rabat', 'Fes', 'Tangier', 'Chefchaouen', 'Ouarzazate', 'Merzouga',
+        'Casablanca (CMN) - Mohammed V Airport', 'Rabat (RBA) - Rabat-Salé Airport', 'Marrakech (RAK) - Menara Airport', 'Agadir (AGA) - Al Massira Airport', 'Fes (FEZ) - Fes-Saïss Airport', 'Tangier (TNG) - Ibn Battouta Airport', 'Essaouira (ESU) - Mogador Airport',
+        'Ourika', 'Oukaimeden', 'Imlil', 'Ouirgane',
+        'Lac de Lalla Takerkoust', 'Agafay',
+        'Taghazout', 'Imsouane', 'Sidi Ifni', 'Taroudant', 'Tiznit', 'Tafraoute',
+        'Sidi Kaouki', 'Safi', 'Oualidia', 'El Jadida',
+        'Cascades d\'Ouzoud', 'Ouzoud Waterfalls',
+        'Atlas Mountains', 'Ourika Valley', 'Tafraoute', 'Legzira Beach', 'Paradise Valley', 'Imlil', 'Toubkal', 'Merzouga Sahara', 'Dades Gorge', 'Todra Gorge', 'Draa Valley', 'Lake Ifrah',
+        'Meknes', 'Ifrane', 'Oujda', 'Nador', 'Kenitra', 'Tetouan', 'Mohammedia', 'Khouribga', 'Beni Mellal', 'Taza', 'Settat', 'Laayoune', 'Dakhla', 'Azrou', 'Midelt', 'Zagora', 'Taourirt', 'Berkane', 'Al Hoceima', 'Guelmim', 'Tan-Tan', 'Asilah', 'Ouezzane', 'Sefrou', 'Taounate', 'Benslimane', 'Sidi Kacem', 'Larache', 'Errachidia', 'Souk El Arbaa', 'Youssoufia'
       ];
       function setupModalAuto(id, sugId) { var inp = document.getElementById(id), box = document.getElementById(sugId); if (!inp || !box) return; inp.addEventListener('input', function () { var v = inp.value.toLowerCase().trim(); if (!v || v.length < 1) { box.innerHTML = ''; box.style.display = 'none'; return } var m = modalLocations.filter(function (l) { return l.toLowerCase().includes(v) }).slice(0, 5); if (!m.length) { box.innerHTML = ''; box.style.display = 'none'; return } box.innerHTML = m.map(function (x) { return '<div class="suggestion-item" data-value="' + x + '">' + x + '</div>' }).join(''); box.style.display = 'block'; box.querySelectorAll('.suggestion-item').forEach(function (el) { el.addEventListener('pointerdown', function (e) { e.preventDefault(); inp.value = el.dataset.value; box.innerHTML = ''; box.style.display = 'none' }) }) }); inp.addEventListener('blur', function () { setTimeout(function () { box.innerHTML = ''; box.style.display = 'none' }, 350) }) }
       setupModalAuto('modalPickup', 'modalPickupSuggestions'); setupModalAuto('modalDest', 'modalDestSuggestions');
       setupModalAuto('sPickup', 'sPickupSuggestions'); setupModalAuto('sDest', 'sDestSuggestions');
 
       window.CardSlider = { indices: [0, 0, 0, 0, 0], go: function (id, i) { var el = document.getElementById('vcard' + id); if (!el) return; var track = el.querySelector('.vehicle-card-image-track'); var slides = track.querySelectorAll('.vehicle-card-image-slide'); if (i < 0 || i >= slides.length) return; this.indices[id] = i; track.style.transform = 'translateX(-' + (i * 100) + '%)'; var dots = document.getElementById('vcdots' + id); if (dots) { dots.querySelectorAll('.vehicle-card-image-dot').forEach(function (d) { d.classList.remove('active') }); var dot = dots.querySelectorAll('.vehicle-card-image-dot')[i]; if (dot) dot.classList.add('active') } }, next: function (id) { var el = document.getElementById('vcard' + id); if (!el) return; var slides = el.querySelectorAll('.vehicle-card-image-slide'); this.go(id, Math.min(this.indices[id] + 1, slides.length - 1)) }, prev: function (id) { this.go(id, Math.max(this.indices[id] - 1, 0)) } }; (function () { var images = document.querySelectorAll('.vehicle-card-image'); images.forEach(function (el) { var id = parseInt(el.id.replace('vcard', '')); if (isNaN(id)) return; el.addEventListener('wheel', function (e) { e.preventDefault(); if (e.deltaY > 0) window.CardSlider.next(id); else window.CardSlider.prev(id) }, { passive: false }); var sx; el.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX }, { passive: true }); el.addEventListener('touchend', function (e) { var d = sx - e.changedTouches[0].screenX; if (Math.abs(d) > 30) { if (d > 0) window.CardSlider.next(id); else window.CardSlider.prev(id) } }, { passive: true }) }) })(); window.BookingModal = { step: 1, total: 3, open: function (pickup, dest) { document.getElementById('bookingModalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; this.go(1);['modalName', 'modalPhone'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = '' }); if (pickup) { var pi = document.getElementById('modalPickup'); if (pi) pi.value = pickup } if (dest) { var di = document.getElementById('modalDest'); if (di) di.value = dest } var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) { var d = new Date(); d.setDate(d.getDate() + 1); mdt.value = d.toISOString().slice(0, 16) } document.getElementById('modalPax').textContent = '1'; setTimeout(function () { var fe = document.getElementById('modalPickup'); if (fe) fe.focus() }, 400) }, close: function (e) { if (e && e.target !== e.currentTarget) return; document.getElementById('bookingModalOverlay').classList.remove('open'); document.body.style.overflow = '' }, go: function (s) { this.step = s; var steps = document.getElementById('modalFlowSteps'); steps.querySelectorAll('.flow-step').forEach(function (e) { e.classList.remove('active', 'completed') }); var body = document.getElementById('modalFlowBody'); body.querySelectorAll('.flow-step-content').forEach(function (e) { e.classList.remove('active') }); var c = body.querySelector('.flow-step-content[data-step="' + s + '"]'); if (c) c.classList.add('active'); for (var i = 1; i <= this.total; i++) { var st = steps.querySelector('.flow-step[data-step="' + i + '"]'); if (!st) continue; if (i < s) st.classList.add('completed'); else if (i === s) st.classList.add('active') } if (s === 3) this.summary() }, next: function () { if (this.step < this.total) { if (!this.validate()) return; this.go(this.step + 1) } }, prev: function () { if (this.step > 1) this.go(this.step - 1) }, changePax: function (d) { var el = document.getElementById('modalPax'); var v = parseInt(el.textContent) + d; v = Math.max(1, Math.min(8, v)); el.textContent = v }, validate: function () { var fields; if (this.step === 1) { fields = ['modalPickup', 'modalDest', 'modalDatetime'] } else if (this.step === 2) { fields = ['modalName', 'modalPhone'] } else { return true } var v = true; fields.forEach(function (id) { var inp = document.getElementById(id); if (!inp) return; if (!inp.value.trim()) { inp.classList.add('error'); v = false; inp.addEventListener('input', function f() { this.classList.remove('error'); this.removeEventListener('input', f) }, { once: true }) } else inp.classList.remove('error') }); if (!v) { var fe = document.querySelector('#bookingModalOverlay .form-input.error'); if (fe) fe.focus() } return v }, summary: function () { var p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '—', nm = document.getElementById('modalName').value || '—', ph = document.getElementById('modalPhone').value || '—'; document.getElementById('modalSumPickup').textContent = p; document.getElementById('modalSumDest').textContent = d; document.getElementById('modalSumName').textContent = nm; document.getElementById('modalSumPhone').textContent = ph; if (dt && tm) { try { var dd = new Date(dt + 'T' + tm); document.getElementById('modalSumDatetime').textContent = dd.toLocaleString((Lang.current === 'ar' ? 'ar-SA' : Lang.current === 'fr' ? 'fr-FR' : 'en-GB'), { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) } catch (e) { document.getElementById('modalSumDatetime').textContent = dt + ' ' + tm } } else { document.getElementById('modalSumDatetime').textContent = (dt || '—') + ' ' + (tm || '—') } document.getElementById('modalSumPax').textContent = px; var pl = p.toLowerCase(), dl = d.toLowerCase(); var isArgan = (pl.indexOf('essaouira') > -1 && dl.indexOf('marrakech') > -1) || (pl.indexOf('marrakech') > -1 && dl.indexOf('essaouira') > -1); var ao = document.getElementById('arganOption'); if (ao) { ao.style.display = isArgan ? '' : 'none'; if (!isArgan) { var ac = document.getElementById('arganCheckbox'); if (ac) ac.checked = false } } }, confirmAndWhatsApp: function () { var nm = document.getElementById('modalName').value || '', ph = document.getElementById('modalPhone').value || '', p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '1', arganEl = document.getElementById('arganCheckbox'), msg = Lang.t('whatsapp.modal.header') + Lang.t('whatsapp.modal.name') + nm + '\n' + Lang.t('whatsapp.modal.phone') + ph + '\n' + Lang.t('whatsapp.modal.pickup') + p + '\n' + Lang.t('whatsapp.modal.dest') + d + '\n' + Lang.t('whatsapp.modal.date') + dt + '\n' + Lang.t('whatsapp.modal.time') + tm + '\n' + Lang.t('whatsapp.modal.pax') + px; if (arganEl && arganEl.checked) { msg += '\n\n🌿 Argan Oil Cooperative Visit' } window.open('https://wa.me/212673396332?text=' + encodeURIComponent(msg), '_blank'); this.close() } };
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { BookingModal.close() } });
+      // Extend BookingModal with price calculation
+      var origSummary = BookingModal.summary;
+      BookingModal.summary = function () {
+        origSummary.call(this);
+        var p = document.getElementById('modalPickup').value || '';
+        var d = document.getElementById('modalDest').value || '';
+        var priceData = window.getTransferPrice ? window.getTransferPrice(p, d) : null;
+        var priceEl = document.getElementById('modalSumPrice');
+        if (priceData && priceData.car) {
+          var txt = '€' + priceData.car;
+          if (priceData.minibus) txt += ' | Minibus €' + priceData.minibus;
+          priceEl.textContent = txt;
+          priceEl.style.color = 'var(--secondary)';
+          priceEl.style.fontWeight = '700';
+        } else {
+          priceEl.textContent = Lang.t('modal.summary.price.request');
+          priceEl.style.color = 'var(--text-muted)';
+          priceEl.style.fontWeight = '400';
+        }
+      };
+      var origConfirm = BookingModal.confirmAndWhatsApp;
+      BookingModal.confirmAndWhatsApp = function () {
+        var nm = document.getElementById('modalName').value || '',
+          ph = document.getElementById('modalPhone').value || '',
+          p = document.getElementById('modalPickup').value || '-',
+          d = document.getElementById('modalDest').value || '-',
+          mdt = document.getElementById('modalDatetime').value || '',
+          dt = mdt ? mdt.split('T')[0] : '',
+          tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '',
+          px = document.getElementById('modalPax').textContent || '1',
+          priceData = window.getTransferPrice ? window.getTransferPrice(p, d) : null;
+        var msg = Lang.t('whatsapp.modal.header') +
+          Lang.t('whatsapp.modal.name') + nm + '\n' +
+          Lang.t('whatsapp.modal.phone') + ph + '\n' +
+          Lang.t('whatsapp.modal.pickup') + p + '\n' +
+          Lang.t('whatsapp.modal.dest') + d + '\n' +
+          Lang.t('whatsapp.modal.date') + dt + '\n' +
+          Lang.t('whatsapp.modal.time') + tm + '\n' +
+          Lang.t('whatsapp.modal.pax') + px;
+        if (priceData && priceData.car) {
+          msg += '\n💰 Price: €' + priceData.car;
+          if (priceData.minibus) msg += ' | Minibus €' + priceData.minibus;
+        }
+        var arganEl = document.getElementById('arganCheckbox');
+        if (arganEl && arganEl.checked) { msg += '\n\n🌿 Argan Oil Cooperative Visit' }
+        window.open('https://wa.me/212673396332?text=' + encodeURIComponent(msg), '_blank');
+        this.close();
+      };
+
+      // ====== ROUTE DATA ======
+      var routesData = [
+        // Main Transfers
+        { from: 'Essaouira', to: 'Airport', price: 15, minibus: 20, tags: ['essaouira','airports'], pickup: 'Essaouira', dest: 'Essaouira Airport' },
+        { from: 'Essaouira', to: 'Marrakech', price: 70, minibus: 80, tags: ['essaouira','marrakech'], pickup: 'Essaouira', dest: 'Marrakech' },
+        { from: 'Essaouira', to: 'Agadir', price: 80, minibus: 90, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Agadir' },
+        { from: 'Essaouira', to: 'Casablanca', price: 150, minibus: 200, tags: ['essaouira','casablanca'], pickup: 'Essaouira', dest: 'Casablanca' },
+        { from: 'Agadir', to: 'Casablanca', price: 250, minibus: 300, tags: ['agadir','casablanca'], pickup: 'Agadir', dest: 'Casablanca' },
+        { from: 'Marrakech', to: 'Agadir', price: 120, minibus: 140, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Agadir' },
+        { from: 'Marrakech', to: 'Casablanca', price: 120, minibus: 150, tags: ['marrakech','casablanca'], pickup: 'Marrakech', dest: 'Casablanca' },
+        { from: 'Marrakech', to: 'Rabat', price: 180, minibus: 220, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Rabat' },
+
+        // From Marrakech
+        { from: 'Marrakech', to: 'Airport', price: 15, tags: ['marrakech','airports'], pickup: 'Marrakech', dest: 'Marrakech Airport' },
+        { from: 'Marrakech', to: 'Palmeraie', price: 20, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Marrakech Palmeraie' },
+        { from: 'Marrakech', to: 'Ourika', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ourika' },
+        { from: 'Marrakech', to: 'Oukaimeden', price: 90, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Oukaimeden' },
+        { from: 'Marrakech', to: 'Imlil', price: 90, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Imlil' },
+        { from: 'Marrakech', to: 'Ouirgane', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouirgane' },
+        { from: 'Marrakech', to: 'Lalla Takerkoust', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Lac de Lalla Takerkoust' },
+        { from: 'Marrakech', to: 'Agafay', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Agafay' },
+        { from: 'Marrakech', to: 'Essaouira', price: 90, tags: ['marrakech','essaouira'], pickup: 'Marrakech', dest: 'Essaouira' },
+        { from: 'Marrakech', to: 'Agadir Airport', price: 120, tags: ['marrakech','agadir','airports'], pickup: 'Marrakech', dest: 'Agadir Airport' },
+        { from: 'Marrakech', to: 'Agadir', price: 130, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Agadir' },
+        { from: 'Marrakech', to: 'Taghazout', price: 150, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Taghazout' },
+        { from: 'Marrakech', to: 'Imsouane', price: 160, tags: ['marrakech','essaouira'], pickup: 'Marrakech', dest: 'Imsouane' },
+        { from: 'Marrakech', to: 'Sidi Ifni', price: 250, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Sidi Ifni' },
+        { from: 'Marrakech', to: 'Taroudant', price: 170, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Taroudant' },
+        { from: 'Marrakech', to: "Cascades d'Ouzoud", price: 120, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouzoud Waterfalls' },
+        { from: 'Marrakech', to: 'Ouarzazate', price: 140, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouarzazate' },
+        { from: 'Marrakech', to: 'Merzouga', price: 400, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Merzouga' },
+        { from: 'Marrakech', to: 'Casablanca Airport', price: 120, tags: ['marrakech','casablanca','airports'], pickup: 'Marrakech', dest: 'Casablanca Airport' },
+        { from: 'Marrakech', to: 'Casablanca', price: 140, tags: ['marrakech','casablanca'], pickup: 'Marrakech', dest: 'Casablanca' },
+        { from: 'Marrakech', to: 'Rabat', price: 200, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Rabat' },
+        { from: 'Marrakech', to: 'Fes', price: 350, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Fes' },
+        { from: 'Marrakech', to: 'Chefchaouen', price: 450, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Chefchaouen' },
+        { from: 'Marrakech', to: 'Tangier', price: 450, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Tangier' },
+
+        // From Agadir
+        { from: 'Agadir', to: 'Airport', price: 20, tags: ['agadir','airports'], pickup: 'Agadir', dest: 'Agadir Airport' },
+        { from: 'Agadir', to: 'Taghazout', price: 40, tags: ['agadir'], pickup: 'Agadir', dest: 'Taghazout' },
+        { from: 'Agadir', to: 'Imsouane', price: 65, tags: ['agadir','essaouira'], pickup: 'Agadir', dest: 'Imsouane' },
+        { from: 'Agadir', to: 'Taroudant', price: 90, tags: ['agadir'], pickup: 'Agadir', dest: 'Taroudant' },
+        { from: 'Agadir', to: 'Tiznit', price: 100, tags: ['agadir'], pickup: 'Agadir', dest: 'Tiznit' },
+        { from: 'Agadir', to: 'Sidi Ifni', price: 120, tags: ['agadir'], pickup: 'Agadir', dest: 'Sidi Ifni' },
+        { from: 'Agadir', to: 'Tafraoute', price: 160, tags: ['agadir'], pickup: 'Agadir', dest: 'Tafraoute' },
+        { from: 'Agadir', to: 'Essaouira', price: 80, tags: ['agadir','essaouira'], pickup: 'Agadir', dest: 'Essaouira' },
+        { from: 'Agadir', to: 'Essaouira Airport', price: 90, tags: ['agadir','essaouira','airports'], pickup: 'Agadir', dest: 'Essaouira Airport' },
+        { from: 'Agadir', to: 'Casablanca', price: 250, tags: ['agadir','casablanca'], pickup: 'Agadir', dest: 'Casablanca' },
+
+        // From Essaouira
+        { from: 'Essaouira', to: 'Airport', price: 15, tags: ['essaouira','airports'], pickup: 'Essaouira', dest: 'Essaouira Airport' },
+        { from: 'Essaouira', to: 'Sidi Kaouki', price: 25, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Sidi Kaouki' },
+        { from: 'Essaouira', to: 'Imsouane', price: 70, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Imsouane' },
+        { from: 'Essaouira', to: 'Taghazout', price: 70, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Taghazout' },
+        { from: 'Essaouira', to: 'Agadir', price: 80, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Agadir' },
+        { from: 'Essaouira', to: 'Agadir Airport', price: 90, tags: ['essaouira','agadir','airports'], pickup: 'Essaouira', dest: 'Agadir Airport' },
+        { from: 'Essaouira', to: 'Taroudant', price: 180, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Taroudant' },
+        { from: 'Essaouira', to: 'Sidi Ifni', price: 250, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Sidi Ifni' },
+        { from: 'Essaouira', to: 'Safi', price: 90, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Safi' },
+        { from: 'Essaouira', to: 'Oualidia', price: 130, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Oualidia' },
+        { from: 'Essaouira', to: 'El Jadida', price: 150, tags: ['essaouira','casablanca'], pickup: 'Essaouira', dest: 'El Jadida' },
+        { from: 'Essaouira', to: 'Casablanca Airport', price: 170, tags: ['essaouira','casablanca','airports'], pickup: 'Essaouira', dest: 'Casablanca Airport' },
+        { from: 'Essaouira', to: 'Casablanca', price: 190, tags: ['essaouira','casablanca'], pickup: 'Essaouira', dest: 'Casablanca' },
+        { from: 'Essaouira', to: 'Rabat', price: 250, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Rabat' },
+        { from: 'Essaouira', to: 'Fes', price: 420, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Fes' },
+        { from: 'Essaouira', to: 'Tangier', price: 500, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Tangier' }
+      ];
+
+      var filterDefs = [
+        { id: 'all', label: { en: 'All Routes', fr: 'Tous les trajets' }, icon: 'fa-route' },
+        { id: 'marrakech', label: { en: 'Marrakech', fr: 'Marrakech' }, icon: 'fa-city' },
+        { id: 'agadir', label: { en: 'Agadir', fr: 'Agadir' }, icon: 'fa-umbrella-beach' },
+        { id: 'essaouira', label: { en: 'Essaouira', fr: 'Essaouira' }, icon: 'fa-sailboat' },
+        { id: 'casablanca', label: { en: 'Casablanca', fr: 'Casablanca' }, icon: 'fa-briefcase' },
+        { id: 'airports', label: { en: 'Airports', fr: 'Aéroports' }, icon: 'fa-plane' }
+      ];
+
+      // TARIFS MODAL
+      window.TariffsModal = {
+        activeFilter: 'all',
+        open: function () {
+          document.getElementById('tariffsModalOverlay').classList.add('open');
+          document.body.style.overflow = 'hidden';
+          this.activeFilter = 'all';
+          this.render();
+        },
+        close: function (e) {
+          if (e && e.target !== e.currentTarget) return;
+          document.getElementById('tariffsModalOverlay').classList.remove('open');
+          document.body.style.overflow = '';
+        },
+        setFilter: function (id) {
+          this.activeFilter = id;
+          this.render();
+        },
+        render: function () {
+          var filtersEl = document.getElementById('tariffsFilters');
+          var gridEl = document.getElementById('tariffsGrid');
+          var counterEl = document.getElementById('tariffsCounter');
+          var emptyEl = document.getElementById('tariffsEmpty');
+
+          // Render filter buttons
+          var lang = (window.Lang && Lang.current) || 'en';
+          filtersEl.innerHTML = filterDefs.map(function (f) {
+            var active = f.id === TariffsModal.activeFilter ? ' active' : '';
+            return '<button class="tariffs-filter-btn' + active + '" onclick="TariffsModal.setFilter(\'' + f.id + '\')"><i class="fas ' + f.icon + '"></i> ' + f.label[lang] + '</button>';
+          }).join('');
+
+          // Filter routes
+          var filtered = routesData;
+          if (this.activeFilter !== 'all') {
+            filtered = routesData.filter(function (r) {
+              return r.tags.indexOf(TariffsModal.activeFilter) > -1;
+            });
+          }
+
+          counterEl.textContent = filtered.length + ' ' + (lang === 'fr' ? 'trajets' : 'routes');
+
+          if (filtered.length === 0) {
+            gridEl.innerHTML = '';
+            emptyEl.style.display = 'block';
+            return;
+          }
+          emptyEl.style.display = 'none';
+
+          gridEl.innerHTML = filtered.map(function (r) {
+            var priceStr = r.price + '\u20AC';
+            if (r.minibus) priceStr += ' <span class="tariff-minibus">| Minibus ' + r.minibus + '\u20AC</span>';
+            var pickup = encodeURIComponent(r.pickup);
+            var dest = encodeURIComponent(r.dest);
+            return '<div class="tariff-card" onclick="TariffsModal.book(\'' + dest + '\',\'' + pickup + '\')">' +
+              '<div class="tariff-route"><span class="tariff-from">' + r.from + '</span> <span class="tariff-arrow"><i class="fas fa-arrow-right"></i></span> <span class="tariff-to">' + r.to + '</span></div>' +
+              '<div class="tariff-pricing">' + priceStr + '</div>' +
+              '<button class="tariff-book-btn" onclick="event.stopPropagation();TariffsModal.book(\'' + dest + '\',\'' + pickup + '\')"><i class="fas fa-check"></i> ' + (lang === 'fr' ? 'Réserver' : 'Book') + '</button>' +
+              '</div>';
+          }).join('');
+        },
+        book: function (dest, pickup) {
+          this.close();
+          BookingModal.open(pickup || '', dest || '');
+        }
+      };
+
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { BookingModal.close(); TariffsModal.close() } });
 
       // Set default dates
       var mdd = document.getElementById('modalDatetime'); if (mdd) { var mn = new Date(); mn.setDate(mn.getDate() + 1); mdd.value = mn.toISOString().slice(0, 16) }
