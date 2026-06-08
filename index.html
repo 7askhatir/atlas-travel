@@ -2967,6 +2967,12 @@
       color: var(--text-muted)
     }
 
+    .tariff-roundtrip {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--secondary)
+    }
+
     .tariff-book-btn {
       align-self: flex-end;
       display: inline-flex;
@@ -3836,6 +3842,13 @@
                     id="modalPax">2</span><button class="stepper-btn" type="button"
                     onclick="BookingModal.changePax(1)">+</button></div>
               </div>
+              <div class="form-group full" id="modalFlightGroup" style="display:none">
+                <label class="form-label" data-i18n="modal.label.flight">✈️ Flight Number (Optional)</label>
+                <input class="form-input" id="modalFlight" type="text" placeholder="e.g. FR1234"
+                  data-i18n-placeholder="modal.placeholder.flight">
+                <div class="form-desc" data-i18n="modal.desc.flight">Provide your flight number so we can track your
+                  arrival and adjust pickup timing in case of delays.</div>
+              </div>
             </div>
             <div style="margin-top:24px;display:flex;gap:12px;justify-content:flex-end">
               <button class="btn btn-secondary" onclick="BookingModal.next()"><span data-i18n="modal.next">Next
@@ -3877,6 +3890,9 @@
               <div class="summary-row"><span class="summary-label"><i class="far fa-calendar"></i> <span
                     data-i18n="modal.summary.datetime">Date &amp; Time</span></span><span class="summary-value"
                   id="modalSumDatetime">—</span></div>
+              <div class="summary-row" id="modalSumFlightRow" style="display:none"><span class="summary-label"><i class="fas fa-plane"></i> <span
+                    data-i18n="modal.summary.flight">Flight</span></span><span class="summary-value"
+                  id="modalSumFlight">—</span></div>
               <div class="summary-row"><span class="summary-label"><i class="fas fa-user"></i> <span
                     data-i18n="modal.summary.passengers">Passengers</span></span><span class="summary-value"
                   id="modalSumPax">—</span></div>
@@ -4023,8 +4039,23 @@
       setupModalAuto('modalPickup', 'modalPickupSuggestions'); setupModalAuto('modalDest', 'modalDestSuggestions');
       setupModalAuto('sPickup', 'sPickupSuggestions'); setupModalAuto('sDest', 'sDestSuggestions');
 
-      window.BookingModal = { step: 1, total: 3, open: function (pickup, dest) { document.getElementById('bookingModalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; this.go(1);['modalName', 'modalPhone'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = '' }); if (pickup) { var pi = document.getElementById('modalPickup'); if (pi) pi.value = pickup } if (dest) { var di = document.getElementById('modalDest'); if (di) di.value = dest } var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) { var d = new Date(); d.setDate(d.getDate() + 1); mdt.value = d.toISOString().slice(0, 16) } document.getElementById('modalPax').textContent = '1'; setTimeout(function () { var fe = document.getElementById('modalPickup'); if (fe) fe.focus() }, 400) }, close: function (e) { if (e && e.target !== e.currentTarget) return; document.getElementById('bookingModalOverlay').classList.remove('open'); document.body.style.overflow = '' }, go: function (s) { this.step = s; var steps = document.getElementById('modalFlowSteps'); steps.querySelectorAll('.flow-step').forEach(function (e) { e.classList.remove('active', 'completed') }); var body = document.getElementById('modalFlowBody'); body.querySelectorAll('.flow-step-content').forEach(function (e) { e.classList.remove('active') }); var c = body.querySelector('.flow-step-content[data-step="' + s + '"]'); if (c) c.classList.add('active'); for (var i = 1; i <= this.total; i++) { var st = steps.querySelector('.flow-step[data-step="' + i + '"]'); if (!st) continue; if (i < s) st.classList.add('completed'); else if (i === s) st.classList.add('active') } if (s === 3) this.summary() }, next: function () { if (this.step < this.total) { if (!this.validate()) return; this.go(this.step + 1) } }, prev: function () { if (this.step > 1) this.go(this.step - 1) }, changePax: function (d) { var el = document.getElementById('modalPax'); var v = parseInt(el.textContent) + d; v = Math.max(1, Math.min(8, v)); el.textContent = v }, validate: function () { var fields; if (this.step === 1) { fields = ['modalPickup', 'modalDest', 'modalDatetime'] } else if (this.step === 2) { fields = ['modalName', 'modalPhone'] } else { return true } var v = true; fields.forEach(function (id) { var inp = document.getElementById(id); if (!inp) return; if (!inp.value.trim()) { inp.classList.add('error'); v = false; inp.addEventListener('input', function f() { this.classList.remove('error'); this.removeEventListener('input', f) }, { once: true }) } else inp.classList.remove('error') }); if (!v) { var fe = document.querySelector('#bookingModalOverlay .form-input.error'); if (fe) fe.focus() } return v }, summary: function () { var p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '—', nm = document.getElementById('modalName').value || '—', ph = document.getElementById('modalPhone').value || '—'; document.getElementById('modalSumPickup').textContent = p; document.getElementById('modalSumDest').textContent = d; document.getElementById('modalSumName').textContent = nm; document.getElementById('modalSumPhone').textContent = ph; if (dt && tm) { try { var dd = new Date(dt + 'T' + tm); document.getElementById('modalSumDatetime').textContent = dd.toLocaleString((Lang.current === 'ar' ? 'ar-SA' : Lang.current === 'fr' ? 'fr-FR' : 'en-GB'), { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) } catch (e) { document.getElementById('modalSumDatetime').textContent = dt + ' ' + tm } } else { document.getElementById('modalSumDatetime').textContent = (dt || '—') + ' ' + (tm || '—') } document.getElementById('modalSumPax').textContent = px; var pl = p.toLowerCase(), dl = d.toLowerCase(); var isArgan = (pl.indexOf('essaouira') > -1 && dl.indexOf('marrakech') > -1) || (pl.indexOf('marrakech') > -1 && dl.indexOf('essaouira') > -1) || (pl.indexOf('essaouira') > -1 && dl.indexOf('agafay') > -1) || (pl.indexOf('agafay') > -1 && dl.indexOf('essaouira') > -1); var ao = document.getElementById('arganOption'); if (ao) { ao.style.display = isArgan ? '' : 'none'; if (!isArgan) { var ac = document.getElementById('arganCheckbox'); if (ac) ac.checked = false } } }, confirmAndWhatsApp: function () { var nm = document.getElementById('modalName').value || '', ph = document.getElementById('modalPhone').value || '', p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '1', arganEl = document.getElementById('arganCheckbox'), msg = Lang.t('whatsapp.modal.header') + Lang.t('whatsapp.modal.name') + nm + '\n' + Lang.t('whatsapp.modal.phone') + ph + '\n' + Lang.t('whatsapp.modal.pickup') + p + '\n' + Lang.t('whatsapp.modal.dest') + d + '\n' + Lang.t('whatsapp.modal.date') + dt + '\n' + Lang.t('whatsapp.modal.time') + tm + '\n' + Lang.t('whatsapp.modal.pax') + px; if (arganEl && arganEl.checked) { msg += '\n\n🌿 Argan Oil Cooperative Visit' } window.open('https://wa.me/212681579803?text=' + encodeURIComponent(msg), '_blank'); this.close() } };
-      // Extend BookingModal with price calculation
+      // --- Flight Number: show only when pickup is an airport ---
+      function isAirportLocation(name) {
+        return name.toLowerCase().indexOf('airport') > -1;
+      }
+      function updateFlightField() {
+        var pickup = document.getElementById('modalPickup');
+        var group = document.getElementById('modalFlightGroup');
+        if (!pickup || !group) return;
+        group.style.display = isAirportLocation(pickup.value) ? '' : 'none';
+      }
+      document.getElementById('modalPickup').addEventListener('input', updateFlightField);
+      document.getElementById('modalPickupSuggestions').addEventListener('pointerdown', function () {
+        setTimeout(updateFlightField, 50);
+      });
+
+      window.BookingModal = { step: 1, total: 3, open: function (pickup, dest) { document.getElementById('bookingModalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; this.go(1);['modalName', 'modalPhone', 'modalFlight'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = '' }); if (pickup) { var pi = document.getElementById('modalPickup'); if (pi) pi.value = pickup } if (dest) { var di = document.getElementById('modalDest'); if (di) di.value = dest } var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) { var d = new Date(); d.setDate(d.getDate() + 1); mdt.value = d.toISOString().slice(0, 16) } document.getElementById('modalPax').textContent = '1'; setTimeout(function () { var fe = document.getElementById('modalPickup'); if (fe) fe.focus(); updateFlightField() }, 400) }, close: function (e) { if (e && e.target !== e.currentTarget) return; document.getElementById('bookingModalOverlay').classList.remove('open'); document.body.style.overflow = '' }, go: function (s) { this.step = s; var steps = document.getElementById('modalFlowSteps'); steps.querySelectorAll('.flow-step').forEach(function (e) { e.classList.remove('active', 'completed') }); var body = document.getElementById('modalFlowBody'); body.querySelectorAll('.flow-step-content').forEach(function (e) { e.classList.remove('active') }); var c = body.querySelector('.flow-step-content[data-step="' + s + '"]'); if (c) c.classList.add('active'); for (var i = 1; i <= this.total; i++) { var st = steps.querySelector('.flow-step[data-step="' + i + '"]'); if (!st) continue; if (i < s) st.classList.add('completed'); else if (i === s) st.classList.add('active') } if (s === 3) this.summary() }, next: function () { if (this.step < this.total) { if (!this.validate()) return; this.go(this.step + 1) } }, prev: function () { if (this.step > 1) this.go(this.step - 1) }, changePax: function (d) { var el = document.getElementById('modalPax'); var v = parseInt(el.textContent) + d; v = Math.max(1, Math.min(8, v)); el.textContent = v }, validate: function () { var fields; if (this.step === 1) { fields = ['modalPickup', 'modalDest', 'modalDatetime'] } else if (this.step === 2) { fields = ['modalName', 'modalPhone'] } else { return true } var v = true; fields.forEach(function (id) { var inp = document.getElementById(id); if (!inp) return; if (!inp.value.trim()) { inp.classList.add('error'); v = false; inp.addEventListener('input', function f() { this.classList.remove('error'); this.removeEventListener('input', f) }, { once: true }) } else inp.classList.remove('error') }); if (!v) { var fe = document.querySelector('#bookingModalOverlay .form-input.error'); if (fe) fe.focus() } return v }, summary: function () { var p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '—', nm = document.getElementById('modalName').value || '—', ph = document.getElementById('modalPhone').value || '—'; document.getElementById('modalSumPickup').textContent = p; document.getElementById('modalSumDest').textContent = d; document.getElementById('modalSumName').textContent = nm; document.getElementById('modalSumPhone').textContent = ph; if (dt && tm) { try { var dd = new Date(dt + 'T' + tm); document.getElementById('modalSumDatetime').textContent = dd.toLocaleString((Lang.current === 'ar' ? 'ar-SA' : Lang.current === 'fr' ? 'fr-FR' : 'en-GB'), { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) } catch (e) { document.getElementById('modalSumDatetime').textContent = dt + ' ' + tm } } else { document.getElementById('modalSumDatetime').textContent = (dt || '—') + ' ' + (tm || '—') } document.getElementById('modalSumPax').textContent = px; var pl = p.toLowerCase(), dl = d.toLowerCase(); var isArgan = (pl.indexOf('essaouira') > -1 && dl.indexOf('marrakech') > -1) || (pl.indexOf('marrakech') > -1 && dl.indexOf('essaouira') > -1) || (pl.indexOf('essaouira') > -1 && dl.indexOf('agafay') > -1) || (pl.indexOf('agafay') > -1 && dl.indexOf('essaouira') > -1); var ao = document.getElementById('arganOption'); if (ao) { ao.style.display = isArgan ? '' : 'none'; if (!isArgan) { var ac = document.getElementById('arganCheckbox'); if (ac) ac.checked = false } } }, confirmAndWhatsApp: function () { var nm = document.getElementById('modalName').value || '', ph = document.getElementById('modalPhone').value || '', p = document.getElementById('modalPickup').value || '—', d = document.getElementById('modalDest').value || '—', mdt = document.getElementById('modalDatetime').value || '', dt = mdt ? mdt.split('T')[0] : '', tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '', px = document.getElementById('modalPax').textContent || '1', arganEl = document.getElementById('arganCheckbox'), msg = Lang.t('whatsapp.modal.header') + Lang.t('whatsapp.modal.name') + nm + '\n' + Lang.t('whatsapp.modal.phone') + ph + '\n' + Lang.t('whatsapp.modal.pickup') + p + '\n' + Lang.t('whatsapp.modal.dest') + d + '\n' + Lang.t('whatsapp.modal.date') + dt + '\n' + Lang.t('whatsapp.modal.time') + tm + '\n' + Lang.t('whatsapp.modal.pax') + px; if (arganEl && arganEl.checked) { msg += '\n\n🌿 Argan Oil Cooperative Visit' } window.open('https://wa.me/212681579803?text=' + encodeURIComponent(msg), '_blank'); this.close() } };
+      // Extend BookingModal with price calculation and flight number
       var origSummary = BookingModal.summary;
       BookingModal.summary = function () {
         origSummary.call(this);
@@ -4043,6 +4074,18 @@
           priceEl.style.color = 'var(--text-muted)';
           priceEl.style.fontWeight = '400';
         }
+        // Flight number in summary
+        var flight = document.getElementById('modalFlight').value || '';
+        var flightRow = document.getElementById('modalSumFlightRow');
+        var flightVal = document.getElementById('modalSumFlight');
+        if (flightRow && flightVal) {
+          if (flight) {
+            flightVal.textContent = flight;
+            flightRow.style.display = '';
+          } else {
+            flightRow.style.display = 'none';
+          }
+        }
       };
       var origConfirm = BookingModal.confirmAndWhatsApp;
       BookingModal.confirmAndWhatsApp = function () {
@@ -4054,6 +4097,7 @@
           dt = mdt ? mdt.split('T')[0] : '',
           tm = mdt && mdt.indexOf('T') > -1 ? mdt.split('T')[1].slice(0, 5) : '',
           px = document.getElementById('modalPax').textContent || '1',
+          fl = document.getElementById('modalFlight').value || '',
           priceData = window.getTransferPrice ? window.getTransferPrice(p, d) : null;
         var msg = Lang.t('whatsapp.modal.header') +
           Lang.t('whatsapp.modal.name') + nm + '\n' +
@@ -4063,6 +4107,9 @@
           Lang.t('whatsapp.modal.date') + dt + '\n' +
           Lang.t('whatsapp.modal.time') + tm + '\n' +
           Lang.t('whatsapp.modal.pax') + px;
+        if (fl) {
+          msg += '\n' + Lang.t('whatsapp.modal.flight') + fl;
+        }
         if (priceData && priceData.car) {
           msg += '\n💰 Price: €' + priceData.car;
           if (priceData.minibus) msg += ' | Minibus €' + priceData.minibus;
@@ -4080,7 +4127,8 @@
         { from: 'Essaouira', to: 'Marrakech', price: 70, minibus: 80, tags: ['essaouira','marrakech'], pickup: 'Essaouira', dest: 'Marrakech' },
         { from: 'Essaouira', to: 'Agadir', price: 80, minibus: 90, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Agadir' },
         { from: 'Essaouira', to: 'Casablanca', price: 150, minibus: 200, tags: ['essaouira','casablanca'], pickup: 'Essaouira', dest: 'Casablanca' },
-        { from: 'Essaouira', to: 'Agafay', price: 70, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Agafay' },
+        { from: 'Essaouira', to: 'Agafay', price: 120, roundtrip: 180, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Agafay' },
+        { from: 'Agafay', to: 'Essaouira', price: 120, roundtrip: 180, tags: ['essaouira'], pickup: 'Agafay', dest: 'Essaouira' },
         { from: 'Agadir', to: 'Casablanca', price: 250, minibus: 300, tags: ['agadir','casablanca'], pickup: 'Agadir', dest: 'Casablanca' },
         { from: 'Marrakech', to: 'Agadir', price: 120, minibus: 140, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Agadir' },
         { from: 'Marrakech', to: 'Casablanca', price: 120, minibus: 150, tags: ['marrakech','casablanca'], pickup: 'Marrakech', dest: 'Casablanca' },
@@ -4094,7 +4142,8 @@
         { from: 'Marrakech', to: 'Imlil', price: 90, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Imlil' },
         { from: 'Marrakech', to: 'Ouirgane', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouirgane' },
         { from: 'Marrakech', to: 'Lalla Takerkoust', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Lac de Lalla Takerkoust' },
-        { from: 'Marrakech', to: 'Agafay', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Agafay' },
+        { from: 'Marrakech', to: 'Agafay', price: 60, roundtrip: 100, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Agafay' },
+        { from: 'Agafay', to: 'Marrakech', price: 60, roundtrip: 100, tags: ['marrakech'], pickup: 'Agafay', dest: 'Marrakech' },
         { from: 'Marrakech', to: 'Essaouira', price: 70, tags: ['marrakech','essaouira'], pickup: 'Marrakech', dest: 'Essaouira' },
         { from: 'Marrakech', to: 'Agadir Airport', price: 120, tags: ['marrakech','agadir','airports'], pickup: 'Marrakech', dest: 'Agadir Airport' },
         { from: 'Marrakech', to: 'Taghazout', price: 150, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Taghazout' },
@@ -4214,6 +4263,7 @@
           gridEl.innerHTML = filtered.map(function (r) {
             var priceStr = r.price + '\u20AC';
             if (r.minibus) priceStr += ' <span class="tariff-minibus">| Minibus ' + r.minibus + '\u20AC</span>';
+            if (r.roundtrip) priceStr += ' <span class="tariff-roundtrip">| ' + (lang === 'fr' ? 'Aller-retour' : 'Round trip') + ' ' + r.roundtrip + '\u20AC</span>';
             var pVal = r.pickup;
             var dVal = r.dest;
             return '<div class="tariff-card" onclick="TariffsModal.book(\'' + dVal.replace(/'/g, "\\'") + '\',\'' + pVal.replace(/'/g, "\\'") + '\')">' +

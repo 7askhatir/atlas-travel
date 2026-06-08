@@ -862,6 +862,13 @@ button, input, select, textarea, a { touch-action: manipulation; }
   box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
 }
 
+.form-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
 /* Passenger Stepper */
 .stepper {
   display: flex;

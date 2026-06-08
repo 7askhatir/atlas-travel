@@ -503,11 +503,14 @@
     'modal.label.datetime': { en: 'Date & Time', fr: 'Date & Heure' },
     'modal.label.vehicle': { en: 'Vehicle', fr: 'Véhicule' },
     'modal.label.passengers': { en: 'Passengers', fr: 'Passagers' },
+    'modal.label.flight': { en: '✈️ Flight Number (Optional)', fr: '✈️ Numéro de Vol (Optionnel)' },
+    'modal.desc.flight': { en: 'Provide your flight number so we can track your arrival and adjust pickup timing in case of delays.', fr: 'Fournissez votre numéro de vol pour que nous puissions suivre votre arrivée et ajuster l\'heure de prise en charge en cas de retard.' },
 
     /* Modal placeholders */
     'modal.placeholder.name': { en: 'Your full name', fr: 'Votre nom complet' },
     'modal.placeholder.pickup': { en: 'Airport, hotel, or address', fr: 'Aéroport, hôtel ou adresse' },
     'modal.placeholder.dest': { en: 'City or landmark', fr: 'Ville ou lieu' },
+    'modal.placeholder.flight': { en: 'e.g. FR1234', fr: 'ex. FR1234' },
 
     /* Modal summary */
     'modal.summary.service': { en: 'Service', fr: 'Service' },
@@ -518,6 +521,7 @@
     'modal.summary.dest': { en: 'Destination', fr: 'Destination' },
     'modal.summary.datetime': { en: 'Date & Time', fr: 'Date & Heure' },
     'modal.summary.passengers': { en: 'Passengers', fr: 'Passagers' },
+    'modal.summary.flight': { en: 'Flight', fr: 'Vol' },
     'modal.summary.vehicle': { en: 'Vehicle', fr: 'Véhicule' },
     'modal.summary.total': { en: 'Total (includes driver, fuel, all taxes)', fr: 'Total (chauffeur, carburant, taxes inclus)' },
     'modal.summary.note': { en: 'Price includes: professional driver, fuel, tolls, insurance, and bottled water. No hidden fees.', fr: 'Le prix inclut : chauffeur professionnel, carburant, péages, assurance et eau minérale. Pas de frais cachés.' },
@@ -579,6 +583,7 @@
     'whatsapp.modal.date': { en: '📅 Date: ', fr: '📅 Date : ' },
     'whatsapp.modal.time': { en: '⏰ Time: ', fr: '⏰ Heure : ' },
     'whatsapp.modal.pax': { en: '👥 Passengers: ', fr: '👥 Passagers : ' },
+    'whatsapp.modal.flight': { en: '✈️ Flight: ', fr: '✈️ Vol : ' },
     'whatsapp.modal.vehicle': { en: '🚗 Vehicle: ', fr: '🚗 Véhicule : ' },
 
     'whatsapp.flow.header': { en: 'Hi! I\'d like to book a transport:\n', fr: 'Bonjour ! Je souhaite réserver un transport :\n' },
