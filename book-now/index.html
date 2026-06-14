@@ -130,6 +130,29 @@
     .suggestion-item { padding: 10px 14px; font-size: 0.85rem; cursor: pointer; transition: background 0.15s }
     .suggestion-item:hover { background: var(--secondary-light); color: var(--secondary) }
 
+    /* ====== STEP INDICATOR ====== */
+    .form-steps { display: flex; align-items: center; padding: 0 0 24px; border-bottom: 1px solid var(--border-light); margin-bottom: 24px }
+    .form-step { display: flex; align-items: center; gap: 10px; flex: 1; position: relative }
+    .form-step:not(:last-child)::after { content: ''; flex: 1; height: 2px; background: var(--border); margin: 0 16px; transition: var(--transition) }
+    .form-step.completed:not(:last-child)::after,
+    .form-step.active:not(:last-child)::after { background: var(--secondary) }
+    .form-step-number { width: 34px; height: 34px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); transition: var(--transition); flex-shrink: 0 }
+    .form-step.active .form-step-number { background: var(--secondary); color: white; box-shadow: 0 4px 12px rgba(26,188,156,0.3) }
+    .form-step.completed .form-step-number { background: var(--secondary); color: white }
+    .form-step-label { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; transition: var(--transition) }
+    .form-step.active .form-step-label { color: var(--primary); font-weight: 700 }
+    .form-step.completed .form-step-label { color: var(--secondary) }
+
+    .form-step-content { display: none; animation: fadeIn 0.4s ease-out }
+    .form-step-content.active { display: block }
+
+    .summary-card { background: var(--bg); border-radius: var(--radius-sm); padding: 20px; margin-bottom: 16px }
+    .summary-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-light); font-size: 0.85rem }
+    .summary-row:last-child { border-bottom: none }
+    .summary-label { color: var(--text-muted); font-weight: 500 }
+    .summary-value { color: var(--text); font-weight: 600; text-align: right }
+    .summary-price-row .summary-value { color: var(--secondary); font-size: 1.1rem }
+
     /* ====== HEADER ====== */
     .lp-header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -234,7 +257,6 @@
     .route-name { font-size: 0.82rem; font-weight: 600; color: var(--text) }
     .route-meta { font-size: 0.7rem; color: var(--text-muted) }
     .route-price { font-family: var(--font-ui); font-size: 0.9rem; font-weight: 700; color: var(--primary); white-space: nowrap }
-    .route-minibus { font-size: 0.68rem; font-weight: 400; color: var(--text-muted); display: block }
 
     /* ====== REVIEWS ====== */
     .lp-reviews { background: var(--primary); position: relative; overflow: hidden }
@@ -568,11 +590,15 @@
       .lp-trust-title { font-size: 0.65rem; margin-bottom: 2px }
       .lp-trust-desc { font-size: 0.58rem }
       .routes-grid { gap: 10px; margin-top: 24px }
+      .form-step-number { width: 28px; height: 28px; font-size: 0.7rem }
+      .form-step-label { font-size: 0.65rem }
+      .form-step:not(:last-child)::after { margin: 0 8px }
+      .summary-card { padding: 14px }
+      .summary-row { font-size: 0.78rem; padding: 8px 0 }
       .route-card { padding: 12px 12px; gap: 12px }
       .route-name { font-size: 0.72rem }
       .route-price { font-size: 0.78rem }
       .route-icon { width: 32px; height: 32px; font-size: 0.8rem; border-radius: 8px }
-      .route-minibus { font-size: 0.6rem }
       .review-card { padding: 14px }
       .review-card-text { font-size: 0.78rem }
       .review-summary-stars { font-size: 1.1rem }
@@ -631,45 +657,116 @@
             <h2 data-i18n="booknow.card.title"><i class="fas fa-route" style="color:var(--secondary);margin-right:8px"></i> Book Your Transfer</h2>
             <p data-i18n="booknow.card.text">Fill in your details and we'll confirm within minutes.</p>
             <form id="bookNowForm" onsubmit="return false">
-              <div class="form-grid">
-                <div class="form-group full" style="position:relative">
-                  <label class="form-label" data-i18n="flow.label.pickup">Pickup Location</label>
-                  <input class="form-input" id="bnPickup" type="text" data-i18n-placeholder="flow.placeholder.pickup" placeholder="Airport, hotel, or address" required autocomplete="off">
-                  <div class="suggestions" id="bnPickupSuggestions"></div>
+
+              <!-- Step indicators -->
+              <div class="form-steps" id="bnFormSteps">
+                <div class="form-step active" data-step="1">
+                  <span class="form-step-number">1</span>
+                  <span class="form-step-label" data-i18n="booknow.step1">Destination</span>
                 </div>
-                <div class="form-group full" style="position:relative">
-                  <label class="form-label" data-i18n="flow.label.dest">Destination</label>
-                  <input class="form-input" id="bnDest" type="text" data-i18n-placeholder="flow.placeholder.dest" placeholder="City or landmark" required autocomplete="off">
-                  <div class="suggestions" id="bnDestSuggestions"></div>
+                <div class="form-step" data-step="2">
+                  <span class="form-step-number">2</span>
+                  <span class="form-step-label" data-i18n="booknow.step2">Informations</span>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" data-i18n="flow.label.date">Date &amp; Time</label>
-                  <input class="form-input" id="bnDatetime" type="datetime-local" required>
+                <div class="form-step" data-step="3">
+                  <span class="form-step-number">3</span>
+                  <span class="form-step-label" data-i18n="booknow.step3">Summary</span>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" data-i18n="flow.label.passengers">Passengers</label>
-                  <div class="stepper">
-                    <button class="stepper-btn" type="button" onclick="BnForm.changePax(-1)">-</button>
-                    <span class="stepper-value" id="bnPax">2</span>
-                    <button class="stepper-btn" type="button" onclick="BnForm.changePax(1)">+</button>
+              </div>
+
+              <!-- Step 1: Destination -->
+              <div class="form-step-content active" data-step="1">
+                <div class="form-grid">
+                  <div class="form-group full" style="position:relative">
+                    <label class="form-label" data-i18n="flow.label.pickup">Pickup Location</label>
+                    <input class="form-input" id="bnPickup" type="text" data-i18n-placeholder="flow.placeholder.pickup" placeholder="Airport, hotel, or address" required autocomplete="off">
+                    <div class="suggestions" id="bnPickupSuggestions"></div>
+                  </div>
+                  <div class="form-group full" style="position:relative">
+                    <label class="form-label" data-i18n="flow.label.dest">Destination</label>
+                    <input class="form-input" id="bnDest" type="text" data-i18n-placeholder="flow.placeholder.dest" placeholder="City or landmark" required autocomplete="off">
+                    <div class="suggestions" id="bnDestSuggestions"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" data-i18n="flow.label.date">Date &amp; Time</label>
+                    <input class="form-input" id="bnDatetime" type="datetime-local" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" data-i18n="flow.label.passengers">Passengers</label>
+                    <div class="stepper">
+                      <button class="stepper-btn" type="button" onclick="BnForm.changePax(-1)">-</button>
+                      <span class="stepper-value" id="bnPax">2</span>
+                      <button class="stepper-btn" type="button" onclick="BnForm.changePax(1)">+</button>
+                    </div>
+                  </div>
+                  <div class="form-group full" id="bnFlightGroup" style="display:none">
+                    <label class="form-label" data-i18n="modal.label.flight">✈️ Flight Number (Optional)</label>
+                    <input class="form-input" id="bnFlight" type="text" data-i18n-placeholder="modal.placeholder.flight" placeholder="e.g. FR1234">
+                    <div class="form-desc" data-i18n="modal.desc.flight">Provide your flight number so we can track your arrival and adjust pickup timing in case of delays.</div>
                   </div>
                 </div>
-                <div class="form-group full" id="bnFlightGroup" style="display:none">
-                  <label class="form-label" data-i18n="modal.label.flight">✈️ Flight Number (Optional)</label>
-                  <input class="form-input" id="bnFlight" type="text" data-i18n-placeholder="modal.placeholder.flight" placeholder="e.g. FR1234">
-                  <div class="form-desc" data-i18n="modal.desc.flight">Provide your flight number so we can track your arrival and adjust pickup timing in case of delays.</div>
+                <div style="margin-top:20px">
+                  <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="BnForm.next()" data-i18n="booknow.next">Next Step →</button>
                 </div>
-                <div class="form-group full">
-                  <label class="form-label" data-i18n="flow.label.name">Your Name</label>
-                  <input class="form-input" id="bnName" type="text" data-i18n-placeholder="flow.placeholder.name" placeholder="Your full name" required>
+              </div>
+
+              <!-- Step 2: Informations -->
+              <div class="form-step-content" data-step="2">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label class="form-label" data-i18n="flow.label.name">Your Name</label>
+                    <input class="form-input" id="bnName" type="text" data-i18n-placeholder="flow.placeholder.name" placeholder="Your full name" required>
+                  </div>
+                  <div class="form-group full">
+                    <label class="form-label" data-i18n="flow.label.phone">Phone Number</label>
+                    <input class="form-input" id="bnPhone" type="tel" placeholder="+212 6XX XXX XXX" required>
+                  </div>
                 </div>
-                <div class="form-group full">
-                  <label class="form-label" data-i18n="flow.label.phone">Phone Number</label>
-                  <input class="form-input" id="bnPhone" type="tel" placeholder="+212 6XX XXX XXX" required>
+                <div style="display:flex;gap:12px;margin-top:20px">
+                  <button type="button" class="btn btn-ghost" onclick="BnForm.prev()" data-i18n="booknow.back" style="flex:1">← Back</button>
+                  <button type="button" class="btn btn-secondary btn-lg" onclick="BnForm.next()" data-i18n="booknow.next" style="flex:2">Next Step →</button>
+                </div>
+              </div>
+
+              <!-- Step 3: Summary -->
+              <div class="form-step-content" data-step="3">
+                <div class="summary-card" id="bnSummaryCard">
+                  <div class="summary-row">
+                    <span class="summary-label" data-i18n="summary.pickup">Pickup</span>
+                    <span class="summary-value" id="bnSumPickup">—</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label" data-i18n="summary.dest">Destination</span>
+                    <span class="summary-value" id="bnSumDest">—</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label" data-i18n="summary.date">Date &amp; Time</span>
+                    <span class="summary-value" id="bnSumDatetime">—</span>
+                  </div>
+                  <div class="summary-row" id="bnSumFlightRow" style="display:none">
+                    <span class="summary-label" data-i18n="summary.flight">Flight</span>
+                    <span class="summary-value" id="bnSumFlight">—</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label" data-i18n="summary.pax">Passengers</span>
+                    <span class="summary-value" id="bnSumPax">—</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label" data-i18n="summary.name">Name</span>
+                    <span class="summary-value" id="bnSumName">—</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label" data-i18n="summary.phone">Phone</span>
+                    <span class="summary-value" id="bnSumPhone">—</span>
+                  </div>
+                  <div class="summary-row summary-price-row">
+                    <span class="summary-label" data-i18n="summary.price">Price</span>
+                    <span class="summary-value summary-price-value" id="bnSumPrice">—</span>
+                  </div>
                 </div>
 
                 <!-- Free Argan Oil Cooperative Visit -->
-                <div class="bn-argan-option full" id="bnArganOption" style="display:none;grid-column:1/-1">
+                <div class="bn-argan-option" id="bnArganOption" style="display:none">
                   <label class="bn-argan-checkbox">
                     <input type="checkbox" id="bnArganCheckbox">
                     <span class="bn-argan-checkmark"></span>
@@ -677,22 +774,24 @@
                       <span class="bn-argan-icon"><i class="fas fa-leaf"></i></span>
                       <span class="bn-argan-text">
                         <span class="bn-argan-heading" data-i18n="modal.argan.heading">Free Argan Oil Cooperative Visit</span>
-                        <span class="bn-argan-note" data-i18n="modal.argan.note">Enjoy a complimentary stop at a traditional women's Argan Oil Cooperative during your journey between Marrakech and Essaouira.</span>
+                        <span class="bn-argan-note" data-i18n="modal.argan.note">Enjoy a complimentary stop at a traditional women's Argan Oil Cooperative during your journey.</span>
                         <span class="bn-argan-free" data-i18n="modal.argan.free">No extra charge – optional stop.</span>
                       </span>
                     </span>
                   </label>
                 </div>
+
+                <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+                  <button type="button" class="btn btn-ghost" onclick="BnForm.prev()" data-i18n="booknow.back" style="flex:1">← Back</button>
+                  <button type="submit" class="btn btn-cta btn-lg" onclick="BnForm.submit()" data-i18n="booknow.card.btn" style="flex:2">
+                    <i class="fab fa-whatsapp"></i> Confirm Reservation
+                  </button>
+                </div>
+                <p style="margin-top:12px;font-size:0.72rem;color:var(--text-muted);text-align:center">
+                  <i class="fas fa-lock" style="color:var(--secondary)"></i> <span data-i18n="booknow.card.lock">No payment required now &bull; Free cancellation up to 48h</span>
+                </p>
               </div>
-              <div id="bnPriceDisplay" style="display:none;margin-top:12px;padding:12px 16px;background:var(--secondary-light);border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;color:var(--secondary);text-align:center"></div>
-              <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-                <button type="submit" class="btn btn-cta btn-lg btn-block" data-i18n="booknow.card.btn" onclick="BnForm.submit()" style="flex:2">
-                  <i class="fab fa-whatsapp"></i> Book Now — Free Confirmation
-                </button>
-              </div>
-              <p style="margin-top:12px;font-size:0.72rem;color:var(--text-muted);text-align:center">
-                <i class="fas fa-lock" style="color:var(--secondary)"></i> <span data-i18n="booknow.card.lock">No payment required now &bull; Free cancellation up to 48h</span>
-              </p>
+
             </form>
           </div>
         </div>
@@ -844,14 +943,14 @@
       // TRANSFER PRICES DATA
       // ==========================================
       var transferPrices = {
-        'essaouira-airport': { car: 15, minibus: 20 },
-        'essaouira-marrakech': { car: 70, minibus: 80 },
-        'essaouira-agadir': { car: 80, minibus: 90 },
-        'essaouira-casablanca': { car: 150, minibus: 200 },
-        'agadir-casablanca': { car: 250, minibus: 300 },
-        'marrakech-agadir': { car: 120, minibus: 140 },
-        'marrakech-casablanca': { car: 120, minibus: 150 },
-        'marrakech-rabat': { car: 180, minibus: 220 },
+        'essaouira-airport': { car: 15 },
+        'essaouira-marrakech': { car: 80 },
+        'essaouira-agadir': { car: 80 },
+        'essaouira-casablanca': { car: 170 },
+        'agadir-casablanca': { car: 250 },
+        'marrakech-agadir': { car: 100 },
+        'marrakech-casablanca': { car: 120 },
+        'marrakech-rabat': { car: 180 },
         'marrakech-airport': { car: 15 },
         'marrakech-palmeraie': { car: 20 },
         'marrakech-ourika': { car: 70 },
@@ -859,10 +958,10 @@
         'marrakech-imlil': { car: 90 },
         'marrakech-ouirgane': { car: 70 },
         'marrakech-lalla-takerkoust': { car: 70 },
-        'marrakech-agafay': { car: 60 },
-        'agafay-marrakech': { car: 60 },
-        'marrakech-essaouira': { car: 70, minibus: 80 },
-        'marrakech-agadir-airport': { car: 120 },
+        'marrakech-agafay': { car: 50 },
+        'agafay-marrakech': { car: 50 },
+        'marrakech-essaouira': { car: 80 },
+        'marrakech-agadir-airport': { car: 100 },
         'marrakech-taghazout': { car: 150 },
         'marrakech-imsouane': { car: 160 },
         'marrakech-sidi-ifni': { car: 250 },
@@ -875,20 +974,20 @@
         'marrakech-chefchaouen': { car: 450 },
         'marrakech-tanger': { car: 450 },
         'agadir-airport': { car: 20 },
-        'agadir-taghazout': { car: 40 },
+        'agadir-taghazout': { car: 120 },
         'agadir-imsouane': { car: 65 },
         'agadir-taroudant': { car: 90 },
         'agadir-tiznit': { car: 100 },
         'agadir-sidi-ifni': { car: 120 },
         'agadir-tafraoute': { car: 160 },
         'agadir-essaouira': { car: 80 },
-        'agadir-essaouira-airport': { car: 90 },
+        'agadir-essaouira-airport': { car: 80 },
         'essaouira-sidi-kaouki': { car: 25 },
-        'essaouira-agafay': { car: 120 },
-        'agafay-essaouira': { car: 120 },
+        'essaouira-agafay': { car: 100 },
+        'agafay-essaouira': { car: 100 },
         'essaouira-imsouane': { car: 70 },
         'essaouira-taghazout': { car: 70 },
-        'essaouira-agadir-airport': { car: 90 },
+        'essaouira-agadir-airport': { car: 80 },
         'essaouira-taroudant': { car: 180 },
         'essaouira-sidi-ifni': { car: 250 },
         'essaouira-safi': { car: 90 },
@@ -935,27 +1034,26 @@
       // POPULAR ROUTES
       // ==========================================
       var popularRoutes = [
-        { from: 'Marrakech', to: 'Essaouira', price: 70, minibus: 80, icon: 'fa-city' },
-        { from: 'Marrakech', to: 'Agadir', price: 120, minibus: 140, icon: 'fa-umbrella-beach' },
-        { from: 'Marrakech', to: 'Casablanca', price: 120, minibus: 150, icon: 'fa-briefcase' },
+        { from: 'Marrakech', to: 'Essaouira', price: 80, icon: 'fa-city' },
+        { from: 'Marrakech', to: 'Agadir', price: 100, icon: 'fa-umbrella-beach' },
+        { from: 'Marrakech', to: 'Casablanca', price: 120, icon: 'fa-briefcase' },
         { from: 'Marrakech', to: 'Merzouga', price: 400, icon: 'fa-sun' },
-        { from: 'Marrakech', to: 'Agafay', price: 60, icon: 'fa-mountain' },
-        { from: 'Marrakech', to: 'Rabat', price: 180, minibus: 220, icon: 'fa-monument' },
+        { from: 'Marrakech', to: 'Agafay', price: 50, icon: 'fa-mountain' },
+        { from: 'Marrakech', to: 'Rabat', price: 180, icon: 'fa-monument' },
         { from: 'Marrakech', to: 'Fes', price: 350, icon: 'fa-landmark' },
-        { from: 'Essaouira', to: 'Agadir', price: 80, minibus: 90, icon: 'fa-sailboat' },
-        { from: 'Essaouira', to: 'Marrakech', price: 70, minibus: 80, icon: 'fa-city' },
-        { from: 'Essaouira', to: 'Casablanca', price: 150, minibus: 200, icon: 'fa-briefcase' },
-        { from: 'Agadir', to: 'Marrakech', price: 120, minibus: 140, icon: 'fa-city' },
-        { from: 'Agadir', to: 'Casablanca', price: 250, minibus: 300, icon: 'fa-briefcase' },
+        { from: 'Essaouira', to: 'Agadir', price: 80, icon: 'fa-sailboat' },
+        { from: 'Essaouira', to: 'Marrakech', price: 80, icon: 'fa-city' },
+        { from: 'Essaouira', to: 'Casablanca', price: 170, icon: 'fa-briefcase' },
+        { from: 'Agadir', to: 'Marrakech', price: 100, icon: 'fa-city' },
+        { from: 'Agadir', to: 'Casablanca', price: 250, icon: 'fa-briefcase' },
         { from: 'Marrakech Airport', to: 'Marrakech Center', price: 15, icon: 'fa-plane-arrival' },
-        { from: 'Essaouira', to: 'Essaouira Airport', price: 15, minibus: 20, icon: 'fa-plane-arrival' }
+        { from: 'Essaouira', to: 'Essaouira Airport', price: 15, icon: 'fa-plane-arrival' }
       ];
 
       var routesEl = document.getElementById('popularRoutes');
       routesEl.innerHTML = popularRoutes.map(function (r) {
-        var priceHtml = r.price + '\u20AC';
-        if (r.minibus) priceHtml = r.price + '\u20AC <span class="route-minibus">Minibus ' + r.minibus + '\u20AC</span>';
-        return '<div class="route-card" onclick="document.getElementById(\'bnPickup\').value=\'' + r.from + '\';document.getElementById(\'bnDest\').value=\'' + r.to + '\';document.getElementById(\'bookingFormCard\').scrollIntoView({behavior:\'smooth\'});BnForm.updatePrice()">' +
+        var priceHtml = (window.Lang ? Lang.t('flow.vehicle.price.from') : 'from \u20AC') + r.price;
+        return '<div class="route-card" onclick="document.getElementById(\'bnPickup\').value=\'' + r.from + '\';document.getElementById(\'bnDest\').value=\'' + r.to + '\';document.getElementById(\'bookingFormCard\').scrollIntoView({behavior:\'smooth\'});BnForm.go(1);BnForm.updatePrice();updateBnFlightField()">' +
           '<div class="route-icon"><i class="fas ' + r.icon + '"></i></div>' +
           '<div class="route-info"><div class="route-name">' + r.from + ' \u2194 ' + r.to + '</div><div class="route-meta">' + (window.Lang ? Lang.t('booknow.routes.pervehicle') : 'Per vehicle') + '</div></div>' +
           '<div class="route-price">' + priceHtml + '</div></div>';
@@ -1021,28 +1119,126 @@
       // BOOKING FORM
       // ==========================================
       window.BnForm = {
+        step: 1,
+        total: 3,
         changePax: function (delta) {
           var el = document.getElementById('bnPax');
           var v = parseInt(el.textContent) + delta;
           v = Math.max(1, Math.min(22, v));
           el.textContent = v;
         },
-        updatePrice: function () {
-          var pickup = document.getElementById('bnPickup').value;
-          var dest = document.getElementById('bnDest').value;
-          var priceEl = document.getElementById('bnPriceDisplay');
-          if (!pickup || !dest) { priceEl.style.display = 'none'; return }
-          var priceData = getTransferPrice(pickup, dest);
-          if (priceData && priceData.car) {
-            var txt = (window.Lang ? Lang.t('flow.vehicle.price.from') : 'from \u20AC') + priceData.car + ' ' + (window.Lang ? Lang.t('vehicle.price.suffix') : '/trip');
-            if (priceData.minibus) txt += ' | Minibus \u20AC' + priceData.minibus;
-            priceEl.textContent = txt;
-            priceEl.style.display = 'block';
-          } else {
-            priceEl.textContent = (window.Lang ? Lang.t('modal.summary.price.request') : 'Request a price quote') + ' — we\'ll respond within minutes';
-            priceEl.style.display = 'block';
+        go: function (s) {
+          this.step = s;
+          var steps = document.getElementById('bnFormSteps');
+          var contents = document.querySelectorAll('#bookNowForm .form-step-content');
+          steps.querySelectorAll('.form-step').forEach(function (e) { e.classList.remove('active', 'completed') });
+          contents.forEach(function (e) { e.classList.remove('active') });
+          var c = document.querySelector('#bookNowForm .form-step-content[data-step="' + s + '"]');
+          if (c) c.classList.add('active');
+          for (var i = 1; i <= this.total; i++) {
+            var st = steps.querySelector('.form-step[data-step="' + i + '"]');
+            if (!st) continue;
+            if (i < s) st.classList.add('completed');
+            else if (i === s) st.classList.add('active');
           }
-          // Show/hide Argan Oil Cooperative option
+          if (s === 3) this.summary();
+        },
+        updatePrice: function () {
+          // Price is shown in step 3 summary; no live display needed
+        },
+        next: function () {
+          if (this.step < this.total) {
+            if (!this.validate()) return;
+            this.go(this.step + 1);
+          }
+        },
+        prev: function () {
+          if (this.step > 1) this.go(this.step - 1);
+        },
+        validate: function () {
+          var fields;
+          if (this.step === 1) {
+            fields = ['bnPickup', 'bnDest', 'bnDatetime'];
+          } else if (this.step === 2) {
+            fields = ['bnName', 'bnPhone'];
+          } else {
+            return true;
+          }
+          var v = true;
+          fields.forEach(function (id) {
+            var inp = document.getElementById(id);
+            if (!inp) return;
+            if (!inp.value.trim()) {
+              inp.classList.add('error');
+              v = false;
+              inp.addEventListener('input', function f() { this.classList.remove('error'); this.removeEventListener('input', f) }, { once: true });
+            } else {
+              inp.classList.remove('error');
+            }
+          });
+          if (!v) {
+            var fe = document.querySelector('#bookingFormCard .form-input.error');
+            if (fe) fe.focus();
+          }
+          return v;
+        },
+        summary: function () {
+          var pickup = document.getElementById('bnPickup').value || '-';
+          var dest = document.getElementById('bnDest').value || '-';
+          var dt = document.getElementById('bnDatetime').value || '';
+          var pax = document.getElementById('bnPax').textContent || '-';
+          var name = document.getElementById('bnName').value || '-';
+          var phone = document.getElementById('bnPhone').value || '';
+
+          document.getElementById('bnSumPickup').textContent = pickup;
+          document.getElementById('bnSumDest').textContent = dest;
+          document.getElementById('bnSumName').textContent = name;
+          document.getElementById('bnSumPhone').textContent = phone;
+
+          var dateStr = dt ? dt.split('T')[0] : '';
+          var timeStr = dt && dt.indexOf('T') > -1 ? dt.split('T')[1].slice(0, 5) : '';
+          if (dt) {
+            try {
+              var dd = new Date(dt);
+              document.getElementById('bnSumDatetime').textContent =
+                dd.toLocaleString((window.Lang && Lang.current === 'fr') ? 'fr-FR' : 'en-GB',
+                  { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            } catch(e) {
+              document.getElementById('bnSumDatetime').textContent = (dateStr || '-') + ' ' + (timeStr || '-');
+            }
+          } else {
+            document.getElementById('bnSumDatetime').textContent = '-';
+          }
+
+          document.getElementById('bnSumPax').textContent = pax;
+
+          // Flight row
+          var flight = document.getElementById('bnFlight').value.trim();
+          var flightRow = document.getElementById('bnSumFlightRow');
+          var flightVal = document.getElementById('bnSumFlight');
+          if (flightRow && flightVal) {
+            if (flight) {
+              flightVal.textContent = flight;
+              flightRow.style.display = '';
+            } else {
+              flightRow.style.display = 'none';
+            }
+          }
+
+          // Price
+          var priceData = getTransferPrice(pickup, dest);
+          var priceEl = document.getElementById('bnSumPrice');
+          if (priceData && priceData.car) {
+            priceEl.textContent = (window.Lang ? Lang.t('flow.vehicle.price.from') : 'from \u20AC') + priceData.car;
+            priceEl.style.color = 'var(--secondary)';
+            priceEl.style.fontWeight = '700';
+          } else {
+            priceEl.textContent = (window.Lang ? Lang.t('modal.summary.price.request') : 'Request a price quote');
+            priceEl.style.color = 'var(--text-muted)';
+            priceEl.style.fontWeight = '400';
+          }
+
+          // Argan option
           var pl = pickup.toLowerCase(), dl = dest.toLowerCase();
           var isArgan = (pl.indexOf('essaouira') > -1 && dl.indexOf('marrakech') > -1) ||
                         (pl.indexOf('marrakech') > -1 && dl.indexOf('essaouira') > -1) ||
@@ -1062,22 +1258,6 @@
           var name = document.getElementById('bnName').value.trim();
           var phone = document.getElementById('bnPhone').value.trim();
 
-          // Validate
-          var valid = true;
-          var L = window.Lang ? Lang.t.bind(Lang) : function(k){return k};
-          var fields = [
-            { el: document.getElementById('bnPickup'), val: pickup, label: L('validate.pickup') || 'Pickup location' },
-            { el: document.getElementById('bnDest'), val: dest, label: L('validate.dest') || 'Destination' },
-            { el: document.getElementById('bnDatetime'), val: dt, label: L('validate.date') || 'Date' },
-            { el: document.getElementById('bnName'), val: name, label: L('validate.name') || 'Full name' },
-            { el: document.getElementById('bnPhone'), val: phone, label: 'Phone number' }
-          ];
-          fields.forEach(function (f) {
-            if (!f.val) { f.el.classList.add('error'); valid = false; f.el.addEventListener('input', function fix() { this.classList.remove('error'); this.removeEventListener('input', fix) }, { once: true }) }
-            else f.el.classList.remove('error');
-          });
-          if (!valid) { var firstErr = document.querySelector('.form-input.error'); if (firstErr) firstErr.focus(); return false }
-
           var dateStr = dt ? dt.split('T')[0] : '';
           var timeStr = dt && dt.indexOf('T') > -1 ? dt.split('T')[1].slice(0, 5) : '';
           var priceData = getTransferPrice(pickup, dest);
@@ -1095,7 +1275,6 @@
 
           if (priceData && priceData.car) {
             msg += '\n\uD83D\uDCB0 Price: \u20AC' + priceData.car;
-            if (priceData.minibus) msg += ' | Minibus \u20AC' + priceData.minibus;
           }
 
           var arganEl = document.getElementById('bnArganCheckbox');
@@ -1103,12 +1282,10 @@
 
           window.open('https://wa.me/212681579803?text=' + encodeURIComponent(msg), '_blank');
 
-          // Conversion tracking - Google Ads
           if (typeof gtag === 'function') {
             gtag('event', 'conversion', { send_to: 'AW-CONVERSION_ID/BOOKING' });
           }
 
-          // Reset form
           return false;
         }
       };

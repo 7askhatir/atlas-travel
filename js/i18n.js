@@ -539,7 +539,7 @@
     'modal.confirm.reservation': { en: 'Confirm Reservation', fr: 'Confirmer la Réservation' },
     'modal.service.default': { en: 'Private Transport', fr: 'Transport Privé' },
     'modal.argan.heading': { en: 'Free Argan Oil Cooperative Visit', fr: 'Visite Gratuite d\'une Coopérative d\'Huile d\'Argan' },
-    'modal.argan.note': { en: 'Enjoy a complimentary stop at a traditional women\'s Argan Oil Cooperative during your journey between Marrakech and Essaouira.', fr: 'Profitez d\'un arrêt gratuit dans une coopérative féminine d\'huile d\'argan traditionnelle lors de votre voyage entre Marrakech et Essaouira.' },
+    'modal.argan.note': { en: 'Enjoy a complimentary stop at a traditional women\'s Argan Oil Cooperative during your journey.', fr: 'Profitez d\'un arrêt gratuit dans une coopérative féminine d\'huile d\'argan traditionnelle lors de votre voyage.' },
     'modal.argan.free': { en: 'No extra charge – optional stop.', fr: 'Sans frais supplémentaires – arrêt facultatif.' },
 
     /* ====== TRANSPORT DESTINATIONS SECTION ====== */
@@ -657,6 +657,20 @@
     'booknow.footer.phone': { en: 'Phone', fr: 'Téléphone' },
     'booknow.footer.copy': { en: '© 2026 TAXI Tours Morocco. All rights reserved.', fr: '© 2026 TAXI Tours Maroc. Tous droits réservés.' },
     'booknow.whatsapp.tooltip': { en: 'Chat with us!', fr: 'Discutez avec nous !' },
+    'booknow.step1': { en: 'Destination', fr: 'Destination' },
+    'booknow.step2': { en: 'Informations', fr: 'Informations' },
+    'booknow.step3': { en: 'Summary', fr: 'Récapitulatif' },
+    'booknow.next': { en: 'Next Step →', fr: 'Étape suivante →' },
+    'booknow.back': { en: '← Back', fr: '← Retour' },
+
+    'summary.pickup': { en: 'Pickup', fr: 'Prise en charge' },
+    'summary.dest': { en: 'Destination', fr: 'Destination' },
+    'summary.date': { en: 'Date & Time', fr: 'Date & Heure' },
+    'summary.flight': { en: 'Flight', fr: 'Vol' },
+    'summary.pax': { en: 'Passengers', fr: 'Passagers' },
+    'summary.name': { en: 'Name', fr: 'Nom' },
+    'summary.phone': { en: 'Phone', fr: 'Téléphone' },
+    'summary.price': { en: 'Price', fr: 'Prix' },
 
     /* ====== TARIFS MODAL ====== */
     'tariffs.title': { en: 'Price List / Tarifs', fr: 'Liste des Prix / Tarifs' },
