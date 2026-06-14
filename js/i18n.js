@@ -639,7 +639,7 @@
     'booknow.hero.text': { en: 'Reliable private transfers between Marrakech, Essaouira, Agadir, Casablanca, Agafay and all major Moroccan destinations.', fr: 'Transferts privés fiables entre Marrakech, Essaouira, Agadir, Casablanca, Agafay et toutes les grandes destinations marocaines.' },
     'booknow.card.title': { en: 'Book Your Transfer', fr: 'Réservez Votre Transfert' },
     'booknow.card.text': { en: 'Fill in your details and we\'ll confirm within minutes.', fr: 'Remplissez vos coordonnées et nous confirmons sous quelques minutes.' },
-    'booknow.card.btn': { en: 'Book Now — Free Confirmation', fr: 'Réserver — Confirmation Gratuite' },
+    'booknow.card.btn': { en: 'Book Now', fr: 'Réserver' },
     'booknow.card.lock': { en: 'No payment required now • Free cancellation up to 48h', fr: 'Aucun paiement requis maintenant • Annulation gratuite jusqu\'à 48h' },
     'booknow.trust.subtitle': { en: 'We set the standard for premium travel in Morocco.', fr: 'Nous établissons la norme du voyage premium au Maroc.' },
     'booknow.trust.card4.title': { en: 'Air-Conditioned Vehicles', fr: 'Véhicules Climatisés' },
