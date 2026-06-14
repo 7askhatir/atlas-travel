@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="../js/i18n.js"></script>
   <style>
     :root {
       --primary: #0B2D4D; --primary-light: #134074; --primary-dark: #07192e;
@@ -137,11 +138,15 @@
       box-shadow: 0 4px 30px rgba(0,0,0,0.08)
     }
     .lp-header .container { display: flex; align-items: center; justify-content: space-between }
-    .lp-header-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; color: var(--primary) }
-    .lp-header-brand-icon { width: 34px; height: 34px; background: linear-gradient(135deg, var(--gold), #a8892e); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(201,168,76,0.3) }
-    .lp-header-brand-icon img { width: 24px; height: 24px; filter: brightness(0) invert(1) }
+    .navbar-brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--primary); letter-spacing: -0.3px; flex-shrink: 0 }
+    .navbar-brand-icon { width: 38px; height: 38px; background: linear-gradient(135deg, var(--gold), #a8892e); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--primary-dark); box-shadow: 0 4px 12px rgba(201,168,76,0.3); flex-shrink: 0 }
+    .navbar-brand-icon img { width: 24px; height: 24px; filter: brightness(0) invert(1) }
     .lp-header-phone { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; color: var(--text-muted) }
     .lp-header-phone i { color: var(--secondary) }
+    .navbar-lang { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); cursor: pointer; outline: none }
+    .navbar-lang:hover { border-color: var(--secondary) }
+    .navbar-lang-btn { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); cursor: pointer; display: none }
+    .navbar-lang-btn:hover { border-color: var(--secondary) }
 
     /* ====== HERO ====== */
     .lp-hero {
@@ -490,9 +495,9 @@
       .btn { padding: 12px 24px; font-size: 0.82rem; min-height: 44px }
       .btn-lg { padding: 14px 28px; font-size: 0.88rem; min-height: 44px }
       .lp-header { height: 60px }
-      .lp-header-brand { font-size: 1.1rem }
-      .lp-header-brand-icon { width: 30px; height: 30px }
-      .lp-header-brand-icon img { width: 20px; height: 20px }
+      .navbar-brand { font-size: 1.1rem }
+      .navbar-brand-icon { width: 30px; height: 30px }
+      .navbar-brand-icon img { width: 20px; height: 20px }
     }
     @media (max-width: 390px) {
       .container { padding: 0 14px }
@@ -534,9 +539,9 @@
     @media (max-width: 320px) {
       .container { padding: 0 10px }
       .lp-header { height: 52px }
-      .lp-header-brand { font-size: 0.88rem; gap: 6px }
-      .lp-header-brand-icon { width: 24px; height: 24px }
-      .lp-header-brand-icon img { width: 16px; height: 16px }
+      .navbar-brand { font-size: 0.88rem; gap: 6px }
+      .navbar-brand-icon { width: 24px; height: 24px }
+      .navbar-brand-icon img { width: 16px; height: 16px }
       .lp-header .lp-header-phone span { display: none }
       .lp-header-phone { font-size: 0.72rem; gap: 4px }
       .btn-sm { padding: 6px 12px; font-size: 0.65rem; min-height: 32px; gap: 4px }
@@ -589,11 +594,18 @@
   <!-- ====== MINIMAL HEADER ====== -->
   <header class="lp-header">
     <div class="container">
-      <a href="../" class="lp-header-brand">
-        <span class="lp-header-brand-icon"><img src="../images/logo-icon.png" alt=""></span>
-        TAXI Tours
-      </a>
+      <a href="#" class="navbar-brand">
+        <span class="navbar-brand-icon" style="background: beige !important;">
+          <img src="../images/logo-icon.png" alt="" srcset="">
+        </span>
+        <span data-i18n="nav.brand">TAXI Tours
+        </span></a>
       <div style="display:flex;align-items:center;gap:16px">
+        <select class="navbar-lang" data-i18n-aria="aria.lang">
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="navbar-lang-btn" onclick="var s=document.querySelector('.navbar-lang');s.value=s.value==='en'?'fr':'en';s.dispatchEvent(new Event('change'))">EN</button>
         <a href="tel:+212681579803" class="lp-header-phone"><i class="fas fa-phone-alt"></i> <span>+212 681 579 803</span></a>
         <a href="https://wa.me/212681579803?text=Hi!%20I'd%20like%20to%20book%20a%20transfer" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>
       </div>
@@ -605,37 +617,37 @@
     <div class="container">
       <div class="lp-hero-grid">
         <div class="lp-hero-content">
-          <div class="lp-hero-badge"><span class="lp-hero-badge-dot"></span> Since 2018 — Premium Transport Service</div>
-          <h1>Book Your <span>Private Transfer</span> in Morocco</h1>
-          <p>Reliable private transfers between Marrakech, Essaouira, Agadir, Casablanca, Agafay and all major Moroccan destinations.</p>
+          <div class="lp-hero-badge" data-i18n="hero.transport.badge"><span class="lp-hero-badge-dot"></span> Since 2018 — Premium Transport Service</div>
+          <h1 data-i18n="booknow.hero.title">Book Your <span>Private Transfer</span> in Morocco</h1>
+          <p data-i18n="booknow.hero.text">Reliable private transfers between Marrakech, Essaouira, Agadir, Casablanca, Agafay and all major Moroccan destinations.</p>
           <div class="lp-hero-stats">
-            <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">5,000+</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Happy Travelers</div></div>
-            <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">24/7</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Support</div></div>
-            <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">⭐ 4.9</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Average Rating</div></div>
+            <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">5,000+</div><div data-i18n="hero.stat.travelers" style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Happy Travelers</div></div>
+            <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">24/7</div><div data-i18n="hero.stat.support" style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Support</div></div>
+            <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">⭐ 4.9</div><div data-i18n="hero.stat.rating" style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Average Rating</div></div>
           </div>
         </div>
         <div>
           <div class="lp-form-card" id="bookingFormCard">
-            <h2><i class="fas fa-route" style="color:var(--secondary);margin-right:8px"></i> Book Your Transfer</h2>
-            <p>Fill in your details and we'll confirm within minutes.</p>
+            <h2 data-i18n="booknow.card.title"><i class="fas fa-route" style="color:var(--secondary);margin-right:8px"></i> Book Your Transfer</h2>
+            <p data-i18n="booknow.card.text">Fill in your details and we'll confirm within minutes.</p>
             <form id="bookNowForm" onsubmit="return false">
               <div class="form-grid">
                 <div class="form-group full" style="position:relative">
-                  <label class="form-label">Pickup Location</label>
-                  <input class="form-input" id="bnPickup" type="text" placeholder="Airport, hotel, or address" required autocomplete="off">
+                  <label class="form-label" data-i18n="flow.label.pickup">Pickup Location</label>
+                  <input class="form-input" id="bnPickup" type="text" data-i18n-placeholder="flow.placeholder.pickup" placeholder="Airport, hotel, or address" required autocomplete="off">
                   <div class="suggestions" id="bnPickupSuggestions"></div>
                 </div>
                 <div class="form-group full" style="position:relative">
-                  <label class="form-label">Destination</label>
-                  <input class="form-input" id="bnDest" type="text" placeholder="City or landmark" required autocomplete="off">
+                  <label class="form-label" data-i18n="flow.label.dest">Destination</label>
+                  <input class="form-input" id="bnDest" type="text" data-i18n-placeholder="flow.placeholder.dest" placeholder="City or landmark" required autocomplete="off">
                   <div class="suggestions" id="bnDestSuggestions"></div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Date &amp; Time</label>
+                  <label class="form-label" data-i18n="flow.label.date">Date &amp; Time</label>
                   <input class="form-input" id="bnDatetime" type="datetime-local" required>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Passengers</label>
+                  <label class="form-label" data-i18n="flow.label.passengers">Passengers</label>
                   <div class="stepper">
                     <button class="stepper-btn" type="button" onclick="BnForm.changePax(-1)">-</button>
                     <span class="stepper-value" id="bnPax">2</span>
@@ -643,16 +655,16 @@
                   </div>
                 </div>
                 <div class="form-group full" id="bnFlightGroup" style="display:none">
-                  <label class="form-label">✈️ Flight Number (Optional)</label>
-                  <input class="form-input" id="bnFlight" type="text" placeholder="e.g. FR1234">
-                  <div class="form-desc">Provide your flight number so we can track your arrival and adjust pickup timing in case of delays.</div>
+                  <label class="form-label" data-i18n="modal.label.flight">✈️ Flight Number (Optional)</label>
+                  <input class="form-input" id="bnFlight" type="text" data-i18n-placeholder="modal.placeholder.flight" placeholder="e.g. FR1234">
+                  <div class="form-desc" data-i18n="modal.desc.flight">Provide your flight number so we can track your arrival and adjust pickup timing in case of delays.</div>
                 </div>
                 <div class="form-group full">
-                  <label class="form-label">Your Name</label>
-                  <input class="form-input" id="bnName" type="text" placeholder="Your full name" required>
+                  <label class="form-label" data-i18n="flow.label.name">Your Name</label>
+                  <input class="form-input" id="bnName" type="text" data-i18n-placeholder="flow.placeholder.name" placeholder="Your full name" required>
                 </div>
                 <div class="form-group full">
-                  <label class="form-label">Phone Number</label>
+                  <label class="form-label" data-i18n="flow.label.phone">Phone Number</label>
                   <input class="form-input" id="bnPhone" type="tel" placeholder="+212 6XX XXX XXX" required>
                 </div>
 
@@ -664,9 +676,9 @@
                     <span class="bn-argan-label">
                       <span class="bn-argan-icon"><i class="fas fa-leaf"></i></span>
                       <span class="bn-argan-text">
-                        <span class="bn-argan-heading">Free Argan Oil Cooperative Visit</span>
-                        <span class="bn-argan-note">Enjoy a complimentary stop at a traditional women's Argan Oil Cooperative during your journey between Marrakech and Essaouira.</span>
-                        <span class="bn-argan-free">No extra charge – optional stop.</span>
+                        <span class="bn-argan-heading" data-i18n="modal.argan.heading">Free Argan Oil Cooperative Visit</span>
+                        <span class="bn-argan-note" data-i18n="modal.argan.note">Enjoy a complimentary stop at a traditional women's Argan Oil Cooperative during your journey between Marrakech and Essaouira.</span>
+                        <span class="bn-argan-free" data-i18n="modal.argan.free">No extra charge – optional stop.</span>
                       </span>
                     </span>
                   </label>
@@ -674,12 +686,12 @@
               </div>
               <div id="bnPriceDisplay" style="display:none;margin-top:12px;padding:12px 16px;background:var(--secondary-light);border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;color:var(--secondary);text-align:center"></div>
               <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-                <button type="submit" class="btn btn-cta btn-lg btn-block" onclick="BnForm.submit()" style="flex:2">
+                <button type="submit" class="btn btn-cta btn-lg btn-block" data-i18n="booknow.card.btn" onclick="BnForm.submit()" style="flex:2">
                   <i class="fab fa-whatsapp"></i> Book Now — Free Confirmation
                 </button>
               </div>
               <p style="margin-top:12px;font-size:0.72rem;color:var(--text-muted);text-align:center">
-                <i class="fas fa-lock" style="color:var(--secondary)"></i> No payment required now &bull; Free cancellation up to 48h
+                <i class="fas fa-lock" style="color:var(--secondary)"></i> <span data-i18n="booknow.card.lock">No payment required now &bull; Free cancellation up to 48h</span>
               </p>
             </form>
           </div>
@@ -692,40 +704,40 @@
   <section class="section lp-trust" id="trust">
     <div class="container">
       <div class="text-center reveal">
-        <span class="section-label">Why Travelers Choose Us</span>
-        <h2 class="section-title text-center">Trusted by Thousands</h2>
-        <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,0.5)">We set the standard for premium travel in Morocco.</p>
+        <span class="section-label" data-i18n="trust.label">Why Travelers Choose Us</span>
+        <h2 class="section-title text-center" data-i18n="trust.transport.title">Trusted by Thousands</h2>
+        <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,0.5)" data-i18n="booknow.trust.subtitle">We set the standard for premium travel in Morocco.</p>
       </div>
       <div class="lp-trust-grid reveal">
         <div class="lp-trust-card">
           <div class="lp-trust-icon"><i class="fas fa-user-tie"></i></div>
-          <h3 class="lp-trust-title">Professional Drivers</h3>
-          <p class="lp-trust-desc">Licensed, vetted, and trained to provide the highest standard of service.</p>
+          <h3 class="lp-trust-title" data-i18n="trust.drivers">Professional Drivers</h3>
+          <p class="lp-trust-desc" data-i18n="trust.drivers.desc">Licensed, vetted, and trained to provide the highest standard of service.</p>
         </div>
         <div class="lp-trust-card">
           <div class="lp-trust-icon"><i class="fas fa-euro-sign"></i></div>
-          <h3 class="lp-trust-title">Fixed Prices</h3>
-          <p class="lp-trust-desc">What you see is what you pay. Zero hidden fees, no surprises.</p>
+          <h3 class="lp-trust-title" data-i18n="trust.fixed">Fixed Prices</h3>
+          <p class="lp-trust-desc" data-i18n="trust.fixed.desc">What you see is what you pay. Zero hidden fees, no surprises.</p>
         </div>
         <div class="lp-trust-card">
           <div class="lp-trust-icon"><i class="fas fa-headset"></i></div>
-          <h3 class="lp-trust-title">24/7 Support</h3>
-          <p class="lp-trust-desc">Available around the clock via WhatsApp, phone, and email.</p>
+          <h3 class="lp-trust-title" data-i18n="trust.support.title">24/7 Support</h3>
+          <p class="lp-trust-desc" data-i18n="trust.support.desc">Available around the clock via WhatsApp, phone, and email.</p>
         </div>
         <div class="lp-trust-card">
           <div class="lp-trust-icon"><i class="fas fa-snowflake"></i></div>
-          <h3 class="lp-trust-title">Air-Conditioned Vehicles</h3>
-          <p class="lp-trust-desc">All vehicles equipped with A/C for a comfortable journey.</p>
+          <h3 class="lp-trust-title" data-i18n="booknow.trust.card4.title">Air-Conditioned Vehicles</h3>
+          <p class="lp-trust-desc" data-i18n="booknow.trust.card4.desc">All vehicles equipped with A/C for a comfortable journey.</p>
         </div>
         <div class="lp-trust-card">
           <div class="lp-trust-icon"><i class="fas fa-child"></i></div>
-          <h3 class="lp-trust-title">Free Child Seats</h3>
-          <p class="lp-trust-desc">Available on request at no extra charge. All types from infant to booster.</p>
+          <h3 class="lp-trust-title" data-i18n="booknow.trust.card5.title">Free Child Seats</h3>
+          <p class="lp-trust-desc" data-i18n="booknow.trust.card5.desc">Available on request at no extra charge. All types from infant to booster.</p>
         </div>
         <div class="lp-trust-card">
           <div class="lp-trust-icon"><i class="fas fa-bolt"></i></div>
-          <h3 class="lp-trust-title">Instant Confirmation</h3>
-          <p class="lp-trust-desc">Booking confirmed within minutes via WhatsApp. No waiting, no uncertainty.</p>
+          <h3 class="lp-trust-title" data-i18n="trust.confirm">Instant Confirmation</h3>
+          <p class="lp-trust-desc" data-i18n="trust.confirm.desc">Booking confirmed within minutes via WhatsApp. No waiting, no uncertainty.</p>
         </div>
       </div>
     </div>
@@ -735,9 +747,9 @@
   <section class="section" id="routes">
     <div class="container">
       <div class="text-center reveal">
-        <span class="section-label">Popular Transfers</span>
-        <h2 class="section-title">Most Booked Routes</h2>
-        <p class="section-subtitle mx-auto">Fixed prices per vehicle — no hidden fees, no surprises.</p>
+        <span class="section-label" data-i18n="booknow.routes.label">Popular Transfers</span>
+        <h2 class="section-title" data-i18n="booknow.routes.title">Most Booked Routes</h2>
+        <p class="section-subtitle mx-auto" data-i18n="booknow.routes.subtitle">Fixed prices per vehicle — no hidden fees, no surprises.</p>
       </div>
       <div class="routes-grid reveal" id="popularRoutes"></div>
     </div>
@@ -747,13 +759,13 @@
   <section class="section lp-reviews" id="reviews">
     <div class="container">
       <div class="text-center reveal">
-        <span class="section-label" style="color:var(--secondary)">Testimonials</span>
-        <h2 class="section-title text-center">What Travelers Say About Us</h2>
-        <p class="section-subtitle mx-auto">Real reviews from real guests who experienced Morocco with us.</p>
+        <span class="section-label" style="color:var(--secondary)" data-i18n="reviews.label">Testimonials</span>
+        <h2 class="section-title text-center" data-i18n="reviews.title">What Travelers Say About Us</h2>
+        <p class="section-subtitle mx-auto" data-i18n="reviews.subtitle.transport">Real reviews from real guests who experienced Morocco with us.</p>
       </div>
       <div class="review-summary">
         <div class="review-summary-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <div class="review-summary-text">⭐ 4.9 / 5 average rating from 500+ verified reviews</div>
+        <div class="review-summary-text" data-i18n="reviews.summary">⭐ 4.9 / 5 average rating from 500+ verified reviews</div>
       </div>
       <div class="reviews-carousel reveal">
         <div class="reviews-track" id="reviewsTrack"></div>
@@ -769,9 +781,9 @@
   <section class="section" id="faq">
     <div class="container">
       <div class="text-center reveal">
-        <span class="section-label">FAQ</span>
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-subtitle mx-auto">Everything you need to know before booking with us.</p>
+        <span class="section-label" data-i18n="faq.label">FAQ</span>
+        <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+        <p class="section-subtitle mx-auto" data-i18n="faq.subtitle">Everything you need to know before booking with us.</p>
       </div>
       <div class="faq-list" id="faqList"></div>
     </div>
@@ -780,11 +792,11 @@
   <!-- ====== CTA ====== -->
   <section class="section cta-section">
     <div class="container reveal">
-      <h2>Ready to Book Your Transfer?</h2>
-      <p>Get an instant price quote and confirmation via WhatsApp in under 2 minutes.</p>
+      <h2 data-i18n="booknow.cta.title">Ready to Book Your Transfer?</h2>
+      <p data-i18n="booknow.cta.text">Get an instant price quote and confirmation via WhatsApp in under 2 minutes.</p>
       <div class="cta-actions">
-        <a href="javascript:void(0)" class="btn btn-cta btn-lg" onclick="document.getElementById('book-now-hero').scrollIntoView({behavior:'smooth'})"><i class="fas fa-car"></i> Book Now</a>
-        <a href="https://wa.me/212681579803?text=Hi!%20I'd%20like%20to%20book%20a%20transfer%20in%20Morocco" target="_blank" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        <a href="javascript:void(0)" class="btn btn-cta btn-lg" data-i18n="booknow.cta.btn" onclick="document.getElementById('book-now-hero').scrollIntoView({behavior:'smooth'})"><i class="fas fa-car"></i> Book Now</a>
+        <a href="https://wa.me/212681579803?text=Hi!%20I'd%20like%20to%20book%20a%20transfer%20in%20Morocco" target="_blank" class="btn btn-whatsapp btn-lg" data-i18n="cta.whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
       </div>
     </div>
   </section>
@@ -792,24 +804,24 @@
   <!-- ====== FOOTER ====== -->
   <footer class="lp-footer">
     <div class="container">
-      <div class="lp-footer-brand">TAXI Tours</div>
-      <p style="max-width:400px;margin:0 auto">Your Morocco, Perfectly Planned. Private transfers across Morocco since 2018.</p>
+      <div class="lp-footer-brand" data-i18n="nav.brand">TAXI Tours</div>
+      <p style="max-width:400px;margin:0 auto" data-i18n="booknow.footer.desc">Your Morocco, Perfectly Planned. Private transfers across Morocco since 2018.</p>
       <div class="lp-footer-socials">
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
-        <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
+        <a href="#" data-i18n-aria="aria.social.instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" data-i18n-aria="aria.social.facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" data-i18n-aria="aria.social.tripadvisor" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+        <a href="#" data-i18n-aria="aria.social.google" aria-label="Google"><i class="fab fa-google"></i></a>
       </div>
       <div class="lp-footer-divider"></div>
       <p style="margin-bottom:8px;font-size:0.82rem;color:rgba(255,255,255,0.35)"><i class="fas fa-phone-alt"></i> <a href="tel:+212681579803" style="color:rgba(255,255,255,0.5)">+212 681 579 803</a> &nbsp;|&nbsp; <i class="fab fa-whatsapp"></i> <a href="https://wa.me/212681579803" style="color:rgba(255,255,255,0.5)">WhatsApp</a></p>
-      <div class="lp-footer-copy">&copy; 2026 TAXI Tours Morocco. All rights reserved.</div>
+      <div class="lp-footer-copy" data-i18n="booknow.footer.copy">&copy; 2026 TAXI Tours Morocco. All rights reserved.</div>
     </div>
   </footer>
 
   <!-- ====== FLOATING WHATSAPP ====== -->
-  <a href="https://wa.me/212681579803?text=Hi!%20I'd%20like%20to%20book%20a%20transfer%20in%20Morocco" target="_blank" class="whatsapp-float" aria-label="Contact on WhatsApp">
+  <a href="https://wa.me/212681579803?text=Hi!%20I'd%20like%20to%20book%20a%20transfer%20in%20Morocco" target="_blank" class="whatsapp-float" data-i18n-aria="aria.whatsapp" aria-label="Contact on WhatsApp">
     <i class="fab fa-whatsapp"></i>
-    <span class="whatsapp-float-tooltip">Chat with us!</span>
+    <span class="whatsapp-float-tooltip" data-i18n="booknow.whatsapp.tooltip">Chat with us!</span>
   </a>
 
   <script>
@@ -817,6 +829,16 @@
     // BOOK-NOW LANDING PAGE — Application Script
     // =============================================
     document.addEventListener('DOMContentLoaded', function () {
+
+      // Read URL query params to pre-fill pickup/dest
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var pickup = params.get('pickup');
+        var dest = params.get('dest');
+        if (pickup) { var el = document.getElementById('bnPickup'); if (el) el.value = pickup }
+        if (dest) { var el = document.getElementById('bnDest'); if (el) el.value = dest }
+        if (pickup || dest) { setTimeout(function () { BnForm.updatePrice() }, 100) }
+      })();
 
       // ==========================================
       // TRANSFER PRICES DATA
@@ -935,7 +957,7 @@
         if (r.minibus) priceHtml = r.price + '\u20AC <span class="route-minibus">Minibus ' + r.minibus + '\u20AC</span>';
         return '<div class="route-card" onclick="document.getElementById(\'bnPickup\').value=\'' + r.from + '\';document.getElementById(\'bnDest\').value=\'' + r.to + '\';document.getElementById(\'bookingFormCard\').scrollIntoView({behavior:\'smooth\'});BnForm.updatePrice()">' +
           '<div class="route-icon"><i class="fas ' + r.icon + '"></i></div>' +
-          '<div class="route-info"><div class="route-name">' + r.from + ' \u2194 ' + r.to + '</div><div class="route-meta">Per vehicle</div></div>' +
+          '<div class="route-info"><div class="route-name">' + r.from + ' \u2194 ' + r.to + '</div><div class="route-meta">' + (window.Lang ? Lang.t('booknow.routes.pervehicle') : 'Per vehicle') + '</div></div>' +
           '<div class="route-price">' + priceHtml + '</div></div>';
       }).join('');
 
@@ -1002,7 +1024,7 @@
         changePax: function (delta) {
           var el = document.getElementById('bnPax');
           var v = parseInt(el.textContent) + delta;
-          v = Math.max(1, Math.min(8, v));
+          v = Math.max(1, Math.min(22, v));
           el.textContent = v;
         },
         updatePrice: function () {
@@ -1012,13 +1034,12 @@
           if (!pickup || !dest) { priceEl.style.display = 'none'; return }
           var priceData = getTransferPrice(pickup, dest);
           if (priceData && priceData.car) {
-            var txt = 'Estimated price: \u20AC' + priceData.car + ' per vehicle';
+            var txt = (window.Lang ? Lang.t('flow.vehicle.price.from') : 'from \u20AC') + priceData.car + ' ' + (window.Lang ? Lang.t('vehicle.price.suffix') : '/trip');
             if (priceData.minibus) txt += ' | Minibus \u20AC' + priceData.minibus;
-            txt += ' (driver, fuel, tolls & insurance included)';
             priceEl.textContent = txt;
             priceEl.style.display = 'block';
           } else {
-            priceEl.textContent = 'Request a price quote — we\'ll respond within minutes';
+            priceEl.textContent = (window.Lang ? Lang.t('modal.summary.price.request') : 'Request a price quote') + ' — we\'ll respond within minutes';
             priceEl.style.display = 'block';
           }
           // Show/hide Argan Oil Cooperative option
@@ -1043,11 +1064,12 @@
 
           // Validate
           var valid = true;
+          var L = window.Lang ? Lang.t.bind(Lang) : function(k){return k};
           var fields = [
-            { el: document.getElementById('bnPickup'), val: pickup, label: 'Pickup location' },
-            { el: document.getElementById('bnDest'), val: dest, label: 'Destination' },
-            { el: document.getElementById('bnDatetime'), val: dt, label: 'Date & time' },
-            { el: document.getElementById('bnName'), val: name, label: 'Your name' },
+            { el: document.getElementById('bnPickup'), val: pickup, label: L('validate.pickup') || 'Pickup location' },
+            { el: document.getElementById('bnDest'), val: dest, label: L('validate.dest') || 'Destination' },
+            { el: document.getElementById('bnDatetime'), val: dt, label: L('validate.date') || 'Date' },
+            { el: document.getElementById('bnName'), val: name, label: L('validate.name') || 'Full name' },
             { el: document.getElementById('bnPhone'), val: phone, label: 'Phone number' }
           ];
           fields.forEach(function (f) {
@@ -1060,14 +1082,13 @@
           var timeStr = dt && dt.indexOf('T') > -1 ? dt.split('T')[1].slice(0, 5) : '';
           var priceData = getTransferPrice(pickup, dest);
 
-          var msg = 'Hi! I\'d like to book a transport:\n' +
-            '\uD83D\uDC64 Name: ' + name + '\n' +
-            '\uD83D\uDCDE Phone: ' + phone + '\n' +
-            '\uD83D\uDCCD Pickup: ' + pickup + '\n' +
-            '\uD83D\uDCCD Destination: ' + dest + '\n' +
-            '\uD83D\uDCC5 Date: ' + dateStr + '\n' +
-            '\u23F0 Time: ' + timeStr + '\n' +
-            '\uD83D\uDC65 Passengers: ' + pax;
+          var msg = (window.Lang ? Lang.t('whatsapp.flow.header') : 'Hi! I\'d like to book a transport:\n') +
+            (window.Lang ? Lang.t('whatsapp.flow.name') : '\uD83D\uDC64 Name: ') + name + '\n' +
+            (window.Lang ? Lang.t('whatsapp.flow.phone') : '\uD83D\uDCDE Phone: ') + phone + '\n' +
+            (window.Lang ? Lang.t('whatsapp.flow.pickup') : '\uD83D\uDCCD Pickup: ') + pickup + '\n' +
+            (window.Lang ? Lang.t('whatsapp.flow.dest') : '\uD83D\uDCCD Destination: ') + dest + '\n' +
+            (window.Lang ? Lang.t('whatsapp.flow.when') : '\uD83D\uDCC5 Date: ') + dateStr + ' ' + timeStr + '\n' +
+            (window.Lang ? Lang.t('whatsapp.flow.pax') : '\uD83D\uDC65 Passengers: ') + pax;
 
           var flight = document.getElementById('bnFlight').value.trim();
           if (flight) { msg += '\n\u2708\uFE0F Flight: ' + flight }
@@ -1078,7 +1099,7 @@
           }
 
           var arganEl = document.getElementById('bnArganCheckbox');
-          if (arganEl && arganEl.checked) { msg += '\n\n\uD83C\uDF3F Argan Oil Cooperative Visit' }
+          if (arganEl && arganEl.checked) { msg += '\n\n\uD83C\uDF3F ' + (window.Lang ? Lang.t('modal.argan.heading') : 'Argan Oil Cooperative Visit') }
 
           window.open('https://wa.me/212681579803?text=' + encodeURIComponent(msg), '_blank');
 
@@ -1099,21 +1120,41 @@
       // ==========================================
       // FAQ ACCORDION
       // ==========================================
-      var faqData = [
-        { q: 'How do I book a transfer?', a: 'Simply fill out the booking form on this page or click the WhatsApp button. We confirm within 5\u201330 minutes with all details. You can also email or call us directly.' },
-        { q: 'What payment methods do you accept?', a: 'We accept cash (MAD, EUR, USD), bank transfer, and online payment via Stripe/PayPal (available on request). For WhatsApp bookings, you can pay upon pickup or in advance.' },
-        { q: 'Can I cancel or modify my booking?', a: 'Free cancellation up to 48 hours before your scheduled service. Modifications accepted up to 24 hours before (subject to availability). We understand plans change \u2014 just let us know.' },
-        { q: 'Are prices per person or per vehicle?', a: 'Transport prices are per vehicle (not per person). The price shown is for the entire vehicle. Group discounts are available for parties of 4 or more.' },
-        { q: 'Do you offer child seats?', a: 'Yes, available on request at no extra charge. Please mention the child\'s age and weight when booking so we provide the appropriate seat. We carry all types from infant to booster.' },
-        { q: 'What if my flight is delayed?', a: 'We track all flights in real-time. Your driver will always wait for you at no extra cost. No stress, no extra charges. We\'ve got you covered.' },
-        { q: 'Do you speak English / French / Spanish?', a: 'Yes! Our team speaks English, French, Arabic, and Spanish. We can match you with a driver or guide in your preferred language. Just let us know when booking.' },
-        { q: 'Is tipping expected?', a: 'Tipping is appreciated but never mandatory. If you\'re happy with the service, a small gesture (10\u201315% is customary) goes a long way. But your smile is the best tip!' }
-      ];
+      var faqKeys = ['faq.q1','faq.q2','faq.q3','faq.q4','faq.q5','faq.q6','faq.q7','faq.q8'];
+      var faqAnswerKeys = ['faq.a1','faq.a2','faq.a3','faq.a4','faq.a5','faq.a6','faq.a7','faq.a8'];
 
       var faqList = document.getElementById('faqList');
       var faqHtml = '';
-      faqData.forEach(function (item, i) {
-        faqHtml += '<div class="faq-item reveal"><button class="faq-question" onclick="Faq.toggle(this)"><span>' + item.q + '</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></button><div class="faq-answer"><p>' + item.a + '</p></div></div>';
+      faqKeys.forEach(function (qKey, i) {
+        var q = window.Lang ? Lang.t(qKey) : '';
+        var a = window.Lang ? Lang.t(faqAnswerKeys[i]) : '';
+        if (!q || q === qKey) {
+          var defaults = [
+            'How do I book a transfer?',
+            'What payment methods do you accept?',
+            'Can I cancel or modify my booking?',
+            'Are prices per person or per vehicle?',
+            'Do you offer child seats?',
+            'What if my flight is delayed?',
+            'Do you speak English / French / Spanish?',
+            'Is tipping expected?'
+          ];
+          q = defaults[i];
+        }
+        if (!a || a === faqAnswerKeys[i]) {
+          var defaultAnswers = [
+            'Simply fill out the booking form on this page or click the WhatsApp button. We confirm within 5\u201330 minutes with all details. You can also email or call us directly.',
+            'We accept cash (MAD, EUR, USD), bank transfer, and online payment via Stripe/PayPal (available on request). For WhatsApp bookings, you can pay upon pickup or in advance.',
+            'Free cancellation up to 48 hours before your scheduled service. Modifications accepted up to 24 hours before (subject to availability). We understand plans change \u2014 just let us know.',
+            'Transport prices are per vehicle (not per person). The price shown is for the entire vehicle. Group discounts are available for parties of 4 or more.',
+            'Yes, available on request at no extra charge. Please mention the child\'s age and weight when booking so we provide the appropriate seat. We carry all types from infant to booster.',
+            'We track all flights in real-time. Your driver will always wait for you at no extra cost. No stress, no extra charges. We\'ve got you covered.',
+            'Yes! Our team speaks English, French, Arabic, and Spanish. We can match you with a driver or guide in your preferred language. Just let us know when booking.',
+            'Tipping is appreciated but never mandatory. If you\'re happy with the service, a small gesture (10\u201315% is customary) goes a long way. But your smile is the best tip!'
+          ];
+          a = defaultAnswers[i];
+        }
+        faqHtml += '<div class="faq-item reveal"><button class="faq-question" onclick="Faq.toggle(this)"><span>' + q + '</span><span class="faq-icon"><i class="fas fa-chevron-down"></i></span></button><div class="faq-answer"><p>' + a + '</p></div></div>';
       });
       faqList.innerHTML = faqHtml;
 

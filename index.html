@@ -3103,7 +3103,7 @@
         </select>
         <button class="navbar-lang-btn" id="navbarLangBtn"
           onclick="var s=document.querySelector('.navbar-lang');s.value=s.value==='en'?'fr':'en';s.dispatchEvent(new Event('change'))">EN</button>
-        <div class="navbar-cta"><a href="javascript:void(0)" class="btn btn-cta btn-sm" onclick="BookingModal.open()"><i
+        <div class="navbar-cta"><a href="book-now/index.html" class="btn btn-cta btn-sm"><i
               class="fas fa-calendar-check"></i> <span data-i18n="nav.book">Book Now</span></a></div>
       </div>
       <div class="navbar-overlay" id="navbarOverlay"></div>
@@ -3134,7 +3134,7 @@
         <p class="hero-text" data-i18n="hero.text">Private transfers, desert adventures &amp; cultural experiences — all
           in one place. Professional drivers, Affordable Prices, 24/7 support.</p>
         <div class="hero-actions">
-          <a href="javascript:void(0)" class="btn btn-cta btn-lg" onclick="BookingModal.open()"><i
+          <a href="book-now/index.html" class="btn btn-cta btn-lg"><i
               class="fas fa-car"></i> <span data-i18n="hero.cta">Book Transport</span></a>
         </div>
         <div class="hero-stats">
@@ -3205,7 +3205,7 @@
   <!-- ====== BOOKING FLOW SECTION (triggers modal) ====== -->
   <section class="flow-section" id="bookingFlow">
     <div class="container">
-      <div class="flow-card reveal" style="cursor:pointer" onclick="BookingModal.open()">
+      <a href="book-now/index.html" class="flow-card reveal" style="display:block">
         <div class="flow-header" style="text-align:center;padding:48px 32px">
           <h2 data-i18n="flowcta.title"
             style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--primary);margin-bottom:12px">
@@ -3213,10 +3213,10 @@
           <p data-i18n="flowcta.text"
             style="font-size:0.95rem;color:var(--text-muted);max-width:480px;margin:0 auto 24px">Private transfers,
             desert adventures &amp; cultural experiences — book everything in one place.</p>
-          <button class="btn btn-cta btn-lg" onclick="event.stopPropagation();BookingModal.open()"><i
-              class="fas fa-calendar-check"></i> <span data-i18n="flowcta.btn">Start Booking</span></button>
+          <span class="btn btn-cta btn-lg"><i
+              class="fas fa-calendar-check"></i> <span data-i18n="flowcta.btn">Start Booking</span></span>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -3703,7 +3703,7 @@
         <p class="cta-text" data-i18n="cta.text">Book your private transport or dream experience today — and discover
           why thousands of travelers trust us to make their Morocco trip unforgettable.</p>
         <div class="cta-actions">
-          <a href="javascript:void(0)" class="btn btn-cta btn-lg" onclick="BookingModal.open()"><i
+          <a href="book-now/index.html" class="btn btn-cta btn-lg"><i
               class="fas fa-car"></i> <span data-i18n="hero.cta">Book Transport</span></a>
           <a href="https://wa.me/212681579803?text=Hi!%20I'd%20like%20to%20plan%20my%20Morocco%20trip" target="_blank"
             class="btn btn-outline btn-lg"><i class="fab fa-whatsapp"></i> <span data-i18n="cta.whatsapp">WhatsApp
@@ -3793,7 +3793,7 @@
   </button>
 
   <div class="sticky-mobile-cta">
-    <a href="javascript:void(0)" class="btn btn-cta" onclick="BookingModal.open()"><i class="fas fa-car"></i> <span
+    <a href="book-now/index.html" class="btn btn-cta"><i class="fas fa-car"></i> <span
         data-i18n="sticky.book">Book Transport</span></a>
     <a href="https://wa.me/212681579803?text=Hi!%20I'd%20like%20to%20plan%20my%20Morocco%20trip" target="_blank"
       class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="sticky.whatsapp">WhatsApp</span></a>
@@ -4008,16 +4008,17 @@
       (function () { var slides = document.querySelectorAll('.hero-slide'), dots = document.querySelectorAll('.slider-dot'); if (!slides.length) return; var cur = 0, interval; function go(i) { slides.forEach(function (s) { s.classList.remove('active') }); dots.forEach(function (d) { d.classList.remove('active') }); slides[i].classList.add('active'); dots[i].classList.add('active'); cur = i } function nextI() { go((cur + 1) % slides.length) } function start() { interval = setInterval(nextI, 5000) } function stop() { clearInterval(interval) } dots.forEach(function (d) { d.addEventListener('click', function () { go(parseInt(d.dataset.slide)); stop(); start() }) }); start() })();
 
       // SEARCH TABS
-      window.Search = { submitTransport: function (e) { e.preventDefault(); var p = document.getElementById('sPickup').value, d = document.getElementById('sDest').value, dt = document.getElementById('sDate').value, px = document.getElementById('sPassengers').value; if (!p || !d || !dt) return false; BookingModal.open(p, d); var mdt = document.getElementById('modalDatetime'); if (mdt && !mdt.value) mdt.value = dt + 'T09:00'; var mp = document.getElementById('modalPax'); if (mp) { var n = parseInt(px); if (!isNaN(n)) mp.textContent = Math.max(1, Math.min(8, n)) } return false }, bookRoute: function (dest) { BookingModal.open('', dest) } };
+      function goToBookNow(pickup, dest) { var url = 'book-now/index.html'; var params = []; if (pickup) params.push('pickup=' + encodeURIComponent(pickup)); if (dest) params.push('dest=' + encodeURIComponent(dest)); if (params.length) url += '?' + params.join('&'); window.location.href = url }
+      window.Search = { submitTransport: function (e) { e.preventDefault(); var p = document.getElementById('sPickup').value, d = document.getElementById('sDest').value; if (!p || !d) return false; goToBookNow(p, d); return false }, bookRoute: function (dest) { goToBookNow('', dest) } };
 
       // POPULAR ROUTES CLICK HANDLER
       document.querySelector('.routes-grid')?.addEventListener('click', function (e) { var card = e.target.closest('.route-card'); if (!card) return; var nameEl = card.querySelector('.route-name'); if (!nameEl) return; var parts = nameEl.textContent.split('↔'); if (parts.length !== 2) return; Search.bookRoute(parts[1].trim()) });
 
       // DESTINATION CARDS CLICK HANDLER - opens modal and pre-fills destination
-      document.getElementById('destinations')?.querySelector('.destinations-grid')?.addEventListener('click', function (e) { var card = e.target.closest('.destination-card'); if (!card) return; var nameEl = card.querySelector('.destination-card-name'); if (!nameEl) return; BookingModal.open('', nameEl.textContent) });
+      document.getElementById('destinations')?.querySelector('.destinations-grid')?.addEventListener('click', function (e) { var card = e.target.closest('.destination-card'); if (!card) return; var nameEl = card.querySelector('.destination-card-name'); if (!nameEl) return; goToBookNow('', nameEl.textContent) });
 
       // VEHICLE CARDS CLICK HANDLER - opens modal
-      document.getElementById('transport')?.querySelector('.vehicles-grid')?.addEventListener('click', function (e) { var btn = e.target.closest('.btn-whatsapp'); if (!btn) return; e.preventDefault(); BookingModal.open() });
+      document.getElementById('transport')?.querySelector('.vehicles-grid')?.addEventListener('click', function (e) { var btn = e.target.closest('.btn-whatsapp'); if (!btn) return; e.preventDefault(); goToBookNow() });
 
       // BOOKING MODAL
       var modalLocations = [
@@ -4275,7 +4276,7 @@
         },
         book: function (dest, pickup) {
           this.close();
-          BookingModal.open(pickup || '', dest || '');
+          goToBookNow(pickup || '', dest || '');
         }
       };
 
