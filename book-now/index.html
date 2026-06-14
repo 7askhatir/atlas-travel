@@ -155,7 +155,9 @@
       border-radius: 50%; pointer-events: none
     }
     .lp-hero .container { position: relative; z-index: 1 }
+    .lp-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start }
     .lp-hero-content { max-width: 500px; margin-bottom: 36px }
+    .lp-hero-stats { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap }
     .lp-hero-badge {
       display: inline-flex; align-items: center; gap: 10px;
       background: rgba(255,255,255,0.08); backdrop-filter: blur(12px);
@@ -310,11 +312,25 @@
       .form-grid { grid-template-columns: 1fr }
       .lp-trust-grid { grid-template-columns: repeat(2,1fr); gap: 16px }
       .lp-trust-card { padding: 20px 16px }
-      .review-card { min-width: calc(100%) }
+      .review-card { min-width: 100% }
       .lp-header-phone span { display: none }
+      .lp-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; align-items: stretch !important }
+      .lp-hero h1 { font-size: clamp(1.75rem,5vw,2.2rem) }
+      .lp-hero-stats { justify-content: center }
     }
     @media (max-width: 480px) {
-      .lp-trust-grid { grid-template-columns: repeat(2,1fr); gap: 12px }
+      .container { padding: 0 20px }
+      .section { padding: 48px 0 }
+      .lp-hero { padding: 72px 0 32px }
+      .lp-hero-grid { gap: 24px !important }
+      .lp-hero-content { margin-bottom: 20px }
+      .lp-hero h1 { font-size: clamp(1.5rem,6vw,1.8rem) }
+      .lp-hero p { font-size: 0.9rem }
+      .lp-hero-badge { font-size: 0.65rem; padding: 6px 14px }
+      .lp-form-card { padding: 18px }
+      .lp-form-card h2 { font-size: 1rem }
+      .lp-form-card p { font-size: 0.78rem }
+      .lp-trust-grid { gap: 12px }
       .lp-trust-card { padding: 16px 12px }
       .lp-trust-icon { width: 44px; height: 44px; font-size: 1.1rem }
       .lp-trust-title { font-size: 0.78rem }
@@ -324,6 +340,123 @@
       .faq-question { padding: 16px 18px; font-size: 0.85rem }
       .faq-item.open .faq-answer { padding: 0 18px 16px }
       .whatsapp-float { bottom: 16px; right: 16px; width: 50px; height: 50px; font-size: 1.4rem }
+      .lp-hero-stats { gap: 16px }
+      .lp-hero-stats > div { flex: 1; min-width: 0 }
+      .section-title { font-size: clamp(1.4rem,5vw,1.7rem) }
+      .section-subtitle { font-size: 0.9rem }
+    }
+    @media (max-width: 414px) {
+      .container { padding: 0 16px }
+      .lp-form-card { padding: 16px }
+      .section { padding: 40px 0 }
+      .lp-hero { padding: 68px 0 28px }
+      .lp-hero h1 { font-size: clamp(1.35rem,5.5vw,1.6rem); margin-bottom: 12px }
+      .lp-hero p { font-size: 0.85rem; line-height: 1.6 }
+      .lp-hero-stats { gap: 12px }
+      .lp-hero-stats > div { flex: 1 1 30%; text-align: center }
+      .lp-hero-stats > div > div:first-child { font-size: 1.2rem !important }
+      .lp-hero-stats > div > div:last-child { font-size: 0.65rem !important }
+      .section-title { font-size: clamp(1.3rem,5vw,1.5rem) }
+      .lp-trust-grid { gap: 10px }
+      .lp-trust-card { padding: 14px 10px }
+      .form-input { padding: 12px 14px; font-size: 0.85rem; min-height: 44px }
+      .form-label { font-size: 0.68rem }
+      .stepper-btn { width: 40px; height: 40px }
+      .stepper-value { width: 44px; font-size: 0.95rem }
+      .btn { padding: 12px 24px; font-size: 0.82rem; min-height: 44px }
+      .btn-lg { padding: 14px 28px; font-size: 0.88rem; min-height: 44px }
+      .lp-header { height: 60px }
+      .lp-header-brand { font-size: 1.1rem }
+      .lp-header-brand-icon { width: 30px; height: 30px }
+      .lp-header-brand-icon img { width: 20px; height: 20px }
+    }
+    @media (max-width: 390px) {
+      .container { padding: 0 14px }
+      .lp-form-card { padding: 14px; border-radius: var(--radius) }
+      .lp-hero-grid { gap: 20px !important }
+      .lp-hero h1 { font-size: clamp(1.25rem,5vw,1.4rem) }
+      .lp-hero-stats > div > div:first-child { font-size: 1.1rem !important }
+      .section-title { font-size: clamp(1.2rem,4.5vw,1.35rem); margin-bottom: 14px }
+      .btn-lg { padding: 12px 24px; font-size: 0.85rem }
+      .lp-form-card h2 { font-size: 0.92rem }
+      .faq-question { padding: 14px 16px; font-size: 0.8rem }
+      .faq-item.open .faq-answer { padding: 0 16px 14px }
+      .lp-trust-grid { gap: 8px }
+      .lp-trust-card { padding: 12px 8px }
+    }
+    @media (max-width: 375px) {
+      .container { padding: 0 12px }
+      .lp-header { height: 56px }
+      .lp-hero { padding: 62px 0 24px }
+      .lp-hero h1 { font-size: clamp(1.15rem,5vw,1.3rem) }
+      .lp-hero p { font-size: 0.8rem }
+      .lp-hero-badge { font-size: 0.6rem; padding: 5px 12px; margin-bottom: 16px }
+      .lp-hero-stats { gap: 8px; margin-top: 24px }
+      .lp-hero-stats > div > div:first-child { font-size: 1rem !important }
+      .lp-hero-stats > div > div:last-child { font-size: 0.6rem !important }
+      .lp-form-card { padding: 12px }
+      .lp-form-card h2 { font-size: 0.88rem }
+      .lp-form-card p { font-size: 0.75rem; margin-bottom: 14px }
+      .form-grid { gap: 12px }
+      .form-input { padding: 10px 12px; font-size: 0.82rem; min-height: 44px }
+      .btn,.btn-lg { padding: 10px 20px; font-size: 0.78rem; min-height: 44px }
+      .section-title { font-size: clamp(1.1rem,5vw,1.2rem); margin-bottom: 12px }
+      .section-subtitle { font-size: 0.82rem }
+      .lp-trust-card { padding: 10px 8px; border-radius: var(--radius-sm) }
+      .lp-trust-icon { width: 38px; height: 38px; font-size: 0.95rem; border-radius: 10px; margin-bottom: 10px }
+      .lp-trust-title { font-size: 0.72rem }
+      .lp-trust-desc { font-size: 0.65rem }
+    }
+    @media (max-width: 320px) {
+      .container { padding: 0 10px }
+      .lp-header { height: 52px }
+      .lp-header-brand { font-size: 0.88rem; gap: 6px }
+      .lp-header-brand-icon { width: 24px; height: 24px }
+      .lp-header-brand-icon img { width: 16px; height: 16px }
+      .lp-header .lp-header-phone span { display: none }
+      .lp-header-phone { font-size: 0.72rem; gap: 4px }
+      .btn-sm { padding: 6px 12px; font-size: 0.65rem; min-height: 32px; gap: 4px }
+      .lp-hero { padding: 56px 0 20px }
+      .lp-hero h1 { font-size: 1.05rem; line-height: 1.15; margin-bottom: 10px }
+      .lp-hero-grid { gap: 16px !important }
+      .lp-hero-stats { gap: 4px; margin-top: 18px }
+      .lp-hero-stats > div > div:first-child { font-size: 0.85rem !important }
+      .lp-hero-stats > div > div:last-child { font-size: 0.55rem !important }
+      .lp-form-card { padding: 10px; border-radius: var(--radius-sm) }
+      .lp-form-card h2 { font-size: 0.82rem }
+      .lp-form-card p { font-size: 0.7rem; margin-bottom: 12px }
+      .form-grid { gap: 10px }
+      .form-input { padding: 8px 10px; font-size: 0.78rem; min-height: 40px }
+      .btn,.btn-lg { padding: 8px 14px; font-size: 0.72rem; min-height: 40px }
+      .section { padding: 28px 0 }
+      .section-title { font-size: 1.05rem; margin-bottom: 10px }
+      .section-subtitle { font-size: 0.75rem }
+      .section-label { font-size: 0.58rem; letter-spacing: 2px; margin-bottom: 10px }
+      .section-label::before { width: 20px }
+      .lp-trust-grid { gap: 6px }
+      .lp-trust-card { padding: 8px 6px }
+      .lp-trust-icon { width: 32px; height: 32px; font-size: 0.8rem; border-radius: 8px; margin-bottom: 8px }
+      .lp-trust-title { font-size: 0.65rem; margin-bottom: 2px }
+      .lp-trust-desc { font-size: 0.58rem }
+      .routes-grid { gap: 10px; margin-top: 24px }
+      .route-card { padding: 12px 12px; gap: 12px }
+      .route-name { font-size: 0.72rem }
+      .route-price { font-size: 0.78rem }
+      .route-icon { width: 32px; height: 32px; font-size: 0.8rem; border-radius: 8px }
+      .route-minibus { font-size: 0.6rem }
+      .review-card { padding: 14px }
+      .review-card-text { font-size: 0.78rem }
+      .review-summary-stars { font-size: 1.1rem }
+      .faq-question { padding: 12px 12px; font-size: 0.75rem; gap: 8px }
+      .faq-item.open .faq-answer { padding: 0 12px 12px }
+      .faq-answer p { font-size: 0.75rem }
+      .whatsapp-float { bottom: 12px; right: 12px; width: 40px; height: 40px; font-size: 1.1rem }
+      .cta-section h2 { font-size: 1.1rem }
+      .cta-section p { font-size: 0.85rem }
+      .cta-actions { flex-direction: column; width: 100% }
+      .cta-actions .btn { width: 100%; justify-content: center }
+      .lp-footer { padding: 24px 0 16px }
+      .lp-footer-brand { font-size: 0.95rem }
     }
   </style>
 </head>
@@ -346,12 +479,12 @@
   <!-- ====== HERO + BOOKING FORM ====== -->
   <section class="lp-hero" id="book-now-hero">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <div class="lp-hero-grid">
         <div class="lp-hero-content">
           <div class="lp-hero-badge"><span class="lp-hero-badge-dot"></span> Since 2018 — Premium Transport Service</div>
           <h1>Book Your <span>Private Transfer</span> in Morocco</h1>
           <p>Reliable private transfers between Marrakech, Essaouira, Agadir, Casablanca, Agafay and all major Moroccan destinations.</p>
-          <div style="display:flex;gap:24px;margin-top:32px;flex-wrap:wrap">
+          <div class="lp-hero-stats">
             <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">5,000+</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Happy Travelers</div></div>
             <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">24/7</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Support</div></div>
             <div><div style="font-family:var(--font-ui);font-size:1.4rem;font-weight:700;color:var(--text-light)">⭐ 4.9</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.45)">Average Rating</div></div>
