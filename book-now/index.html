@@ -594,6 +594,155 @@
       .lp-footer { padding: 24px 0 16px }
       .lp-footer-brand { font-size: 0.95rem }
     }
+
+    /* ====== COMPREHENSIVE RESPONSIVE ENHANCEMENTS ====== */
+
+    /* Form card overflow protection */
+    .lp-form-card { overflow-x: visible }
+
+    /* Step indicator: hide labels on small screens */
+    @media (max-width: 540px) {
+      .form-step-label { display: none }
+      .form-step { justify-content: center; gap: 6px }
+      .form-step-number { width: 30px; height: 30px; font-size: 0.72rem }
+      .form-step:not(:last-child)::after { margin: 0 8px }
+      .form-steps { padding: 0 0 18px; margin-bottom: 18px; gap: 0 }
+    }
+
+    /* Step indicator: even smaller dots on tiny screens */
+    @media (max-width: 375px) {
+      .form-step-number { width: 26px; height: 26px; font-size: 0.65rem }
+      .form-step:not(:last-child)::after { margin: 0 5px; min-width: 12px }
+      .form-steps { padding: 0 0 14px; margin-bottom: 14px }
+    }
+
+    /* datetime-local: full width on mobile, prevent clipping */
+    input[type="datetime-local"] {
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 480px) {
+      input[type="datetime-local"] {
+        font-size: 0.85rem;
+        min-height: 48px;
+        padding: 10px 12px;
+      }
+    }
+    @media (max-width: 375px) {
+      input[type="datetime-local"] {
+        font-size: 0.8rem;
+        min-height: 44px;
+        padding: 8px 10px;
+      }
+    }
+
+    /* Suggestions dropdown: ensure it stays within form card */
+    .suggestions {
+      left: 0; right: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 480px) {
+      .suggestions {
+        max-height: 160px;
+        font-size: 0.82rem;
+      }
+      .suggestion-item {
+        padding: 12px 14px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    /* Button layout: stack on very small screens */
+    @media (max-width: 414px) {
+      #bookNowForm .form-step-content[data-step="2"] > div:last-child,
+      #bookNowForm .form-step-content[data-step="3"] > div:first-of-type {
+        flex-direction: column !important;
+      }
+      #bookNowForm .form-step-content[data-step="2"] > div:last-child button,
+      #bookNowForm .form-step-content[data-step="3"] > div:first-of-type button {
+        width: 100% !important;
+        flex: none !important;
+        justify-content: center;
+      }
+      #bookNowForm .form-step-content[data-step="3"] > div:first-of-type {
+        gap: 10px !important;
+      }
+    }
+
+    /* Stepper: ensure minimum touch targets on mobile */
+    .stepper-btn {
+      min-width: 44px;
+      min-height: 44px;
+    }
+    .stepper-value {
+      min-width: 44px;
+    }
+
+    /* Make form inputs touch-friendly on all mobile sizes */
+    @media (pointer: coarse) {
+      .form-input, .btn, .stepper-btn, select, input[type="datetime-local"] {
+        min-height: 44px;
+      }
+    }
+
+    /* Summary card: ensure readability on smallest screens */
+    @media (max-width: 375px) {
+      .summary-card { padding: 12px }
+      .summary-row { flex-direction: column; gap: 4px; padding: 10px 0 }
+      .summary-value { text-align: left }
+      .summary-price-row .summary-value { font-size: 1rem }
+    }
+
+    /* Price in summary: ensure it doesn't overflow */
+    .summary-price-value { word-break: break-word }
+
+    /* Hero stats: prevent overflow on very narrow screens */
+    @media (max-width: 360px) {
+      .lp-hero-stats { gap: 6px }
+      .lp-hero-stats > div { flex: 1; min-width: 0 }
+      .lp-hero-stats > div > div:first-child {
+        font-size: clamp(0.7rem, 4vw, 0.9rem) !important;
+      }
+    }
+
+    /* Ensure form card doesn't exceed viewport width */
+    .lp-form-card {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* Fix empty selects/inputs on iOS */
+    input, select, textarea {
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: var(--radius-sm);
+    }
+
+    /* FAQ list: prevent overflow */
+    @media (max-width: 480px) {
+      .faq-question { gap: 12px; word-break: break-word }
+      .faq-question span:first-child { flex: 1; min-width: 0 }
+    }
+
+    /* Routes grid: full width cards on small mobile */
+    @media (max-width: 360px) {
+      .route-card { flex-wrap: wrap; gap: 10px }
+      .route-price { width: 100%; text-align: left; padding-left: 56px }
+    }
+
+    /* Review carousel: prevent horizontal overflow */
+    .reviews-carousel {
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+    .reviews-track {
+      will-change: transform;
+    }
   </style>
 </head>
 <body>

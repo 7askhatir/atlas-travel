@@ -2365,7 +2365,10 @@
       box-shadow: var(--shadow-md);
       z-index: 100;
       margin-top: 2px;
-      overflow: hidden
+      overflow: hidden;
+      max-height: 200px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch
     }
 
     .suggestion-item {
@@ -3067,6 +3070,20 @@
 
       .modal-header {
         padding: 16px 20px
+      }
+
+      .modal .suggestion-item {
+        padding: 14px 16px;
+        min-height: 44px;
+        display: flex;
+        align-items: center
+      }
+    }
+
+    @media(max-width:414px) {
+      .modal .suggestions {
+        max-height: 160px;
+        font-size: 0.82rem
       }
     }
   </style>
