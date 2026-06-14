@@ -744,6 +744,175 @@
     .reviews-track {
       will-change: transform;
     }
+
+    /* ---- Tariffs Modal ---- */
+    .modal-tariffs .modal-body {
+      padding: 0;
+      max-height: 70vh;
+      overflow-y: auto
+    }
+    .tariffs-search {
+      position: relative;
+      padding: 12px 20px 0
+    }
+    .tariffs-search-icon {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      pointer-events: none;
+      z-index: 1
+    }
+    .tariffs-search-input {
+      width: 100%;
+      padding: 10px 14px 10px 36px;
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      font-size: 0.82rem;
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: var(--transition);
+      box-sizing: border-box
+    }
+    .tariffs-search-input:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+      background: var(--bg-white)
+    }
+    .tariffs-search-input::placeholder {
+      color: var(--text-muted)
+    }
+    .tariffs-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      background: var(--bg-white);
+      z-index: 2
+    }
+    .tariffs-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 24px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-ui);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap
+    }
+    .tariffs-filter-btn:hover {
+      border-color: var(--secondary);
+      color: var(--primary);
+      background: var(--secondary-light)
+    }
+    .tariffs-filter-btn.active {
+      background: var(--secondary);
+      color: var(--text-light);
+      border-color: var(--secondary);
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3)
+    }
+    .tariffs-counter {
+      padding: 10px 20px 4px;
+      font-size: 0.72rem;
+      font-family: var(--font-ui);
+      color: var(--text-muted);
+      font-weight: 500
+    }
+    .tariffs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      padding: 8px 20px 20px
+    }
+    .tariff-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: var(--transition);
+      gap: 10px
+    }
+    .tariff-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--secondary)
+    }
+    .tariff-route {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text)
+    }
+    .tariff-from {
+      font-weight: 700;
+      color: var(--primary)
+    }
+    .tariff-arrow {
+      color: var(--secondary);
+      font-size: 0.7rem
+    }
+    .tariff-to {
+      color: var(--text-muted);
+      font-weight: 500
+    }
+    .tariff-pricing {
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--secondary)
+    }
+    .tariff-roundtrip {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--secondary)
+    }
+    .tariff-book-btn {
+      align-self: flex-end;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 18px;
+      border-radius: 20px;
+      border: none;
+      background: var(--secondary);
+      color: var(--text-light);
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-ui);
+      cursor: pointer;
+      transition: var(--transition-bounce)
+    }
+    .tariff-book-btn:hover {
+      background: var(--secondary-dark);
+      transform: scale(1.05)
+    }
+    @media(max-width:600px) {
+      .tariffs-search { padding: 10px 12px 0 }
+      .tariffs-search-icon { left: 20px }
+      .tariffs-search-input { padding: 9px 12px 9px 32px; font-size: 0.78rem }
+      .tariffs-filters { padding: 12px 12px 8px; gap: 6px }
+      .tariffs-filter-btn { font-size: 0.7rem; padding: 6px 12px }
+      .tariffs-grid { grid-template-columns: 1fr; padding: 6px 12px 16px; gap: 10px }
+      .tariff-card { padding: 14px 14px }
+    }
   </style>
 </head>
 <body>
@@ -1058,6 +1227,26 @@
     <span class="whatsapp-float-tooltip" data-i18n="booknow.whatsapp.tooltip">Chat with us!</span>
   </a>
 
+  <!-- ====== TARIFS MODAL ====== -->
+  <div class="modal-overlay" id="tariffsModalOverlay" onclick="TariffsModal.close(event)">
+    <div class="modal modal-tariffs" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title"><i class="fas fa-euro-sign"></i> <span data-i18n="tariffs.title">Price List / Tarifs</span></div>
+        <button class="modal-close" onclick="TariffsModal.close()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="tariffs-search">
+          <i class="fas fa-search tariffs-search-icon"></i>
+          <input type="text" class="tariffs-search-input" id="tariffsSearch" placeholder="Search routes..." data-i18n-placeholder="tariffs.search" oninput="TariffsModal.search(this.value)">
+        </div>
+        <div class="tariffs-filters" id="tariffsFilters"></div>
+        <div class="tariffs-counter" id="tariffsCounter"></div>
+        <div class="tariffs-grid" id="tariffsGrid"></div>
+        <div class="tariffs-empty" id="tariffsEmpty" style="display:none;text-align:center;padding:40px 20px;color:var(--text-muted)"><i class="fas fa-search" style="font-size:1.5rem;display:block;margin-bottom:10px"></i> <span data-i18n="tariffs.empty">Aucun trajet trouvé</span></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // =============================================
     // BOOK-NOW LANDING PAGE — Application Script
@@ -1120,7 +1309,7 @@
         'essaouira-sidi-kaouki': { car: 25 },
         'essaouira-agafay': { car: 100 },
         'agafay-essaouira': { car: 100 },
-        'essaouira-imsouane': { car: 70 },
+        'essaouira-imsouane': { car: 60 },
         'essaouira-taghazout': { car: 70 },
         'essaouira-agadir-airport': { car: 80 },
         'essaouira-taroudant': { car: 180 },
@@ -1528,6 +1717,158 @@
       // ==========================================
       document.getElementById('bnPickup').addEventListener('input', function () { BnForm.updatePrice() });
       document.getElementById('bnDest').addEventListener('input', function () { BnForm.updatePrice() });
+
+      // ==========================================
+      // ROUTE DATA
+      // ==========================================
+      var routesData = [
+        { from: 'Essaouira', to: 'Airport', price: 15, tags: ['essaouira','airports'], pickup: 'Essaouira', dest: 'Essaouira Airport' },
+        { from: 'Essaouira', to: 'Marrakech', price: 80, tags: ['essaouira','marrakech'], pickup: 'Essaouira', dest: 'Marrakech' },
+        { from: 'Essaouira', to: 'Agadir', price: 80, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Agadir' },
+        { from: 'Essaouira', to: 'Casablanca', price: 170, tags: ['essaouira','casablanca'], pickup: 'Essaouira', dest: 'Casablanca' },
+        { from: 'Essaouira', to: 'Agafay', price: 100, roundtrip: 160, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Agafay' },
+        { from: 'Agafay', to: 'Essaouira', price: 100, roundtrip: 160, tags: ['essaouira'], pickup: 'Agafay', dest: 'Essaouira' },
+        { from: 'Agadir', to: 'Casablanca', price: 250, tags: ['agadir','casablanca'], pickup: 'Agadir', dest: 'Casablanca' },
+        { from: 'Marrakech', to: 'Agadir', price: 100, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Agadir' },
+        { from: 'Marrakech', to: 'Casablanca', price: 120, tags: ['marrakech','casablanca'], pickup: 'Marrakech', dest: 'Casablanca' },
+        { from: 'Marrakech', to: 'Rabat', price: 180, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Rabat' },
+        { from: 'Marrakech', to: 'Airport', price: 15, tags: ['marrakech','airports'], pickup: 'Marrakech', dest: 'Marrakech Airport' },
+        { from: 'Marrakech', to: 'Palmeraie', price: 20, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Marrakech Palmeraie' },
+        { from: 'Marrakech', to: 'Ourika', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ourika' },
+        { from: 'Marrakech', to: 'Oukaimeden', price: 90, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Oukaimeden' },
+        { from: 'Marrakech', to: 'Imlil', price: 90, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Imlil' },
+        { from: 'Marrakech', to: 'Ouirgane', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouirgane' },
+        { from: 'Marrakech', to: 'Lalla Takerkoust', price: 70, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Lac de Lalla Takerkoust' },
+        { from: 'Marrakech', to: 'Agafay', price: 50, roundtrip: 90, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Agafay' },
+        { from: 'Agafay', to: 'Marrakech', price: 50, roundtrip: 90, tags: ['marrakech'], pickup: 'Agafay', dest: 'Marrakech' },
+        { from: 'Marrakech', to: 'Essaouira', price: 70, tags: ['marrakech','essaouira'], pickup: 'Marrakech', dest: 'Essaouira' },
+        { from: 'Marrakech', to: 'Agadir Airport', price: 120, tags: ['marrakech','agadir','airports'], pickup: 'Marrakech', dest: 'Agadir Airport' },
+        { from: 'Marrakech', to: 'Taghazout', price: 150, tags: ['marrakech','agadir'], pickup: 'Marrakech', dest: 'Taghazout' },
+        { from: 'Marrakech', to: 'Imsouane', price: 160, tags: ['marrakech','essaouira'], pickup: 'Marrakech', dest: 'Imsouane' },
+        { from: 'Marrakech', to: 'Sidi Ifni', price: 250, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Sidi Ifni' },
+        { from: 'Marrakech', to: 'Taroudant', price: 170, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Taroudant' },
+        { from: 'Marrakech', to: "Cascades d'Ouzoud", price: 120, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouzoud Waterfalls' },
+        { from: 'Marrakech', to: 'Ouarzazate', price: 140, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Ouarzazate' },
+        { from: 'Marrakech', to: 'Merzouga', price: 400, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Merzouga' },
+        { from: 'Marrakech', to: 'Casablanca Airport', price: 120, tags: ['marrakech','casablanca','airports'], pickup: 'Marrakech', dest: 'Casablanca Airport' },
+        { from: 'Marrakech', to: 'Fes', price: 350, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Fes' },
+        { from: 'Marrakech', to: 'Chefchaouen', price: 450, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Chefchaouen' },
+        { from: 'Marrakech', to: 'Tangier', price: 450, tags: ['marrakech'], pickup: 'Marrakech', dest: 'Tangier' },
+        { from: 'Agadir', to: 'Airport', price: 20, tags: ['agadir','airports'], pickup: 'Agadir', dest: 'Agadir Airport' },
+        { from: 'Agadir', to: 'Taghazout', price: 120, tags: ['agadir'], pickup: 'Agadir', dest: 'Taghazout' },
+        { from: 'Agadir', to: 'Imsouane', price: 65, tags: ['agadir','essaouira'], pickup: 'Agadir', dest: 'Imsouane' },
+        { from: 'Agadir', to: 'Taroudant', price: 90, tags: ['agadir'], pickup: 'Agadir', dest: 'Taroudant' },
+        { from: 'Agadir', to: 'Tiznit', price: 100, tags: ['agadir'], pickup: 'Agadir', dest: 'Tiznit' },
+        { from: 'Agadir', to: 'Sidi Ifni', price: 120, tags: ['agadir'], pickup: 'Agadir', dest: 'Sidi Ifni' },
+        { from: 'Agadir', to: 'Tafraoute', price: 160, tags: ['agadir'], pickup: 'Agadir', dest: 'Tafraoute' },
+        { from: 'Agadir', to: 'Essaouira', price: 80, tags: ['agadir','essaouira'], pickup: 'Agadir', dest: 'Essaouira' },
+        { from: 'Agadir', to: 'Essaouira Airport', price: 80, tags: ['agadir','essaouira','airports'], pickup: 'Agadir', dest: 'Essaouira Airport' },
+        { from: 'Essaouira', to: 'Sidi Kaouki', price: 25, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Sidi Kaouki' },
+        { from: 'Essaouira', to: 'Imsouane', price: 60, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Imsouane' },
+        { from: 'Essaouira', to: 'Taghazout', price: 70, tags: ['essaouira','agadir'], pickup: 'Essaouira', dest: 'Taghazout' },
+        { from: 'Essaouira', to: 'Agadir Airport', price: 80, tags: ['essaouira','agadir','airports'], pickup: 'Essaouira', dest: 'Agadir Airport' },
+        { from: 'Essaouira', to: 'Taroudant', price: 180, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Taroudant' },
+        { from: 'Essaouira', to: 'Sidi Ifni', price: 250, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Sidi Ifni' },
+        { from: 'Essaouira', to: 'Safi', price: 90, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Safi' },
+        { from: 'Essaouira', to: 'Oualidia', price: 130, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Oualidia' },
+        { from: 'Essaouira', to: 'El Jadida', price: 150, tags: ['essaouira','casablanca'], pickup: 'Essaouira', dest: 'El Jadida' },
+        { from: 'Essaouira', to: 'Casablanca Airport', price: 170, tags: ['essaouira','casablanca','airports'], pickup: 'Essaouira', dest: 'Casablanca Airport' },
+        { from: 'Essaouira', to: 'Rabat', price: 250, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Rabat' },
+        { from: 'Essaouira', to: 'Fes', price: 420, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Fes' },
+        { from: 'Essaouira', to: 'Tangier', price: 500, tags: ['essaouira'], pickup: 'Essaouira', dest: 'Tangier' }
+      ];
+
+      var filterDefs = [
+        { id: 'all', label: { en: 'All', fr: 'Tous' }, icon: 'fa-globe' },
+        { id: 'marrakech', label: { en: 'Marrakech', fr: 'Marrakech' }, icon: 'fa-city' },
+        { id: 'agadir', label: { en: 'Agadir', fr: 'Agadir' }, icon: 'fa-umbrella-beach' },
+        { id: 'essaouira', label: { en: 'Essaouira', fr: 'Essaouira' }, icon: 'fa-sailboat' },
+        { id: 'casablanca', label: { en: 'Casablanca', fr: 'Casablanca' }, icon: 'fa-briefcase' },
+        { id: 'airports', label: { en: 'Airports', fr: 'Aéroports' }, icon: 'fa-plane' }
+      ];
+
+      function goToBookNow(pickup, dest) {
+        if (pickup) { var pEl = document.getElementById('bnPickup'); if (pEl) pEl.value = pickup }
+        if (dest) { var dEl = document.getElementById('bnDest'); if (dEl) dEl.value = dest }
+        if (pickup || dest) { setTimeout(function () { BnForm.updatePrice() }, 100) }
+        document.getElementById('book-now-hero').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      window.TariffsModal = {
+        activeFilter: 'all',
+        searchQuery: '',
+        open: function () {
+          document.getElementById('tariffsModalOverlay').classList.add('open');
+          document.body.style.overflow = 'hidden';
+          this.activeFilter = 'all';
+          this.searchQuery = '';
+          var inp = document.getElementById('tariffsSearch');
+          if (inp) inp.value = '';
+          this.render();
+        },
+        close: function (e) {
+          if (e && e.target !== e.currentTarget) return;
+          document.getElementById('tariffsModalOverlay').classList.remove('open');
+          document.body.style.overflow = '';
+        },
+        setFilter: function (id) {
+          this.activeFilter = id;
+          this.render();
+        },
+        search: function (value) {
+          this.searchQuery = value.toLowerCase().trim();
+          this.render();
+        },
+        render: function () {
+          var filtersEl = document.getElementById('tariffsFilters');
+          var gridEl = document.getElementById('tariffsGrid');
+          var counterEl = document.getElementById('tariffsCounter');
+          var emptyEl = document.getElementById('tariffsEmpty');
+          var lang = (window.Lang && Lang.current) || 'en';
+          filtersEl.innerHTML = filterDefs.map(function (f) {
+            var active = f.id === TariffsModal.activeFilter ? ' active' : '';
+            return '<button class="tariffs-filter-btn' + active + '" onclick="TariffsModal.setFilter(\'' + f.id + '\')"><i class="fas ' + f.icon + '"></i> ' + f.label[lang] + '</button>';
+          }).join('');
+          var filtered = routesData;
+          if (this.activeFilter !== 'all') {
+            filtered = routesData.filter(function (r) {
+              return r.tags.indexOf(TariffsModal.activeFilter) > -1;
+            });
+          }
+          if (this.searchQuery) {
+            var q = this.searchQuery;
+            filtered = filtered.filter(function (r) {
+              return r.from.toLowerCase().indexOf(q) > -1 ||
+                r.to.toLowerCase().indexOf(q) > -1 ||
+                (r.from + ' ' + r.to).toLowerCase().indexOf(q) > -1;
+            });
+          }
+          counterEl.textContent = filtered.length + ' ' + (lang === 'fr' ? 'trajets' : 'routes');
+          if (filtered.length === 0) {
+            gridEl.innerHTML = '';
+            emptyEl.style.display = 'block';
+            return;
+          }
+          emptyEl.style.display = 'none';
+          gridEl.innerHTML = filtered.map(function (r) {
+            var priceStr = (lang === 'fr' ? 'À partir de ' : 'From ') + r.price + '\u20AC';
+            if (r.roundtrip) priceStr += ' <span class="tariff-roundtrip">| ' + (lang === 'fr' ? 'Aller-retour' : 'Round trip') + ' ' + r.roundtrip + '\u20AC</span>';
+            var pVal = r.pickup;
+            var dVal = r.dest;
+            return '<div class="tariff-card" onclick="TariffsModal.book(\'' + dVal.replace(/'/g, "\\'") + '\',\'' + pVal.replace(/'/g, "\\'") + '\')">' +
+              '<div class="tariff-route"><span class="tariff-from">' + r.from + '</span> <span class="tariff-arrow"><i class="fas fa-arrow-right"></i></span> <span class="tariff-to">' + r.to + '</span></div>' +
+              '<div class="tariff-pricing">' + priceStr + '</div>' +
+              '<button class="tariff-book-btn" onclick="event.stopPropagation();TariffsModal.book(\'' + dVal.replace(/'/g, "\\'") + '\',\'' + pVal.replace(/'/g, "\\'") + '\')"><i class="fas fa-check"></i> ' + (lang === 'fr' ? 'Réserver' : 'Book') + '</button>' +
+              '</div>';
+          }).join('');
+        },
+        book: function (dest, pickup) {
+          this.close();
+          goToBookNow(pickup || '', dest || '');
+        }
+      };
+
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { TariffsModal.close() } });
 
     });
   </script>

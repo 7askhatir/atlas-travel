@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'essaouira-sidi-kaouki': { car: 25 },
     'essaouira-agafay': { car: 100 },
     'agafay-essaouira': { car: 100 },
-    'essaouira-imsouane': { car: 70 },
+    'essaouira-imsouane': { car: 60 },
     'essaouira-taghazout': { car: 70 },
     'essaouira-agadir-airport': { car: 80 },
     'essaouira-taroudant': { car: 180 },
