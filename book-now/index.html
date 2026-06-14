@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
   <script src="../js/i18n.js"></script>
   <style>
     :root {
@@ -24,6 +25,7 @@
       --cta: #FF8A00; --cta-hover: #e67e00; --cta-light: rgba(255,138,0,0.12);
       --gold: #C9A84C; --gold-light: rgba(201,168,76,0.15);
       --bg: #F7F9FC; --bg-white: #fff; --bg-dark: #0A0F1E;
+      --nav-height: 76px;
       --text: #1a1a2e; --text-muted: #6c757d; --text-light: #fff;
       --border: #e9ecef; --border-light: #f0f2f5;
       --radius: 20px; --radius-sm: 10px; --radius-lg: 28px;
@@ -153,23 +155,8 @@
     .summary-value { color: var(--text); font-weight: 600; text-align: right }
     .summary-price-row .summary-value { color: var(--secondary); font-size: 1.1rem }
 
-    /* ====== HEADER ====== */
-    .lp-header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      height: 68px; display: flex; align-items: center;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.08)
-    }
-    .lp-header .container { display: flex; align-items: center; justify-content: space-between }
-    .navbar-brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--primary); letter-spacing: -0.3px; flex-shrink: 0 }
-    .navbar-brand-icon { width: 38px; height: 38px; background: linear-gradient(135deg, var(--gold), #a8892e); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--primary-dark); box-shadow: 0 4px 12px rgba(201,168,76,0.3); flex-shrink: 0 }
-    .navbar-brand-icon img { width: 24px; height: 24px; filter: brightness(0) invert(1) }
-    .lp-header-phone { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; color: var(--text-muted) }
-    .lp-header-phone i { color: var(--secondary) }
-    .navbar-lang { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); cursor: pointer; outline: none }
-    .navbar-lang:hover { border-color: var(--secondary) }
-    .navbar-lang-btn { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); cursor: pointer; display: none }
-    .navbar-lang-btn:hover { border-color: var(--secondary) }
+    /* ====== BOOK NOW PAGE SPECIFIC ====== */
+    .lp-hero { padding-top: calc(var(--nav-height) + 28px) }
 
     /* ====== HERO ====== */
     .lp-hero {
@@ -464,7 +451,6 @@
       .lp-trust-grid { grid-template-columns: repeat(2,1fr); gap: 16px }
       .lp-trust-card { padding: 20px 16px }
       .review-card { min-width: 100% }
-      .lp-header-phone span { display: none }
       .lp-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; align-items: stretch !important }
       .lp-hero h1 { font-size: clamp(1.75rem,5vw,2.2rem) }
       .lp-hero-stats { justify-content: center }
@@ -516,7 +502,6 @@
       .stepper-value { width: 44px; font-size: 0.95rem }
       .btn { padding: 12px 24px; font-size: 0.82rem; min-height: 44px }
       .btn-lg { padding: 14px 28px; font-size: 0.88rem; min-height: 44px }
-      .lp-header { height: 60px }
       .navbar-brand { font-size: 1.1rem }
       .navbar-brand-icon { width: 30px; height: 30px }
       .navbar-brand-icon img { width: 20px; height: 20px }
@@ -537,7 +522,6 @@
     }
     @media (max-width: 375px) {
       .container { padding: 0 12px }
-      .lp-header { height: 56px }
       .lp-hero { padding: 62px 0 24px }
       .lp-hero h1 { font-size: clamp(1.15rem,5vw,1.3rem) }
       .lp-hero p { font-size: 0.8rem }
@@ -560,12 +544,9 @@
     }
     @media (max-width: 320px) {
       .container { padding: 0 10px }
-      .lp-header { height: 52px }
       .navbar-brand { font-size: 0.88rem; gap: 6px }
       .navbar-brand-icon { width: 24px; height: 24px }
       .navbar-brand-icon img { width: 16px; height: 16px }
-      .lp-header .lp-header-phone span { display: none }
-      .lp-header-phone { font-size: 0.72rem; gap: 4px }
       .btn-sm { padding: 6px 12px; font-size: 0.65rem; min-height: 32px; gap: 4px }
       .lp-hero { padding: 56px 0 20px }
       .lp-hero h1 { font-size: 1.05rem; line-height: 1.15; margin-bottom: 10px }
@@ -617,26 +598,30 @@
 </head>
 <body>
 
-  <!-- ====== MINIMAL HEADER ====== -->
-  <header class="lp-header">
+  <!-- ====== NAVBAR (same as home page) ====== -->
+  <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="#" class="navbar-brand">
+      <a href="../index.html" class="navbar-brand">
         <span class="navbar-brand-icon" style="background: beige !important;">
           <img src="../images/logo-icon.png" alt="" srcset="">
         </span>
-        <span data-i18n="nav.brand">TAXI Tours
-        </span></a>
-      <div style="display:flex;align-items:center;gap:16px">
-        <select class="navbar-lang" data-i18n-aria="aria.lang">
-          <option value="en">EN</option>
-          <option value="fr">FR</option>
-        </select>
-        <button class="navbar-lang-btn" onclick="var s=document.querySelector('.navbar-lang');s.value=s.value==='en'?'fr':'en';s.dispatchEvent(new Event('change'))">EN</button>
-        <a href="tel:+212681579803" class="lp-header-phone"><i class="fas fa-phone-alt"></i> <span>+212 681 579 803</span></a>
-        <a href="https://wa.me/212681579803?text=Hi!%20I'd%20like%20to%20book%20a%20transfer" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <span data-i18n="nav.brand">TAXI Tours</span>
+      </a>
+      <div class="navbar-menu" id="navbarMenu">
+        <a href="../index.html#hero" class="navbar-link" data-i18n="nav.home">Home</a>
+        <a href="../index.html#transport" class="navbar-link" data-i18n="nav.transport">Transport</a>
+        <a href="javascript:void(0)" class="navbar-link" onclick="TariffsModal.open()" data-i18n="nav.tariffs">Tarifs</a>
+        <a href="../index.html#destinations" class="navbar-link" data-i18n="nav.destinations">Destinations</a>
+        <a href="../index.html#faq" class="navbar-link" data-i18n="nav.faq">FAQ</a>
+        <a href="../index.html#contact" class="navbar-link" data-i18n="nav.contact">Contact</a>
+        <div class="navbar-cta"><a href="#book-now-hero" class="btn btn-cta btn-sm"><i
+              class="fas fa-calendar-check"></i> <span data-i18n="nav.book">Book Now</span></a></div>
       </div>
+      <div class="navbar-overlay" id="navbarOverlay"></div>
+      <button class="navbar-toggle" id="navbarToggle"
+        data-i18n-aria="aria.toggle"><span></span><span></span><span></span></button>
     </div>
-  </header>
+  </nav>
 
   <!-- ====== HERO + BOOKING FORM ====== -->
   <section class="lp-hero" id="book-now-hero">
@@ -1396,5 +1381,6 @@
 
     });
   </script>
+  <script src="../js/main.js"></script>
 </body>
 </html>
