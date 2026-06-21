@@ -441,9 +441,7 @@ Make the sticky mobile CTA (lines 3795-3800) show limited-time messaging:
       <i class="fab fa-whatsapp"></i> <strong>WhatsApp</strong>
     </a>
   </div>
-  <div style="text-align:center;font-size:0.65rem;color:var(--text-muted);margin-top:6px">
-    ⚡ Reply in 2 minutes · Free cancellation · Best price guaranteed
-  </div>
+
 </div>
 ```
 

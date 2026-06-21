@@ -1844,6 +1844,7 @@ button, input, select, textarea, a { touch-action: manipulation; }
 
 /* ---- Mobile Sticky CTA ---- */
 .sticky-mobile-cta {
+  height: 75px;
   display: none;
   position: fixed;
   bottom: 0;
@@ -2024,7 +2025,7 @@ button, input, select, textarea, a { touch-action: manipulation; }
   .destinations-grid { grid-template-columns: 1fr; }
   .destination-card { height: 260px; }
 
-  .sticky-mobile-cta { display: flex; }
+  .sticky-mobile-cta { display: flex; height: 75px;}
   .whatsapp-float { bottom: 76px; width: 48px; height: 48px; font-size: 1.25rem; }
   .whatsapp-float-tooltip { display: none; }
 
