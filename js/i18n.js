@@ -566,12 +566,14 @@
     'aria.social.facebook': { en: 'Facebook', fr: 'Facebook' },
     'aria.social.tripadvisor': { en: 'TripAdvisor', fr: 'TripAdvisor' },
     'aria.social.google': { en: 'Google', fr: 'Google' },
+    'aria.social.email': { en: 'Email', fr: 'Email' },
     'aria.social.tiktok': { en: 'TikTok', fr: 'TikTok' },
     'aria.backToTop': { en: 'Back to top', fr: 'Retour en haut' },
     'aria.instagram': { en: 'Instagram', fr: 'Instagram' },
     'aria.facebook': { en: 'Facebook', fr: 'Facebook' },
     'aria.tripadvisor': { en: 'TripAdvisor', fr: 'TripAdvisor' },
     'aria.google': { en: 'Google', fr: 'Google' },
+    'aria.email': { en: 'Email', fr: 'Email' },
 
     /* ====== WHATSAPP MESSAGES ====== */
     'whatsapp.modal.header': { en: 'Hi! I\'d like to book a transport:\n\n', fr: 'Bonjour ! Je souhaite réserver un transport :\n\n' },
